@@ -7,12 +7,17 @@ public class FormController {
 
 
     @FXML
-    private ComboBox comboBox;
+    private ComboBox comboboxForm1;
 
 
     @FXML
     public void initialize()
     {
-        comboBox.getItems().add("Kredyt");
+        comboboxForm1.getItems().add("Kredyt");
+        comboboxForm1.getItems().add("Venture Capitals");
+        comboboxForm1.getItems().add("Inwestor");
+        comboboxForm1.getItems().add("Własne środki");
     }
+
+
 }

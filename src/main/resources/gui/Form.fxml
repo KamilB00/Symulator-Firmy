@@ -7,10 +7,10 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="1146.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="1146.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.FormController">
    <children>
-      <ComboBox layoutX="74.0" layoutY="104.0" prefHeight="31.0" prefWidth="147.0" />
-      <Label layoutX="51.0" layoutY="53.0" prefHeight="27.0" prefWidth="193.0" text="Wybierz rodzaj finansowania" />
+      <ComboBox fx:id="comboboxForm1" layoutX="74.0" layoutY="104.0" prefHeight="31.0" prefWidth="147.0" />
+      <Label layoutX="68.0" layoutY="60.0" prefHeight="27.0" prefWidth="193.0" text="Wybierz rodzaj finansowania" />
       <Label layoutX="74.0" layoutY="338.0" text="Czas trwania symulacji" />
       <Slider layoutX="34.0" layoutY="376.0" prefHeight="17.0" prefWidth="227.0" />
       <Label layoutX="418.0" layoutY="56.0" text="Ilość Pracowników" />
@@ -38,5 +38,6 @@
       <Label layoutX="763.0" layoutY="299.0" text="Miejsce Pracy" />
       <RadioButton layoutX="706.0" layoutY="349.0" mnemonicParsing="false" text="Biuro" />
       <RadioButton layoutX="823.0" layoutY="349.0" mnemonicParsing="false" text="Praca Zdalna" />
+      <Button fx:id="buttonForm1" layoutX="87.0" layoutY="152.0" mnemonicParsing="false" text="Zatwierdź warunki" />
    </children>
 </Pane>
