@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="symulator.gui.VCController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.VCController">
+   <children>
+      <Text fill="WHITE" layoutX="79.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VENTURE CAPITALS">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Button fx:id="backVC" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" style="-fx-background-color: #636363; -fx-text-fill: #ff0000;" text="POWRÓT" textFill="RED">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="confirmVC" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" style="-fx-background-color: #636363; -fx-text-fill: #00ff04;" text="ZATWIERDŹ" textFill="#00ff04">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <TextField fx:id="enterAmount" layoutX="272.0" layoutY="115.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="amountOfParticipation" layoutX="272.0" layoutY="174.0" style="-fx-background-color: #ffffff;" />
+      <Text fill="WHITE" layoutX="102.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PODAJ KWOTĘ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="99.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ILOŚĆ UDZIAŁU">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>
