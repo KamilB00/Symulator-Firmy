@@ -1,0 +1,13 @@
+#buttonCredit1:hover {
+    -fx-background-color:  #ff0000;
+    -fx-text-fill:  #636363;
+}
+
+#buttonCredit2:hover {
+    -fx-background-color:  #00ff04;
+    -fx-text-fill:  #636363;
+}
+
+.text-field:hover {
+    -fx-background-color: #dddddd;
+}

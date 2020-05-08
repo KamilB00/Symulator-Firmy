@@ -4,13 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class CreditController {
+public class InvestorController {
 
     @FXML
-    private TextField textfieldCredit1, textfieldCredit2, textfieldCredit3;
+    private TextField textfieldInvestor1, textfieldInvestor2;
 
     @FXML
-    private Button buttonCredit1, buttonCredit2;
+    private Button buttonInvestor1, buttonInvestor2;
 
 
     @FXML
