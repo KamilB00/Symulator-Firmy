@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.OwnCapitalController">
+<AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #1a1a1a;" stylesheets="@OwnCapitalCSS.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.OwnCapitalController">
    <children>
       <Text fill="WHITE" layoutX="93.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WŁASNY KAPITAŁ">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
-      <Button fx:id="buttonOwnCapital1" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" style="-fx-background-color: #636363; -fx-text-fill: #ff0000;" text="POWRÓT" textFill="RED">
+      <Button fx:id="buttonOwnCapital1" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" text="POWRÓT">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Button fx:id="buttonOwnCapital2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" style="-fx-background-color: #636363; -fx-text-fill: #00ff04;" text="ZATWIERDŹ" textFill="#00ff04">
+      <Button fx:id="buttonOwnCapital2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" text="ZATWIERDŹ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <TextField fx:id="textfieldOwnCapital1" layoutX="150.0" layoutY="134.0" prefHeight="32.0" prefWidth="198.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="textfieldOwnCapital1" layoutX="150.0" layoutY="134.0" prefHeight="32.0" prefWidth="198.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></TextField>
    </children>
 </AnchorPane>
