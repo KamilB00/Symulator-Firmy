@@ -1,0 +1,27 @@
+#buttonVC1{
+    -fx-background-color: #505050;
+    -fx-text-fill: #ff0000;
+}
+
+#buttonVC2{
+    -fx-background-color: #505050;
+    -fx-text-fill: #18AC00;
+}
+
+#buttonVC1:hover {
+    -fx-background-color:  #ff0000;
+    -fx-text-fill:  #ffffff;
+}
+
+#buttonVC2:hover {
+    -fx-background-color:  #00ff04;
+    -fx-text-fill:  #000000;
+}
+
+.text-field{
+    -fx-background-color: white;
+}
+
+.text-field:hover {
+    -fx-background-color: #dddddd;
+}
