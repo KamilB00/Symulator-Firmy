@@ -1,11 +1,25 @@
+#buttonInvestor1{
+    -fx-background-color: #505050;
+    -fx-text-fill: #ff0000;
+}
+
+#buttonInvestor2{
+    -fx-background-color: #505050;
+    -fx-text-fill: #18AC00;
+}
+
 #buttonInvestor1:hover {
     -fx-background-color:  #ff0000;
-    -fx-text-fill:  #636363;
+    -fx-text-fill:  #ffffff;
 }
 
 #buttonInvestor2:hover {
     -fx-background-color:  #00ff04;
-    -fx-text-fill:  #636363;
+    -fx-text-fill:  #000000;
+}
+
+.text-field{
+    -fx-background-color: white;
 }
 
 .text-field:hover {
