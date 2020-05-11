@@ -3,6 +3,10 @@ package symulator.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class OwnCapitalController {
 
@@ -19,4 +23,10 @@ public class OwnCapitalController {
 
     }
 
+    @FXML
+    public void backToForm(MouseEvent mouseEvent) throws IOException {
+
+        Stage stage = (Stage) buttonOwnCapital1 .getScene().getWindow();
+        stage.close();
+    }
 }

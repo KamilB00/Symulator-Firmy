@@ -1,8 +1,19 @@
 package symulator.gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class CreditController {
 
@@ -19,4 +30,11 @@ public class CreditController {
 
     }
 
+
+    @FXML
+    public void backToForm(MouseEvent mouseEvent) throws IOException {
+
+        Stage stage = (Stage) buttonCredit1 .getScene().getWindow();
+        stage.close();
+    }
 }

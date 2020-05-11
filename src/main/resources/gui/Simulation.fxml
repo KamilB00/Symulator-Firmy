@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="685.0" prefWidth="1072.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.SimulationController">
+<AnchorPane prefHeight="685.0" prefWidth="1072.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.SimulationController">
    <children>
       <TextField fx:id="kTextField12" alignment="CENTER" layoutX="638.0" layoutY="437.0" prefHeight="26.0" prefWidth="117.0" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" text="-12914">
          <font>
@@ -23,7 +29,7 @@
          </font>
       </TextField>
       <ProgressBar id="postep" fx:id="progressBarSim0" layoutX="-6.0" layoutY="-3.0" prefHeight="26.0" prefWidth="1079.0" progress="0.33" />
-      <ProgressBar fx:id="progressBarSim1" layoutX="14.0" layoutY="101.0" prefHeight="30.0" prefWidth="150.0" progress="0.59" />
+      <ProgressBar fx:id="progressBarSim1" layoutX="72.0" layoutY="101.0" prefHeight="30.0" prefWidth="150.0" progress="0.59" />
       <ProgressBar fx:id="progressBarSim2" layoutX="15.0" layoutY="137.0" prefHeight="30.0" prefWidth="150.0" progress="0.76" />
       <ProgressBar fx:id="progressBarSim3" layoutX="14.0" layoutY="175.0" prefHeight="30.0" prefWidth="150.0" progress="0.86" />
       <ProgressBar fx:id="progressBarSim4" layoutX="14.0" layoutY="213.0" prefHeight="30.0" prefWidth="150.0" progress="0.32" />
@@ -52,7 +58,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField1" editable="false" layoutX="15.0" layoutY="102.0" opacity="0.31" prefHeight="26.0" prefWidth="150.0" text="PROGRAMISTA">
+      <TextField fx:id="fTextField1" editable="false" layoutX="72.0" layoutY="102.0" opacity="0.31" prefHeight="28.0" prefWidth="150.0" text="PROGRAMISTA">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
