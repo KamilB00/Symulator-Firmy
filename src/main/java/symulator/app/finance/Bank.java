@@ -10,6 +10,7 @@ public class Bank {
 
 
 
+
     public double returnAmount(){
         double calculate = percentage*amount;
         return calculate;
@@ -23,5 +24,8 @@ public class Bank {
 
     }
 
+    //TODO TOMEK
+    // 1. Generowanie na podstwaie wpisanej kwoty (większej niż 100k) warunków oprocentowania, rat
+    // 2. w przypadku opóźnienia naliczanie odsetek  (interest), raty będą automatycznie zwracane przez księgowość, opóźnienie będzie wynikało tylko z niewypłacalności kogoś i wtedy dług się powiększa
 
 }

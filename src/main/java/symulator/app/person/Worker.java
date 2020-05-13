@@ -7,13 +7,13 @@ public class Worker {
     private String position;
     private Double salary;
     private Double efficiency;
-    private Integer numberOfEmployees;
 
 
-    /*
-    TODO
-    1. nadanie wartości każdemu z pracowników
-     */
+
+
+   // TODO KUBA
+    //  1. nadpisanie wszystkich klas które dziedziczą po "workerze" i nadanie im wartości (dziedziczenie)
+
 
     public String getPosition() {
         return position;
@@ -47,12 +47,5 @@ public class Worker {
         this.efficiency = efficiency;
     }
 
-    public Integer getNumberOfEmployees() {
-        return numberOfEmployees;
-    }
-
-    public void setNumberOfEmployees(Integer numberOfEmployees) {
-        this.numberOfEmployees = numberOfEmployees;
-    }
 
 }

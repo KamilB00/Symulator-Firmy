@@ -46,4 +46,5 @@ public class Company {
     public void setProjectNumber(double projectNumber) {
         this.projectNumber = projectNumber;
     }
+
 }
