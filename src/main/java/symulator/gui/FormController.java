@@ -15,11 +15,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
+import symulator.app.person.Accountant;
+import symulator.app.person.Worker;
 
 import java.io.IOException;
 
 
-public class FormController {
+public  class FormController {
+
 
 
     @FXML
@@ -73,7 +76,34 @@ public class FormController {
     @FXML
     private TextField counter6;
 
+    @FXML
+    public Slider getSliderFormEmployee1() {
+        return sliderFormEmployee1;
+    }
+    @FXML
+    public Slider getSliderFormEmployee2() {
+        return sliderFormEmployee2;
+    }
+    @FXML
+    public Slider getSliderFormEmployee3() {
+        return sliderFormEmployee3;
+    }
+    @FXML
+    public Slider getSliderFormEmployee4() {
+        return sliderFormEmployee4;
+    }
+    @FXML
+    public Slider getSliderFormEmployee5() {
+        return sliderFormEmployee5;
+    }
+    @FXML
+    public Slider getSliderFormEmployee6() {
+        return sliderFormEmployee6;
+    }
 
+    public void setSliderFormEmployee1(Slider sliderFormEmployee1) {
+        this.sliderFormEmployee1 = sliderFormEmployee1;
+    }
 
     @FXML
     public void initialize()
@@ -132,10 +162,14 @@ public class FormController {
         window.setScene(scene2);
         window.show();
     }
+
     @FXML
     public void sliderClicked()throws IOException{
         Double sT = sliderFormTime.getValue();
-        Double sE1 = sliderFormEmployee1.getValue();
+
+        setSliderFormEmployee1(sliderFormEmployee1);
+        Double sE1 = getSliderFormEmployee1().getValue();
+
         Double sE2 = sliderFormEmployee2.getValue();
         Double sE3 = sliderFormEmployee3.getValue();
         Double sE4 = sliderFormEmployee4.getValue();
@@ -151,12 +185,15 @@ public class FormController {
         counter6.setText(String.valueOf(sE6.intValue()));
 
 
+
         System.out.println(sT.intValue()+"\n"+sE1.intValue()+"\n"+sP.intValue()+"\n");
+
     }
     @FXML
     public void confirmation() throws IOException {
         if(comboboxForm1.getValue()=="Kredyt") {
             addSceneCredit();
+
         }
         else if(comboboxForm1.getValue()=="Własne środki"){
             addSceneOwnCapital();
@@ -172,6 +209,9 @@ public class FormController {
         }
 
     }
+
+
+
 
 
 }

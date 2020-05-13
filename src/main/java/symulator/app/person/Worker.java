@@ -1,18 +1,19 @@
 package symulator.app.person;
 
+
+
 public class Worker {
     private long id;
     private String position;
-    private double salary;
-    private double efficiency;
+    private Double salary;
+    private Double efficiency;
+    private Integer numberOfEmployees;
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    /*
+    TODO
+    1. nadanie wartości każdemu z pracowników
+     */
 
     public String getPosition() {
         return position;
@@ -22,19 +23,36 @@ public class Worker {
         this.position = position;
     }
 
-    public double getSalary() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 
-    public double getEfficiency() {
+    public Double getEfficiency() {
         return efficiency;
     }
 
-    public void setEfficiency(double efficiency) {
+    public void setEfficiency(Double efficiency) {
         this.efficiency = efficiency;
     }
+
+    public Integer getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(Integer numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
+    }
+
 }

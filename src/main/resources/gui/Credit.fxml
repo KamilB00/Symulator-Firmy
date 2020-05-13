@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #1a1a1a;" stylesheets="@CreditCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.CreditController">
    <children>
-      <Text fill="WHITE" layoutX="170.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KREDYT" wrappingWidth="160.5673828125">
+      <Text fill="WHITE" layoutX="180.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KREDYT" wrappingWidth="160.5673828125">
          <font>
             <Font size="40.0" />
          </font>
@@ -30,32 +30,43 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="textfieldCredit2" layoutX="282.0" layoutY="137.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></TextField>
-      <TextField fx:id="textfieldCredit3" layoutX="282.0" layoutY="179.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></TextField>
-      <TextField fx:id="textfieldCredit1" editable="false" layoutX="282.0" layoutY="95.0">
+      <TextField fx:id="textfieldCredit1" editable="false" layoutX="250.0" layoutY="80.0" mouseTransparent="true">
          <cursor>
             <Cursor fx:constant="DISAPPEAR" />
          </cursor></TextField>
-      <Text fill="WHITE" layoutX="74.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OPROCENTOWANIE">
+      <Text fill="WHITE" layoutX="61.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OPROCENTOWANIE">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="94.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KWOTA KREDYTU">
+      <Text fill="WHITE" layoutX="61.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KWOTA KREDYTU">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="141.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LICZBA RAT">
+      <Text fill="WHITE" layoutX="76.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LICZBA RAT">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
+      <Text fill="WHITE" layoutX="48.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="szacowana roczna kwota projektu" wrappingWidth="187.0" />
+      <TextField fx:id="textfieldCredit11" editable="false" layoutX="244.0" layoutY="204.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="5000000">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textfieldCredit2" editable="false" layoutX="250.0" layoutY="122.0" mouseTransparent="true">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+      </TextField>
+      <TextField fx:id="textfieldCredit3" editable="false" layoutX="250.0" layoutY="160.0" promptText="podaj kwotę">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+      </TextField>
    </children>
 </AnchorPane>

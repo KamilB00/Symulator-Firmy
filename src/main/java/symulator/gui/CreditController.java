@@ -11,11 +11,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import symulator.app.finance.Bank;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.Random;
 
-public class CreditController {
+public class CreditController extends Bank {
 
     @FXML
     private TextField textfieldCredit1, textfieldCredit2, textfieldCredit3;
@@ -37,4 +39,6 @@ public class CreditController {
         Stage stage = (Stage) buttonCredit1 .getScene().getWindow();
         stage.close();
     }
+
+
 }

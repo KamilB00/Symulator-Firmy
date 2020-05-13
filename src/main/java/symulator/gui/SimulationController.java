@@ -1,11 +1,14 @@
 package symulator.gui;
 
+import javafx.css.Style;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class SimulationController {
 
@@ -222,5 +225,8 @@ public class SimulationController {
 
         @FXML
         private TextField fTextField5;
+
+
+
 
     }

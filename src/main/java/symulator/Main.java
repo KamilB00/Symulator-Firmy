@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
 
     @Override
@@ -14,6 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("Symulacja firmy");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
     }
 
 
