@@ -25,7 +25,6 @@ public class OwnCapitalController {
 
     @FXML
     public void backToForm(MouseEvent mouseEvent) throws IOException {
-
         Stage stage = (Stage) buttonOwnCapital1 .getScene().getWindow();
         stage.close();
     }

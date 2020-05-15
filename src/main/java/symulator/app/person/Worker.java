@@ -47,5 +47,4 @@ public class Worker {
         this.efficiency = efficiency;
     }
 
-
 }

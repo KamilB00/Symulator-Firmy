@@ -22,10 +22,8 @@ public class InvestorController {
     {
 
     }
-
     @FXML
     public void backToForm(MouseEvent mouseEvent) throws IOException {
-
         Stage stage = (Stage) buttonInvestor1 .getScene().getWindow();
         stage.close();
     }

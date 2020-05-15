@@ -15,8 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
-import symulator.app.person.Accountant;
-import symulator.app.person.Worker;
+import symulator.app.company.Company;
+
 
 import java.io.IOException;
 
@@ -76,6 +76,7 @@ public  class FormController {
     @FXML
     private TextField counter6;
 
+
     @FXML
     public Slider getSliderFormEmployee1() {
         return sliderFormEmployee1;
@@ -101,8 +102,44 @@ public  class FormController {
         return sliderFormEmployee6;
     }
 
+    public Slider getSliderFormProjects() {
+        return sliderFormProjects;
+    }
+
+    public Slider getSliderFormTime() {
+        return sliderFormTime;
+    }
+
     public void setSliderFormEmployee1(Slider sliderFormEmployee1) {
         this.sliderFormEmployee1 = sliderFormEmployee1;
+    }
+
+    public void setSliderFormTime(Slider sliderFormTime) {
+        this.sliderFormTime = sliderFormTime;
+    }
+
+    public void setSliderFormEmployee2(Slider sliderFormEmployee2) {
+        this.sliderFormEmployee2 = sliderFormEmployee2;
+    }
+
+    public void setSliderFormEmployee3(Slider sliderFormEmployee3) {
+        this.sliderFormEmployee3 = sliderFormEmployee3;
+    }
+
+    public void setSliderFormEmployee4(Slider sliderFormEmployee4) {
+        this.sliderFormEmployee4 = sliderFormEmployee4;
+    }
+
+    public void setSliderFormEmployee5(Slider sliderFormEmployee5) {
+        this.sliderFormEmployee5 = sliderFormEmployee5;
+    }
+
+    public void setSliderFormEmployee6(Slider sliderFormEmployee6) {
+        this.sliderFormEmployee6 = sliderFormEmployee6;
+    }
+
+    public void setSliderFormProjects(Slider sliderFormProjects) {
+        this.sliderFormProjects = sliderFormProjects;
     }
 
     @FXML
@@ -127,6 +164,7 @@ public  class FormController {
         Parent view2 = FXMLLoader.load(getClass().getResource("/gui/OwnCapital.fxml"));
         Scene scene2 = new Scene(view2);
         Stage window = new Stage();
+        window.setAlwaysOnTop(true);
         window.initModality(Modality.APPLICATION_MODAL);
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
@@ -137,6 +175,7 @@ public  class FormController {
         Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Investor.fxml"));
         Scene scene2 = new Scene(view2);
         Stage window = new Stage();
+        window.setAlwaysOnTop(true);
         window.initModality(Modality.APPLICATION_MODAL);
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
@@ -163,19 +202,30 @@ public  class FormController {
         window.show();
     }
 
+
+
     @FXML
     public void sliderClicked()throws IOException{
-        Double sT = sliderFormTime.getValue();
+        Company company = new Company();
 
+        setSliderFormTime(sliderFormTime);
         setSliderFormEmployee1(sliderFormEmployee1);
-        Double sE1 = getSliderFormEmployee1().getValue();
+        setSliderFormEmployee2(sliderFormEmployee2);
+        setSliderFormEmployee3(sliderFormEmployee3);
+        setSliderFormEmployee4(sliderFormEmployee4);
+        setSliderFormEmployee5(sliderFormEmployee5);
+        setSliderFormEmployee6(sliderFormEmployee6);
+        setSliderFormProjects(sliderFormProjects);
 
-        Double sE2 = sliderFormEmployee2.getValue();
-        Double sE3 = sliderFormEmployee3.getValue();
-        Double sE4 = sliderFormEmployee4.getValue();
-        Double sE5 = sliderFormEmployee5.getValue();
-        Double sE6 = sliderFormEmployee6.getValue();
-        Double sP = sliderFormProjects.getValue();
+        Double sT  = getSliderFormTime().getValue();
+        Double sE1 = getSliderFormEmployee1().getValue();
+        Double sE2 = getSliderFormEmployee2().getValue();
+        Double sE3 = getSliderFormEmployee3().getValue();
+        Double sE4 = getSliderFormEmployee4().getValue();
+        Double sE5 = getSliderFormEmployee5().getValue();
+        Double sE6 = getSliderFormEmployee6().getValue();
+        Double sP  = getSliderFormProjects().getValue();
+
 
         counter1.setText(String.valueOf(sE1.intValue()));
         counter2.setText(String.valueOf(sE2.intValue()));
@@ -184,16 +234,17 @@ public  class FormController {
         counter5.setText(String.valueOf(sE5.intValue()));
         counter6.setText(String.valueOf(sE6.intValue()));
 
+        company.setProjectNumber(sP.intValue());
+        company.setEmployeeCounter((int)(sE1+sE2+sE3+sE4+sE5+sE6));
 
 
-        System.out.println(sT.intValue()+"\n"+sE1.intValue()+"\n"+sP.intValue()+"\n");
-
+        System.out.println(" employees ="+ company.getEmployeeCounter()+ "\nprojects = "+ company.getProjectNumber());
     }
+
     @FXML
     public void confirmation() throws IOException {
         if(comboboxForm1.getValue()=="Kredyt") {
             addSceneCredit();
-
         }
         else if(comboboxForm1.getValue()=="Własne środki"){
             addSceneOwnCapital();
@@ -209,9 +260,6 @@ public  class FormController {
         }
 
     }
-
-
-
 
 
 }
