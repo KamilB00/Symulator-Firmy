@@ -9,9 +9,14 @@ public class Worker {
     private Double efficiency;
 
 
+    public Worker(String position, Double salary, Double efficiency) {
+        this.position = position;
+        this.salary = salary;
+        this.efficiency = efficiency;
+    }
 
 
-   // TODO KUBA
+    // TODO KUBA
     //  1. nadpisanie wszystkich klas które dziedziczą po "workerze" i nadanie im wartości (dziedziczenie)
 
 

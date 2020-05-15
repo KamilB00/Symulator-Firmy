@@ -1,8 +1,7 @@
 package symulator.app.person;
 
 public class ProgrammerRegular extends Worker {
-     /*
-    TODO
-    specjalna funkcja dla PR
-     */
+    public ProgrammerRegular(String position,Double salary,Double efficiency){
+        super(position,salary,efficiency);
+    }
 }

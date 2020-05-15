@@ -2,8 +2,7 @@ package symulator.app.person;
 
 public class ProjectMenager extends Worker{
 
-    /*
-    TODO
-    specjalna funkcja dla PM
-     */
+    public ProjectMenager(String position,Double salary,Double efficiency){
+        super(position,salary,efficiency);
+    }
 }
