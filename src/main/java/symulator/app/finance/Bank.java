@@ -9,8 +9,6 @@ public class Bank {
     private double installments;
 
 
-
-
     public double returnAmount(){
         double calculate = percentage*amount;
         return calculate;
@@ -23,6 +21,7 @@ public class Bank {
         System.out.println("wygenerowana liczba lat: "+yearsRandom);
 
     }
+
 
     //TODO TOMEK
     // 1. Generowanie na podstwaie wpisanej kwoty (większej niż 100k) warunków oprocentowania, rat

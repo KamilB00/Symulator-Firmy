@@ -14,7 +14,7 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Button fx:id="buttonCredit2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" text="ZATWIERDŹ">
+      <Button fx:id="buttonCredit2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#confirmCreditConditions" text="ZATWIERDŹ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -30,16 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="textfieldCredit1" editable="false" layoutX="250.0" layoutY="80.0" mouseTransparent="true">
-         <cursor>
-            <Cursor fx:constant="DISAPPEAR" />
-         </cursor></TextField>
-      <Text fill="WHITE" layoutX="61.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OPROCENTOWANIE">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="61.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KWOTA KREDYTU">
+      <Text fill="WHITE" layoutX="58.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KWOTA KREDYTU">
          <font>
             <Font size="18.0" />
          </font>
@@ -49,8 +40,8 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="48.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="szacowana roczna kwota projektu" wrappingWidth="187.0" />
-      <TextField fx:id="textfieldCredit11" editable="false" layoutX="244.0" layoutY="204.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="5000000">
+      <Text fill="WHITE" layoutX="40.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="szacowana minimalna kwota kredytu " wrappingWidth="204.0" />
+      <TextField fx:id="textfieldPrediction" editable="false" layoutX="260.0" layoutY="169.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="5000000">
          <cursor>
             <Cursor fx:constant="DISAPPEAR" />
          </cursor>
@@ -58,15 +49,23 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="textfieldCredit2" editable="false" layoutX="250.0" layoutY="122.0" mouseTransparent="true">
+      <TextField fx:id="textfieldInstalments" editable="false" layoutX="250.0" layoutY="122.0" mouseTransparent="true" promptText="podaj liczbę rat">
          <cursor>
             <Cursor fx:constant="DISAPPEAR" />
          </cursor>
       </TextField>
-      <TextField fx:id="textfieldCredit3" editable="false" layoutX="250.0" layoutY="160.0" promptText="podaj kwotę">
+      <TextField fx:id="textfieldAmount" layoutX="250.0" layoutY="80.0" promptText="podaj kwotę">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextField>
+      <Text fill="WHITE" layoutX="40.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="roczne oprocentowanie " textAlignment="CENTER" wrappingWidth="204.0" />
+      <TextField fx:id="textfieldPercentage" editable="false" layoutX="260.0" layoutY="196.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="7%">
          <cursor>
             <Cursor fx:constant="DISAPPEAR" />
          </cursor>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
       </TextField>
    </children>
 </AnchorPane>

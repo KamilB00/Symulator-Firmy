@@ -155,7 +155,7 @@ public  class FormController {
         Stage window = new Stage();
         window.setAlwaysOnTop(true);
         window.initModality(Modality.APPLICATION_MODAL);
-        window.initStyle(StageStyle.UNDECORATED);
+       // window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
         window.show();
     }
@@ -166,7 +166,7 @@ public  class FormController {
         Stage window = new Stage();
         window.setAlwaysOnTop(true);
         window.initModality(Modality.APPLICATION_MODAL);
-        window.initStyle(StageStyle.UNDECORATED);
+       // window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
         window.show();
     }
@@ -177,7 +177,7 @@ public  class FormController {
         Stage window = new Stage();
         window.setAlwaysOnTop(true);
         window.initModality(Modality.APPLICATION_MODAL);
-        window.initStyle(StageStyle.UNDECORATED);
+       // window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
         window.show();
     }
@@ -187,7 +187,7 @@ public  class FormController {
         Scene scene2 = new Scene(view2);
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.initStyle(StageStyle.UNDECORATED);
+       // window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
         window.show();
     }
