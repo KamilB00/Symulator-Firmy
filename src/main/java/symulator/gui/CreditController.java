@@ -17,9 +17,7 @@ import org.controlsfx.control.Notifications;
 import symulator.app.finance.Bank;
 
 
-import javax.management.Notification;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Random;
 
 public class CreditController extends Bank {
@@ -44,7 +42,11 @@ public class CreditController extends Bank {
     private Button buttonCredit1, buttonCredit2;
 
     @FXML
-    public void initialize() {}
+    public void initialize() {
+        Bank bank = new Bank();
+        Double percentage = bank.generatePercentage()*100;
+        textfieldPercentage.setText(percentage.toString());
+    }
     
     @FXML
     public void backToForm(MouseEvent mouseEvent) throws IOException {
@@ -53,38 +55,63 @@ public class CreditController extends Bank {
         stage.close();
     }
 
+    /**
+     * Funkcja sprawdzająca  warunki kredytu, powiadomienia
+     */
     @FXML
     public void confirmCreditConditions(MouseEvent mouseEvent) throws IOException {
+            Bank bank = new Bank();
+        if(validate(textfieldAmount.getText())){
+            if(validate(textfieldInstalments.getText())){
+                double amount = Double.parseDouble(textfieldAmount.getText());
+                Integer instalments = Integer.parseInt(textfieldInstalments.getText());
+                if ((instalments >= 12 && instalments <= 120)&&(amount >= 100000 && amount <= 10000000)){
+                    bank.setAmount(amount);
+                    bank.setInstallments(instalments);
 
-        if (validate(textfieldAmount.getText())){
-           double amount = Double.parseDouble(textfieldAmount.getText());
-           if((amount>=100000)&&(amount<=10000000)){
-               setTextfieldAmount(textfieldAmount);
-               Stage stage = (Stage) buttonCredit1 .getScene().getWindow();
-               stage.close();
-           }
-           else {
-               System.out.println("wyswietlam powiadomienie");
-               Notifications notificationbuilder = Notifications.create()
-               .title("Powiadomienie")
-               .text("Podana kwota musi zawierać się w przedziale 100.000 do 10.000.000")
-                       .graphic(null)
-                       .hideAfter(Duration.seconds(5))
-                       .position(Pos.TOP_RIGHT);
-               notificationbuilder.showWarning();
-               }
+                    Stage stage = (Stage) buttonCredit2 .getScene().getWindow();
+                    stage.close();
+                }
 
+                if(instalments < 12 || instalments > 120) {
+                    System.out.println("wyswietlam powiadomienie o instalments");
+                    Notifications notificationbuilder = Notifications.create()
+                            .title("Ostrzeżenie")
+                            .text("Liczba rat musi zawieraćsięw przedziale 12 do 120")
+                            .graphic(null)
+                            .hideAfter(Duration.seconds(5))
+                            .position(Pos.TOP_RIGHT);
+                    notificationbuilder.showWarning();
+                }
+                 if(amount < 100000 || amount > 10000000) {
+                    System.out.println("wyswietlam powiadomienie o amount");
+                    Notifications notificationbuilder = Notifications.create()
+                            .title("Ostrzeżenie")
+                            .text("Podana kwota musi zawierać się w przedziale 100.000 do 10.000.000")
+                            .graphic(null)
+                            .hideAfter(Duration.seconds(5))
+                            .position(Pos.TOP_RIGHT);
+                    notificationbuilder.showWarning();
+                }
+            }
+
+            else{
+                System.out.println("niezgodny znak w instalments");
+            }
         }
-        else {
-            System.out.println("znaki niezgodne z regex");
+        else{
+            System.out.println("niezgodny znak w amount");
         }
-
     }
 
+    /**
+     * Funkcja walidująca wpisane dane do textfieldAmount oraz textfieldInstalments
+     */
     public boolean validate (String str){
         String regex = "\\d+";
         return str.matches(regex);
-
     }
+
+
 
 }

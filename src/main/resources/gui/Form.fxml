@@ -20,7 +20,7 @@
          </font></Label>
 
       <Label layoutX="169.0" layoutY="345.0" mouseTransparent="true" pickOnBounds="false" text="Czas trwania symulacji" />
-      <Slider fx:id="sliderFormTime" blockIncrement="1.0" layoutX="121.0" layoutY="373.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0" onMouseClicked="#sliderClicked" onMouseDragged="#sliderClicked" prefHeight="15.0" prefWidth="227.0" showTickLabels="true" showTickMarks="true" value="1.0">
+      <Slider fx:id="sliderFormTime" blockIncrement="1.0" layoutX="121.0" layoutY="373.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0"  prefHeight="15.0" prefWidth="227.0" showTickLabels="true" showTickMarks="true" value="1.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>
@@ -34,27 +34,27 @@
       <Label layoutX="41.0" layoutY="201.0" text="Menadżer projektów" />
       <Label layoutX="79.0" layoutY="242.0" text="Marketer" />
       <Label layoutX="77.0" layoutY="290.0" text="Księgowy" />
-      <Slider fx:id="sliderFormEmployee1" blockIncrement="1.0" layoutX="176.0" layoutY="75.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderClicked" onMouseDragged="#sliderClicked" prefHeight="15.0" prefWidth="222.0">
+      <Slider fx:id="sliderFormEmployee1" blockIncrement="1.0" layoutX="176.0" layoutY="75.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderJuniorProgrammer" onMouseDragged="#sliderJuniorProgrammer" prefHeight="15.0" prefWidth="222.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>
-      <Slider fx:id="sliderFormEmployee2" blockIncrement="1.0" layoutX="172.0" layoutY="120.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderClicked" onMouseDragged="#sliderClicked" prefHeight="15.0" prefWidth="227.0">
+      <Slider fx:id="sliderFormEmployee2" blockIncrement="1.0" layoutX="177.0" layoutY="120.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderRegularProgrammer" onMouseDragged="#sliderRegularProgrammer" prefHeight="15.0" prefWidth="222.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>
-      <Slider fx:id="sliderFormEmployee3" blockIncrement="1.0" layoutX="173.0" layoutY="161.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderClicked" onMouseDragged="#sliderClicked" prefHeight="15.0" prefWidth="224.0">
+      <Slider fx:id="sliderFormEmployee3" blockIncrement="1.0" layoutX="173.0" layoutY="161.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderSeniorProgrammer" onMouseDragged="#sliderSeniorProgrammer" prefHeight="15.0" prefWidth="224.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>
-      <Slider fx:id="sliderFormEmployee4" blockIncrement="1.0" layoutX="174.0" layoutY="203.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderClicked" onMouseDragged="#sliderClicked" prefHeight="15.0" prefWidth="222.0">
+      <Slider fx:id="sliderFormEmployee4" blockIncrement="1.0" layoutX="174.0" layoutY="203.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderProjectManager" onMouseDragged="#sliderProjectManager" prefHeight="15.0" prefWidth="222.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>
-      <Slider fx:id="sliderFormEmployee5" blockIncrement="1.0" layoutX="176.0" layoutY="244.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderClicked" onMouseDragged="#sliderClicked" prefHeight="15.0" prefWidth="222.0">
+      <Slider fx:id="sliderFormEmployee5" blockIncrement="1.0" layoutX="176.0" layoutY="244.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderMarketer" onMouseDragged="#sliderMarketer" prefHeight="15.0" prefWidth="222.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>
-      <Slider fx:id="sliderFormEmployee6" blockIncrement="1.0" layoutX="175.0" layoutY="292.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderClicked" onMouseDragged="#sliderClicked" prefHeight="15.0" prefWidth="222.0">
+      <Slider fx:id="sliderFormEmployee6" blockIncrement="1.0" layoutX="175.0" layoutY="292.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderAccountant" onMouseDragged="#sliderAccountant" prefHeight="15.0" prefWidth="222.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>
@@ -62,7 +62,7 @@
          <font>
             <Font name="Arial Narrow" size="15.0" />
          </font></Label>
-      <Slider fx:id="sliderFormProjects" blockIncrement="2.0" layoutX="466.0" layoutY="101.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" onMouseClicked="#sliderClicked" onMouseDragged="#sliderClicked" prefHeight="15.0" prefWidth="182.0" showTickLabels="true" showTickMarks="true" value="1.0">
+      <Slider fx:id="sliderFormProjects" blockIncrement="2.0" layoutX="466.0" layoutY="101.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" onMouseClicked="#sliderProjects" onMouseDragged="#sliderProjects" prefHeight="15.0" prefWidth="182.0" showTickLabels="true" showTickMarks="true" value="1.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>

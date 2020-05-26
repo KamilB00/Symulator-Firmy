@@ -5,22 +5,46 @@ import java.util.Random;
 public class Bank {
     private double amount;
     private double interest;
-    private double percentage;
-    private double installments;
+    private Integer installments;
 
-
+    /**
+     *Kwota do zwrotu
+     */
     public double returnAmount(){
-        double calculate = percentage*amount;
-        return calculate;
+        Double returnAmount = getAmount()*generatePercentage();
+        return returnAmount;
     }
 
-    public void generateCreditConditions(){
+    /**
+     *  Funkcja do Generowanie  oprocentowania
+     */
+    public double generatePercentage(){
         Random rand = new Random();
-        Integer years = 10;
-        Integer yearsRandom =rand.nextInt(years);
-        System.out.println("wygenerowana liczba lat: "+yearsRandom);
-
+        Integer number = rand.nextInt(10)+1;
+        Double percentage = (number.doubleValue())/100;
+        return percentage;
     }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+        System.out.println("Ustawiono kwotę: -->"+ getAmount());
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setInstallments(Integer installments) {
+        this.installments = installments;
+        System.out.println("Ustawiono raty: -->"+ getInstallments());
+    }
+
+    public Integer getInstallments() {
+        return installments;
+    }
+
+
+
 
 
     //TODO TOMEK

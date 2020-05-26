@@ -1,11 +1,23 @@
 package symulator;
 
+import dataBase.HibernateUtil;
+import dataBase.WorkerDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import symulator.app.company.Company;
+import org.hibernate.Session;
+import symulator.app.person.ProgrammerJunior;
+import symulator.app.person.Worker;
+import dataBase.WorkerEntity;
+import symulator.simulation.Randomise;
+
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 
 public class Main extends Application {
@@ -16,12 +28,16 @@ public class Main extends Application {
         primaryStage.setTitle("Symulacja firmy");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        Company company = new Company();
 
     }
+
 
 
     public static void main(String[] args) {
         launch(args);
+
     }
+
+
+
 }

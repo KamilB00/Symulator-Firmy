@@ -41,17 +41,17 @@
          </font>
       </Text>
       <Text fill="WHITE" layoutX="40.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="szacowana minimalna kwota kredytu " wrappingWidth="204.0" />
-      <TextField fx:id="textfieldPrediction" editable="false" layoutX="260.0" layoutY="169.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="5000000">
+      <TextField fx:id="textfieldPrediction" editable="false" layoutX="260.0" layoutY="176.0" mouseTransparent="true" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
          <cursor>
-            <Cursor fx:constant="DISAPPEAR" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="textfieldInstalments" editable="false" layoutX="250.0" layoutY="122.0" mouseTransparent="true" promptText="podaj liczbę rat">
+      <TextField fx:id="textfieldInstalments" layoutX="250.0" layoutY="122.0" promptText="podaj liczbę rat">
          <cursor>
-            <Cursor fx:constant="DISAPPEAR" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextField>
       <TextField fx:id="textfieldAmount" layoutX="250.0" layoutY="80.0" promptText="podaj kwotę">
@@ -59,9 +59,9 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor></TextField>
       <Text fill="WHITE" layoutX="40.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="roczne oprocentowanie " textAlignment="CENTER" wrappingWidth="204.0" />
-      <TextField fx:id="textfieldPercentage" editable="false" layoutX="260.0" layoutY="196.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="7%">
+      <TextField fx:id="textfieldPercentage" editable="false" layoutX="260.0" layoutY="196.0" mouseTransparent="true" prefHeight="27.0" prefWidth="72.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
          <cursor>
-            <Cursor fx:constant="DISAPPEAR" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />

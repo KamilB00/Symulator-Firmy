@@ -30,13 +30,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="textfieldInvestor2" editable="false" layoutX="293.0" layoutY="170.0">
+      <TextField fx:id="textfieldInvestor2" editable="false" layoutX="293.0" layoutY="170.0" mouseTransparent="true" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
          <cursor>
             <Cursor fx:constant="DISAPPEAR" />
          </cursor></TextField>
-      <TextField fx:id="textfieldInvestor1" editable="false" layoutX="293.0" layoutY="111.0">
+      <TextField fx:id="textfieldInvestor1" editable="false" layoutX="293.0" layoutY="111.0" mouseTransparent="true" style="-fx-background-color: #1a1a1a;">
          <cursor>
-            <Cursor fx:constant="DISAPPEAR" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor></TextField>
       <Text fill="WHITE" layoutX="76.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OFEROWANA KWOTA PRZEZ INWESTORA" textAlignment="CENTER" wrappingWidth="186.757568359375">
          <font>

@@ -1,17 +1,21 @@
 package symulator.gui;
 
-import javafx.css.Style;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 
+
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class SimulationController {
-
+public   class SimulationController {
 
         @FXML
         private TextField kTextField12;
@@ -226,7 +230,26 @@ public class SimulationController {
         @FXML
         private TextField fTextField5;
 
+        public void initialize(){
+                Thread th = new Thread(new bg_Thread());
+                th.start();
+        }
 
+   class bg_Thread extends Thread{
+
+          @Override
+        public void run() {
+                for(int i=0;i<100;i++){
+                        try{
+                                progressBarSim0.setProgress(i/100);
+                                Thread.sleep(100);
+
+                        }catch (InterruptedException ex){
+                                Logger.getLogger(SimulationController.class.getName()).log(Level.SEVERE,null,ex);
+                        }
+                }
+        }
+}
 
 
     }
