@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 import symulator.app.company.Company;
-import symulator.simulation.Clock;
+import symulator.simulation.SimulationClock;
 
 
 import java.io.IOException;
@@ -131,16 +131,18 @@ public  class FormController {
     public void setSliderFormProjects(Slider sliderFormProjects) {
         this.sliderFormProjects = sliderFormProjects;
     }
+
     //================================================================================================================
     Company company = null;
-    Clock clock = null;
+    SimulationController simulationController=null;
+    SimulationClock simulationClock = null;
     @FXML
     public void initialize()
     {
         company = new Company();
-        clock = new Clock();
-
-    comboboxForm1.setItems(list);
+        simulationController = new SimulationController();
+    simulationClock = new SimulationClock();
+        comboboxForm1.setItems(list);
 
         setSliderFormTime(sliderFormTime);
         setSliderFormEmployee1(sliderFormEmployee1);
@@ -150,18 +152,23 @@ public  class FormController {
         setSliderFormEmployee5(sliderFormEmployee5);
         setSliderFormEmployee6(sliderFormEmployee6);
         setSliderFormProjects(sliderFormProjects);
+
         counter1.setText(String.valueOf((int)getSliderFormEmployee1().getValue()));
         counter2.setText(String.valueOf((int)getSliderFormEmployee2().getValue()));
         counter3.setText(String.valueOf((int)getSliderFormEmployee3().getValue()));
         counter4.setText(String.valueOf((int)getSliderFormEmployee4().getValue()));
         counter5.setText(String.valueOf((int)getSliderFormEmployee5().getValue()));
         counter6.setText(String.valueOf((int)getSliderFormEmployee6().getValue()));
+
+        simulationClock.setYears(1);
+
         company.setJuniorProgrammersNumber(0);
         company.setRegularProgrammersNumber(0);
         company.setSeniorProgrammersNumber(0);
         company.setMarketersNumber(0);
         company.setProjectManagersNumber(0);
         company.setAccountantsNumber(0);
+
 
     }
     //================================================================================================================
@@ -209,26 +216,27 @@ public  class FormController {
         window.show();
     }
     @FXML
-    public void switchStageStart(ActionEvent event)throws IOException{
+    public void switchStageStart(ActionEvent event) throws IOException, InterruptedException {
         Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Simulation.fxml"));
         Scene scene2 = new Scene(view2);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene2);
         window.show();
         setData();
+        //System.out.println(simulationClock.simulationTime(simulationClock.getYears()));
+
 
 
     }
 
 //================================================================================================================
-/*
- public void sliderTime()throws IOException
-    {
-        Double sT = getSliderFormTime().getValue();
-        if(clock!=null)
-           clock.setDuration(sT.intValue());
+
+public void sliderTime(){
+    Double sT = getSliderFormTime().getValue();
+    if(simulationClock!=null){
+       simulationClock.setYears(sT.intValue());
     }
- */
+}
 
     public void sliderJuniorProgrammer()throws IOException
     {
@@ -297,7 +305,6 @@ public  class FormController {
         else if (comboboxForm1.getValue() == null){
             System.out.println("Brak wybrej wartosci w comboBoxForm1");
         }
-
     }
 
     @FXML

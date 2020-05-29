@@ -20,7 +20,7 @@
          </font></Label>
 
       <Label layoutX="169.0" layoutY="345.0" mouseTransparent="true" pickOnBounds="false" text="Czas trwania symulacji" />
-      <Slider fx:id="sliderFormTime" blockIncrement="1.0" layoutX="121.0" layoutY="373.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0"  prefHeight="15.0" prefWidth="227.0" showTickLabels="true" showTickMarks="true" value="1.0">
+      <Slider fx:id="sliderFormTime" blockIncrement="1.0" layoutX="121.0" layoutY="373.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0" onMouseClicked="#sliderTime" onMouseDragged="#sliderTime" prefHeight="15.0" prefWidth="227.0" showTickLabels="true" showTickMarks="true" value="1.0">
          <effect>
             <Blend mode="ADD" />
          </effect></Slider>

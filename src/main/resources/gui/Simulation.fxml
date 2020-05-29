@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -28,7 +30,13 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <ProgressBar id="postep" fx:id="progressBarSim0" layoutX="1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1079.0" progress="0.33" styleClass="SimulationCSS" />
+      <ProgressBar fx:id="progressBarSim0" layoutX="1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1079.0" progress="0.0" styleClass="SimulationCSS">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Blend mode="BLUE" />
+         </effect></ProgressBar>
       <ProgressBar fx:id="progressBarSim1" layoutX="16.0" layoutY="97.0" prefHeight="30.0" prefWidth="150.0" progress="0.59" />
       <ProgressBar fx:id="progressBarSim2" layoutX="15.0" layoutY="137.0" prefHeight="30.0" prefWidth="150.0" progress="0.76" />
       <ProgressBar fx:id="progressBarSim3" layoutX="14.0" layoutY="175.0" prefHeight="30.0" prefWidth="150.0" progress="0.86" />
@@ -342,4 +350,7 @@
       </TextField>
       <Separator layoutX="458.0" layoutY="541.0" prefHeight="3.0" prefWidth="297.0" />
    </children>
+   <effect>
+      <Blend />
+   </effect>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package symulator.gui;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
@@ -7,15 +8,15 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import org.w3c.dom.ls.LSOutput;
+import symulator.simulation.SimulationClock;
 
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public   class SimulationController {
+import static java.lang.Thread.sleep;
+
+public   class SimulationController implements Initializable {
 
         @FXML
         private TextField kTextField12;
@@ -230,26 +231,49 @@ public   class SimulationController {
         @FXML
         private TextField fTextField5;
 
-        public void initialize(){
-                Thread th = new Thread(new bg_Thread());
-                th.start();
+        public void setProgressBarSim0(ProgressBar progressBarSim0) {
+                this.progressBarSim0 = progressBarSim0;
         }
+       SimulationClock simulationClock = null;
 
-   class bg_Thread extends Thread{
+        class DoWork extends Task<Integer>{
 
-          @Override
-        public void run() {
-                for(int i=0;i<100;i++){
-                        try{
-                                progressBarSim0.setProgress(i/100);
-                                Thread.sleep(100);
+                @Override
+                public Integer call() throws Exception {
+                       simulationClock = new SimulationClock();
+                       simulationClock.setYears(3);
+                       int week = simulationClock.simulationTime();
 
-                        }catch (InterruptedException ex){
-                                Logger.getLogger(SimulationController.class.getName()).log(Level.SEVERE,null,ex);
+                        for(int i=0;i< week;i++){
+                                System.out.println(i+1);
+                                updateProgress(i+1,week);
+                               Thread.sleep(500);
+                                if(isCancelled()){
+                                        return i;
+                                }
                         }
+                        return 1000;
                 }
+
+                @Override
+                public boolean cancel(boolean mayInterruptIfRunning) {
+                        updateMessage("Cancelled!");
+                        return super.cancel(mayInterruptIfRunning);
+                }
+                @Override
+                protected void updateProgress(long workDone, long max) {
+                        updateMessage("progress!"+ workDone);
+                        super.updateProgress(workDone, max);
+                }
+        }
+        @Override
+        public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+                DoWork task = new DoWork();
+                progressBarSim0.progressProperty().bind(task.progressProperty());
+                new Thread(task).start();
         }
 }
 
 
-    }
