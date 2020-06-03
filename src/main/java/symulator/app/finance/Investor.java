@@ -1,25 +1,30 @@
 package symulator.app.finance;
 
-import java.util.Random;
-
 public class Investor{
-  // private double amount = randomAmount();
+
+    private static Investor instance = null;
+    private Investor(){}
+    public static Investor getInstance(){
+        if(instance==null)
+            instance = new Investor();
+        return instance;
+    }
+
+    private double offeredAmount;
    private double yearProfit;
    private double time;
 
 
-   //TODO MATEUSZ
-   // 1. funkcjie Randomowe dla czasu w latach
-   // 2. funcje randomowe dla kwoty oferowanej przez inwestora
-   // 3. funkcje randomowe dla yearProfit w procentach
-
-
     public void setYearProfit(double yearProfit) {
+
         this.yearProfit = yearProfit;
+        System.out.println("Investor year profit --> " + yearProfit);
     }
 
     public void setTime(double time) {
+
         this.time = time;
+        System.out.println("Investor time --> "+ time);
     }
 
     public double getTime() {
@@ -30,26 +35,15 @@ public class Investor{
         return yearProfit;
     }
 
-
-public Investor(){
-    System.out.println(randomTime());
-    System.out.println(randomYearProfit());
-}
-
-
-    public void randomAmount() {
-
-   }
-
-    public  Double randomTime() {
-        Random random = new Random();
-        return (double) (random.nextInt(10) + 1);   //od 1 do 10 lat
+    public void setOfferedAmount(double offeredAmount) {
+        System.out.println("Offered amount --> "+ offeredAmount);
+        this.offeredAmount = offeredAmount;
     }
 
-
-   public Double randomYearProfit() {
-      Random random3 = new Random();
-      return (double) random3.nextInt(101);
-   }
+    public double getOfferedAmount() {
+        return offeredAmount;
+    }
 
 }
+
+

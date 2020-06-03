@@ -14,16 +14,24 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import symulator.app.company.Company;
 import symulator.app.finance.Bank;
-
-
+import symulator.simulation.Randomise;
 import java.io.IOException;
-import java.util.Random;
 
-public class CreditController extends Bank {
+
+public class CreditController {
+    Randomise randomise = Randomise.getInstance();
+    Company company = Company.getInstance();
 
     @FXML
-    private TextField textfieldAmount, textfieldPercentage, textfieldInstalments,textfieldPredictions;
+    private TextField textfieldAmount;
+    @FXML
+    private TextField textfieldPercentage;
+    @FXML
+    private TextField textfieldInstalments;
+    @FXML
+    private TextField textfieldPredictions;
 
     public void setTextfieldAmount(TextField textfieldAmount) {
         this.textfieldAmount = textfieldAmount;
@@ -39,22 +47,25 @@ public class CreditController extends Bank {
     }
 
     @FXML
-    private Button buttonCredit1, buttonCredit2;
+    private Button buttonCredit1;
+    @FXML
+    private Button buttonCredit2;
 
     @FXML
     public void initialize() {
-        Bank bank = new Bank();
-        Double percentage = bank.generatePercentage()*100;
+        Double percentage = randomise.generateBankPercentage()*100;
+
+
         textfieldPercentage.setText(percentage.toString());
+        textfieldPredictions.setText(company.minimalCosts().toString());
     }
-    
+
     @FXML
     public void backToForm(MouseEvent mouseEvent) throws IOException {
 
         Stage stage = (Stage) buttonCredit1 .getScene().getWindow();
         stage.close();
     }
-
     /**
      * Funkcja sprawdzająca  warunki kredytu, powiadomienia
      */

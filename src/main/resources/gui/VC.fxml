@@ -9,9 +9,9 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #1a1a1a;" stylesheets="@VCCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.VCController">
    <children>
-      <Text fill="WHITE" layoutX="79.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VENTURE CAPITALS">
+      <Text fill="WHITE" layoutX="57.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VENTURE CAPITALS">
          <font>
-            <Font size="40.0" />
+            <Font size="43.0" />
          </font>
       </Text>
       <Button fx:id="buttonVC1" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#backToForm" text="POWRÓT">
@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonVC2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" text="ZATWIERDŹ">
+      <Button fx:id="buttonVC2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#confirmVCConditions" text="ZATWIERDŹ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -30,23 +30,45 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="textfieldVC1" layoutX="272.0" layoutY="115.0">
+      <TextField fx:id="textfieldVC1" alignment="CENTER" editable="false" layoutX="257.0" layoutY="106.0" mouseTransparent="true" prefHeight="45.0" prefWidth="175.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #00a800;">
          <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></TextField>
-      <TextField fx:id="textfieldVC2" editable="false" layoutX="272.0" layoutY="174.0">
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <font>
+            <Font size="24.0" />
+         </font></TextField>
+      <TextField fx:id="textfieldVC2" alignment="CENTER" editable="false" layoutX="258.0" layoutY="166.0" mouseTransparent="true" prefHeight="44.0" prefWidth="113.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
          <cursor>
             <Cursor fx:constant="DISAPPEAR" />
-         </cursor></TextField>
-      <Text fill="WHITE" layoutX="102.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PODAJ KWOTĘ">
+         </cursor>
          <font>
-            <Font size="18.0" />
+            <Font size="22.0" />
+         </font></TextField>
+      <Text fill="WHITE" layoutX="65.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OFEROWANA KWOTA">
+         <font>
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="99.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ILOŚĆ UDZIAŁU">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
+      <TextField fx:id="textfieldVC21" editable="false" layoutX="337.0" layoutY="166.0" mouseTransparent="true" prefHeight="44.0" prefWidth="53.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="\%">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textfieldVC211" editable="false" layoutX="411.0" layoutY="107.0" mouseTransparent="true" prefHeight="44.0" prefWidth="72.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="PLN">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

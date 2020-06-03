@@ -7,18 +7,27 @@ import java.util.GregorianCalendar;
 
 public class SimulationClock {
 
-    private Integer years;
+    private Integer years = 1;
 
     public Integer getYears() {
+        System.out.println("get years");
         return years;
     }
 
+    private static SimulationClock instance = null;
+
+    public static SimulationClock getInstance(){
+        if(instance==null)
+            instance = new SimulationClock();
+        return instance;
+    }
     public void setYears(Integer years) {
+        System.out.println("set years");
+
         this.years = years;
     }
-public SimulationClock(){
-        setYears(years);
-}
+    private SimulationClock(){
+    }
 
     public int weeks = 0;
     public int simulationTime() {
@@ -40,7 +49,6 @@ public SimulationClock(){
         long duration = calendarFuture.getTimeInMillis() - calendarCurrent.getTimeInMillis();
         long oneMonthMilis = oneMonth.getTimeInMillis() - calendarCurrent.getTimeInMillis();
         long oneDayMilis = oneDay.getTimeInMillis() - calendarCurrent.getTimeInMillis();
-
 
 
         for (long m = calendarCurrent.getTimeInMillis(); m < calendarFuture.getTimeInMillis(); m += (7 * oneDayMilis)) {

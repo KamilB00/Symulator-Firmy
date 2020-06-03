@@ -2,11 +2,21 @@ package symulator.app.company;
 
 import dataBase.WorkerDAO;
 import dataBase.WorkerEntity;
-import symulator.app.person.*;
 import symulator.simulation.Randomise;
-import symulator.Main;
+
+
 public class Company {
-    Randomise value = new Randomise();
+    private static Company INSTANCE = null;
+    private Company(){}
+    public static Company getInstance(){
+        if(INSTANCE==null)
+            INSTANCE = new Company();
+        return INSTANCE;
+    }
+
+
+    Randomise value = Randomise.getInstance();
+
     private double companyEfficiency;
 
     private double companyProfit;
@@ -15,22 +25,19 @@ public class Company {
 
     private Integer employeeCounter;
 
-    private Integer ProjectManagersNumber;
+    private Integer projectManagersNumber;
 
-    private Integer AccountantsNumber;
+    private Integer accountantsNumber;
 
-    private Integer MarketersNumber;
+    private Integer marketersNumber;
 
-    private Integer JuniorProgrammersNumber;
+    private Integer juniorProgrammersNumber;
 
-    private Integer RegularProgrammersNumber;
+    private Integer regularProgrammersNumber;
 
-    private Integer SeniorProgrammersNumber;
+    private Integer seniorProgrammersNumber;
 
     private Integer projectNumber;
-    //================================================================================================================
-    public Company(){}
-
     //================================================================================================================
     public void setEmployeeCounter(Integer employeeCounter) {
         this.employeeCounter = employeeCounter;
@@ -53,27 +60,33 @@ public class Company {
     }
 
     public void setProjectManagersNumber(Integer projectManagersNumber) {
-        ProjectManagersNumber = projectManagersNumber;
+        this.projectManagersNumber = projectManagersNumber;
+        System.out.println("set PM number -->"+getProjectManagersNumber());
     }
 
     public void setAccountantsNumber(Integer accountantsNumber) {
-        AccountantsNumber = accountantsNumber;
+        this.accountantsNumber = accountantsNumber;
+        System.out.println("set ACCOUNTANTS number -->"+getAccountantsNumber());
     }
 
     public void setMarketersNumber(Integer marketersNumber) {
-        MarketersNumber = marketersNumber;
+        this.marketersNumber = marketersNumber;
+        System.out.println("set MARKETERS number -->"+getMarketersNumber());
     }
 
     public void setJuniorProgrammersNumber(Integer juniorProgrammersNumber) {
-        JuniorProgrammersNumber = juniorProgrammersNumber;
+        this.juniorProgrammersNumber = juniorProgrammersNumber;
+        System.out.println("set JuniorProgrammers number -->"+getJuniorProgrammersNumber());
     }
 
     public void setRegularProgrammersNumber(Integer regularProgrammersNumber) {
-        RegularProgrammersNumber = regularProgrammersNumber;
+        this.regularProgrammersNumber = regularProgrammersNumber;
+        System.out.println("set Regular Programmers number -->"+getRegularProgrammersNumber());
     }
 
     public void setSeniorProgrammersNumber(Integer seniorProgrammersNumber) {
-        SeniorProgrammersNumber = seniorProgrammersNumber;
+        this.seniorProgrammersNumber = seniorProgrammersNumber;
+        System.out.println("set Senior Programmers number -->"+getSeniorProgrammersNumber());
     }
     //================================================================================================================
 
@@ -98,27 +111,27 @@ public class Company {
     }
 
     public Integer getProjectManagersNumber() {
-        return ProjectManagersNumber;
+        return projectManagersNumber;
     }
 
     public Integer getAccountantsNumber() {
-        return AccountantsNumber;
+        return accountantsNumber;
     }
 
     public Integer getJuniorProgrammersNumber() {
-        return JuniorProgrammersNumber;
+        return juniorProgrammersNumber;
     }
 
     public Integer getMarketersNumber() {
-        return MarketersNumber;
+        return marketersNumber;
     }
 
     public Integer getRegularProgrammersNumber() {
-        return RegularProgrammersNumber;
+        return regularProgrammersNumber;
     }
 
     public Integer getSeniorProgrammersNumber() {
-        return SeniorProgrammersNumber;
+        return seniorProgrammersNumber;
     }
     //=================================================================================================================
 
@@ -126,9 +139,9 @@ public class Company {
         WorkerDAO workerDAO = new WorkerDAO();
         workerDAO.saveWorker(new WorkerEntity(position, salary,efficincy));
     }
+
     public void  createJuniorProgrammers(){
         for(int i=0;i<getJuniorProgrammersNumber();i++) {
-            ProgrammerJunior junior = new ProgrammerJunior("Junior Programmer", value.juniorProgrammerSalary(), value.juniorProgrammerSalary() * value.efficiencyRate());
             addEmployee("Junior Programmer", value.juniorProgrammerSalary(), value.juniorProgrammerSalary()*value.efficiencyRate());
         }
     }
@@ -156,6 +169,10 @@ public class Company {
         for(int i=0;i<getProjectManagersNumber();i++) {
             addEmployee("Project Manager", value.projectManagerSalary(), value.projectManagerSalary()*value.efficiencyRate());
         }
+    }
+    public Double minimalCosts(){
+        Double minimalCosts = value.juniorProgrammerSalary();
+       return minimalCosts;
     }
 
 }

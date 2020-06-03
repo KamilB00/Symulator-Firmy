@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #1a1a1a;" stylesheets="@InvestorCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.InvestorController">
    <children>
-      <Text fill="WHITE" layoutX="153.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INWESTOR">
+      <Text fill="WHITE" layoutX="172.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INWESTOR" textAlignment="CENTER">
          <font>
-            <Font size="40.0" />
+            <Font size="45.0" />
          </font>
       </Text>
-      <Button fx:id="buttonInvestor1" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#backToForm" text="POWRÓT">
+      <Button fx:id="buttonInvestor1" layoutX="48.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#backToForm" text="POWRÓT">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonInvestor2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" text="ZATWIERDŹ">
+      <Button fx:id="buttonInvestor2" layoutX="429.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#confirmInvestorsConditions" text="ZATWIERDŹ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -30,23 +30,66 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="textfieldInvestor2" editable="false" layoutX="293.0" layoutY="170.0" mouseTransparent="true" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
+      <TextField fx:id="textfieldInvestor2" editable="false" layoutX="303.0" layoutY="145.0" mouseTransparent="true" prefHeight="38.0" prefWidth="80.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
          <cursor>
             <Cursor fx:constant="DISAPPEAR" />
-         </cursor></TextField>
-      <TextField fx:id="textfieldInvestor1" editable="false" layoutX="293.0" layoutY="111.0" mouseTransparent="true" style="-fx-background-color: #1a1a1a;">
+         </cursor>
+         <font>
+            <Font size="19.0" />
+         </font></TextField>
+      <TextField fx:id="textfieldInvestor1" editable="false" layoutX="282.0" layoutY="83.0" mouseTransparent="true" prefHeight="57.0" prefWidth="202.0" style="-fx-text-fill: #00a800; -fx-background-color: #1a1a1a;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
-         </cursor></TextField>
-      <Text fill="WHITE" layoutX="76.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OFEROWANA KWOTA PRZEZ INWESTORA" textAlignment="CENTER" wrappingWidth="186.757568359375">
+         </cursor>
+         <font>
+            <Font size="30.0" />
+         </font></TextField>
+      <Text fill="WHITE" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OFEROWANA KWOTA" textAlignment="CENTER" wrappingWidth="299.757568359375">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="25.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROCZNY PROCENTOWY ZWROT">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="89.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROCENT UDZIAŁÓW">
+      <Text fill="WHITE" layoutX="69.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CZAS TRWANIA UMOWY ">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
+      <TextField fx:id="textfieldInvestor3" editable="false" layoutX="303.0" layoutY="182.0" mouseTransparent="true" prefHeight="38.0" prefWidth="72.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textfieldInvestor21" editable="false" layoutX="372.0" layoutY="144.0" mouseTransparent="true" prefHeight="33.0" prefWidth="42.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="\%">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textfieldInvestor211" editable="false" layoutX="371.0" layoutY="182.0" mouseTransparent="true" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="miesięcy">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textfieldInvestor11" editable="false" layoutX="461.0" layoutY="83.0" mouseTransparent="true" prefHeight="57.0" prefWidth="89.0" style="-fx-text-fill: #00a800; -fx-background-color: #1a1a1a;" text="PLN">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

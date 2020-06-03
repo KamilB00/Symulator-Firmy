@@ -7,14 +7,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #1a1a1a;" stylesheets="@OwnCapitalCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.OwnCapitalController">
+<AnchorPane prefHeight="220.0" prefWidth="390.0" style="-fx-background-color: #1a1a1a;" stylesheets="@OwnCapitalCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.OwnCapitalController">
    <children>
-      <Text fill="WHITE" layoutX="93.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WŁASNY KAPITAŁ">
+      <Text fill="WHITE" layoutX="24.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WŁASNY KAPITAŁ">
          <font>
-            <Font size="40.0" />
+            <Font size="43.0" />
          </font>
       </Text>
-      <Button fx:id="buttonOwnCapital1" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#backToForm" text="POWRÓT">
+      <Button fx:id="buttonOwnCapital1" layoutX="43.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#backToForm" text="POWRÓT">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonOwnCapital2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" text="ZATWIERDŹ">
+      <Button fx:id="buttonOwnCapital2" layoutX="270.0" layoutY="174.0" mnemonicParsing="false" text="ZATWIERDŹ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -30,9 +30,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="textfieldOwnCapital1" layoutX="150.0" layoutY="134.0" prefHeight="32.0" prefWidth="198.0">
+      <TextField fx:id="textfieldOwnCapital1" layoutX="107.0" layoutY="111.0" prefHeight="32.0" prefWidth="198.0" promptText="Wprowadź kwotę">
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor></TextField>
    </children>
 </AnchorPane>

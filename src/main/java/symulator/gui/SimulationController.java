@@ -234,25 +234,25 @@ public   class SimulationController implements Initializable {
         public void setProgressBarSim0(ProgressBar progressBarSim0) {
                 this.progressBarSim0 = progressBarSim0;
         }
-       SimulationClock simulationClock = null;
 
         class DoWork extends Task<Integer>{
 
                 @Override
                 public Integer call() throws Exception {
-                       simulationClock = new SimulationClock();
-                       simulationClock.setYears(3);
+                       SimulationClock simulationClock = SimulationClock.getInstance();
+
+                       simulationClock.setYears(simulationClock.getYears());
                        int week = simulationClock.simulationTime();
 
                         for(int i=0;i< week;i++){
                                 System.out.println(i+1);
                                 updateProgress(i+1,week);
-                               Thread.sleep(500);
+                               Thread.sleep(1000);
                                 if(isCancelled()){
                                         return i;
                                 }
                         }
-                        return 1000;
+                        return 10;
                 }
 
                 @Override
@@ -268,8 +268,6 @@ public   class SimulationController implements Initializable {
         }
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
                 DoWork task = new DoWork();
                 progressBarSim0.progressProperty().bind(task.progressProperty());
                 new Thread(task).start();

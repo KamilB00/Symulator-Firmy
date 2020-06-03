@@ -1,5 +1,7 @@
 package symulator.app.finance;
 
+import symulator.simulation.Randomise;
+
 import java.util.Random;
 
 public class Bank {
@@ -7,23 +9,16 @@ public class Bank {
     private double interest;
     private Integer installments;
 
+
+    Randomise randomise = Randomise.getInstance();
     /**
      *Kwota do zwrotu
      */
     public double returnAmount(){
-        Double returnAmount = getAmount()*generatePercentage();
+        Double returnAmount = getAmount()*randomise.generateBankPercentage();
         return returnAmount;
     }
 
-    /**
-     *  Funkcja do Generowanie  oprocentowania
-     */
-    public double generatePercentage(){
-        Random rand = new Random();
-        Integer number = rand.nextInt(10)+1;
-        Double percentage = (number.doubleValue())/100;
-        return percentage;
-    }
 
     public void setAmount(double amount) {
         this.amount = amount;
@@ -42,13 +37,5 @@ public class Bank {
     public Integer getInstallments() {
         return installments;
     }
-
-
-
-
-
-    //TODO TOMEK
-    // 1. Generowanie na podstwaie wpisanej kwoty (większej niż 100k) warunków oprocentowania, rat
-    // 2. w przypadku opóźnienia naliczanie odsetek  (interest), raty będą automatycznie zwracane przez księgowość, opóźnienie będzie wynikało tylko z niewypłacalności kogoś i wtedy dług się powiększa
 
 }

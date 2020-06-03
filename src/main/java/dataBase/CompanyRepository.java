@@ -3,12 +3,7 @@ package dataBase;
 
 import org.hibernate.annotations.GenericGenerator;
 import symulator.app.person.*;
-import symulator.app.person.Marketer;
-import symulator.app.person.ProgrammerJunior;
-import symulator.app.person.ProgrammerRegular;
-import symulator.app.person.ProgrammerSenior;
-import symulator.app.person.Accountant;
-import symulator.app.person.ProjectMenager;
+
 
 
 import javax.persistence.*;

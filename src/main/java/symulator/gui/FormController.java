@@ -25,7 +25,8 @@ import java.io.IOException;
 
 
 public  class FormController {
-
+    Company company = Company.getInstance();
+    SimulationController simulationController=null;
 
     @FXML
     private ComboBox<String> comboboxForm1;
@@ -133,15 +134,13 @@ public  class FormController {
     }
 
     //================================================================================================================
-    Company company = null;
-    SimulationController simulationController=null;
-    SimulationClock simulationClock = null;
+
+
     @FXML
     public void initialize()
     {
-        company = new Company();
+
         simulationController = new SimulationController();
-    simulationClock = new SimulationClock();
         comboboxForm1.setItems(list);
 
         setSliderFormTime(sliderFormTime);
@@ -160,7 +159,6 @@ public  class FormController {
         counter5.setText(String.valueOf((int)getSliderFormEmployee5().getValue()));
         counter6.setText(String.valueOf((int)getSliderFormEmployee6().getValue()));
 
-        simulationClock.setYears(1);
 
         company.setJuniorProgrammersNumber(0);
         company.setRegularProgrammersNumber(0);
@@ -233,9 +231,9 @@ public  class FormController {
 
 public void sliderTime(){
     Double sT = getSliderFormTime().getValue();
-    if(simulationClock!=null){
-       simulationClock.setYears(sT.intValue());
-    }
+    SimulationClock simulationClock = SimulationClock.getInstance();
+    simulationClock.setYears(sT.intValue());
+
 }
 
     public void sliderJuniorProgrammer()throws IOException
@@ -268,7 +266,7 @@ public void sliderTime(){
     }
     public void sliderMarketer()throws IOException
     {
-        Double sE5 = getSliderFormEmployee3().getValue();
+        Double sE5 = getSliderFormEmployee5().getValue();
         counter5.setText(String.valueOf(sE5.intValue()));
         if(company!=null)
             company.setMarketersNumber(sE5.intValue());

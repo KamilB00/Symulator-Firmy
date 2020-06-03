@@ -11,7 +11,7 @@
    <children>
       <Text fill="WHITE" layoutX="180.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KREDYT" wrappingWidth="160.5673828125">
          <font>
-            <Font size="40.0" />
+            <Font size="43.0" />
          </font>
       </Text>
       <Button fx:id="buttonCredit2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#confirmCreditConditions" text="ZATWIERDŹ">
@@ -41,7 +41,7 @@
          </font>
       </Text>
       <Text fill="WHITE" layoutX="40.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="szacowana minimalna kwota kredytu " wrappingWidth="204.0" />
-      <TextField fx:id="textfieldPrediction" editable="false" layoutX="260.0" layoutY="176.0" mouseTransparent="true" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
+      <TextField fx:id="textfieldPredictions" editable="false" layoutX="260.0" layoutY="176.0" mouseTransparent="true" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>

@@ -1,4 +1,4 @@
 package symulator.app.accountOffice;
 
-public class accountOffice {
+public class AccountOffice {
 }

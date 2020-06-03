@@ -1,5 +1,5 @@
 package symulator.app.accountOffice;
 
-public class TaxOptimalization {
+public class TaxOptimalization extends AccountOffice{
 
 }

@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.hibernate.Session;
-import symulator.app.person.ProgrammerJunior;
 import symulator.app.person.Worker;
 import dataBase.WorkerEntity;
 import symulator.simulation.Randomise;
