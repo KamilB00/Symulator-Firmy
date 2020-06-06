@@ -7,11 +7,12 @@ import java.util.GregorianCalendar;
 
 public class SimulationClock {
 
-    private Integer years = 1;
+    private Integer simulationYears = 1;
 
     public Integer getYears() {
-        System.out.println("get years");
-        return years;
+        System.out.println("get years --> "+simulationYears);
+        return simulationYears;
+
     }
 
     private static SimulationClock instance = null;
@@ -22,12 +23,13 @@ public class SimulationClock {
         return instance;
     }
     public void setYears(Integer years) {
-        System.out.println("set years");
+        this.simulationYears = years;
+        System.out.println("set years -->"+ getYears());
 
-        this.years = years;
     }
     private SimulationClock(){
     }
+
 
     public int weeks = 0;
     public int simulationTime() {
@@ -44,10 +46,8 @@ public class SimulationClock {
         int second = calendarCurrent.get(Calendar.SECOND);
 
         Calendar calendarFuture = new GregorianCalendar(year + getYears(), month, day);
-        Calendar oneMonth = new GregorianCalendar(year, month + 1, day, hour + 12, minute, second);
-        Calendar oneDay = new GregorianCalendar(year, month, day + 1, hour + 12, minute, second);
+        Calendar oneDay = new GregorianCalendar(year, month, day + 1, hour+12, minute, second);
         long duration = calendarFuture.getTimeInMillis() - calendarCurrent.getTimeInMillis();
-        long oneMonthMilis = oneMonth.getTimeInMillis() - calendarCurrent.getTimeInMillis();
         long oneDayMilis = oneDay.getTimeInMillis() - calendarCurrent.getTimeInMillis();
 
 

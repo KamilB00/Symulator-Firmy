@@ -1,5 +1,6 @@
 package symulator.app.company;
 
+
 import dataBase.WorkerDAO;
 import dataBase.WorkerEntity;
 import symulator.simulation.Randomise;
@@ -13,15 +14,16 @@ public class Company {
             INSTANCE = new Company();
         return INSTANCE;
     }
+    //================================================================================================================
+    private Double companyEfficiency;
+
+    private Double companyProfit;
+
+    private Double companyCosts;
 
 
+    //================================================================================================================
     Randomise value = Randomise.getInstance();
-
-    private double companyEfficiency;
-
-    private double companyProfit;
-
-    private double companyCosts;
 
     private Integer employeeCounter;
 
@@ -38,6 +40,7 @@ public class Company {
     private Integer seniorProgrammersNumber;
 
     private Integer projectNumber;
+
     //================================================================================================================
     public void setEmployeeCounter(Integer employeeCounter) {
         this.employeeCounter = employeeCounter;
@@ -139,41 +142,50 @@ public class Company {
         WorkerDAO workerDAO = new WorkerDAO();
         workerDAO.saveWorker(new WorkerEntity(position, salary,efficincy));
     }
+    private Double juniorProgrammerSalary = value.juniorProgrammerSalary();
+    private Double regularProgrammerSalary = value.juniorProgrammerSalary();
+    private Double seniorProgrammerSalary = value.juniorProgrammerSalary();
+    private Double projectManagerSalary = value.juniorProgrammerSalary();
+    private Double marketerSalary = value.juniorProgrammerSalary();
+    private Double accountantSalary = value.juniorProgrammerSalary();
 
     public void  createJuniorProgrammers(){
         for(int i=0;i<getJuniorProgrammersNumber();i++) {
-            addEmployee("Junior Programmer", value.juniorProgrammerSalary(), value.juniorProgrammerSalary()*value.efficiencyRate());
+            addEmployee("Junior Programmer", juniorProgrammerSalary, juniorProgrammerSalary*value.efficiencyRate());
         }
     }
     public void createRegularProgrammers(){
         for(int i=0;i<getRegularProgrammersNumber();i++) {
-            addEmployee("Regular Programmer", value.regularProgrammerSalary(), value.regularProgrammerSalary()*value.efficiencyRate());
+            addEmployee("Regular Programmer", regularProgrammerSalary, regularProgrammerSalary*value.efficiencyRate());
         }
     }
     public void createSeniorProgrammers(){
         for(int i=0;i<getSeniorProgrammersNumber();i++) {
-            addEmployee("Senior Programmer", value.seniorProgrammerSalary(), value.seniorProgrammerSalary()*value.efficiencyRate());
+            addEmployee("Senior Programmer", seniorProgrammerSalary, seniorProgrammerSalary*value.efficiencyRate());
         }
     }
     public void createAccountants(){
         for(int i=0;i<getAccountantsNumber();i++) {
-            addEmployee("Ksiegowy", value.accountantSalary(), value.accountantSalary()*value.efficiencyRate());
+            addEmployee("Ksiegowy", accountantSalary, accountantSalary*value.efficiencyRate());
         }
     }
     public void createMarketers(){
         for(int i=0;i<getMarketersNumber();i++) {
-            addEmployee("Marketer", value.marketerSalary(), value.marketerSalary()*value.efficiencyRate());
+            addEmployee("Marketer", marketerSalary, marketerSalary*value.efficiencyRate());
         }
     }
     public void createProjectManagers(){
         for(int i=0;i<getProjectManagersNumber();i++) {
-            addEmployee("Project Manager", value.projectManagerSalary(), value.projectManagerSalary()*value.efficiencyRate());
+            addEmployee("Project Manager", projectManagerSalary, projectManagerSalary*value.efficiencyRate());
         }
     }
-    public Double minimalCosts(){
-        Double minimalCosts = value.juniorProgrammerSalary();
+
+    public  Double minimalCosts(){
+        Double minimalCosts = juniorProgrammerSalary*getJuniorProgrammersNumber()+regularProgrammerSalary*getRegularProgrammersNumber()
+                +seniorProgrammerSalary*getSeniorProgrammersNumber()+accountantSalary*getAccountantsNumber() +marketerSalary*getMarketersNumber()+projectManagerSalary*getProjectManagersNumber();
        return minimalCosts;
     }
+
 
 }
 

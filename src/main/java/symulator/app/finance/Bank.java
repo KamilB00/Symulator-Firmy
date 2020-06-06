@@ -9,7 +9,13 @@ public class Bank {
     private double interest;
     private Integer installments;
 
-
+    private static Bank instance = null;
+    private Bank(){}
+    public static Bank getInstance(){
+        if(instance==null)
+            instance = new Bank();
+        return instance;
+    }
     Randomise randomise = Randomise.getInstance();
     /**
      *Kwota do zwrotu
@@ -22,7 +28,7 @@ public class Bank {
 
     public void setAmount(double amount) {
         this.amount = amount;
-        System.out.println("Ustawiono kwotę: -->"+ getAmount());
+        System.out.println("Bank Ustawiono kwotę: -->"+ getAmount());
     }
 
     public double getAmount() {
@@ -31,7 +37,7 @@ public class Bank {
 
     public void setInstallments(Integer installments) {
         this.installments = installments;
-        System.out.println("Ustawiono raty: -->"+ getInstallments());
+        System.out.println("Bank Ustawiono raty: -->"+ getInstallments());
     }
 
     public Integer getInstallments() {

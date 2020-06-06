@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonOwnCapital2" layoutX="270.0" layoutY="174.0" mnemonicParsing="false" text="ZATWIERDŹ">
+      <Button fx:id="buttonOwnCapital2" layoutX="270.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#confirmOwnCapital" text="ZATWIERDŹ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

@@ -1,22 +1,37 @@
 package symulator.gui;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
-import org.w3c.dom.ls.LSOutput;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import symulator.simulation.SimulationClock;
 
+import javax.swing.event.ChangeEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static java.lang.Thread.sleep;
 
 public   class SimulationController implements Initializable {
+        @FXML
+        private AnchorPane simulationPane;
 
         @FXML
         private TextField kTextField12;
@@ -231,6 +246,14 @@ public   class SimulationController implements Initializable {
         @FXML
         private TextField fTextField5;
 
+        @FXML
+        private Separator mainSeparator;
+
+        @FXML
+        private JFXButton finalDataButton;
+
+        //FetchData fetchData = new FetchData();
+
         public void setProgressBarSim0(ProgressBar progressBarSim0) {
                 this.progressBarSim0 = progressBarSim0;
         }
@@ -243,16 +266,18 @@ public   class SimulationController implements Initializable {
 
                        simulationClock.setYears(simulationClock.getYears());
                        int week = simulationClock.simulationTime();
-
+                        System.out.println("czas w tygodniach -->" + week);
                         for(int i=0;i< week;i++){
                                 System.out.println(i+1);
                                 updateProgress(i+1,week);
                                Thread.sleep(1000);
                                 if(isCancelled()){
+
                                         return i;
                                 }
                         }
-                        return 10;
+                        return 1;
+
                 }
 
                 @Override
@@ -268,10 +293,32 @@ public   class SimulationController implements Initializable {
         }
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
+
                 DoWork task = new DoWork();
                 progressBarSim0.progressProperty().bind(task.progressProperty());
                 new Thread(task).start();
+
+
+
+
         }
-}
+
+        @FXML
+        public void switchToSummary() throws IOException, InterruptedException {
+                Parent view2 = FXMLLoader.load(getClass().getResource("/gui/FinalData.fxml"));
+                Scene scene2 = new Scene(view2);
+                Stage window = new Stage();
+
+                //window.initModality(Modality.APPLICATION_MODAL);
+                // window.initStyle(StageStyle.UNDECORATED);
+                window.setScene(scene2);
+                window.show();
+        }
+
+        }
+
+
+
+
 
 

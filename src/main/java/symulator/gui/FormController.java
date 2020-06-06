@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -22,12 +23,13 @@ import symulator.simulation.SimulationClock;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 public  class FormController {
     Company company = Company.getInstance();
     SimulationController simulationController=null;
-
+    WorkerDAO workerDAO = new WorkerDAO();
     @FXML
     private ComboBox<String> comboboxForm1;
     ObservableList<String> list = FXCollections.observableArrayList("Kredyt","Własne środki","Venture Capitals","Inwestor");
@@ -214,16 +216,15 @@ public  class FormController {
         window.show();
     }
     @FXML
-    public void switchStageStart(ActionEvent event) throws IOException, InterruptedException {
+    public void switchStageStart(ActionEvent event) throws IOException, InterruptedException, SQLException, ClassNotFoundException {
         Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Simulation.fxml"));
         Scene scene2 = new Scene(view2);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene2);
         window.show();
+       // window.setFullScreen(true);
         setData();
         //System.out.println(simulationClock.simulationTime(simulationClock.getYears()));
-
-
 
     }
 
@@ -306,13 +307,14 @@ public void sliderTime(){
     }
 
     @FXML
-    public void setData() throws IOException{
+    public void setData() throws IOException, SQLException, ClassNotFoundException {
     company.createJuniorProgrammers();
     company.createRegularProgrammers();
     company.createSeniorProgrammers();
     company.createAccountants();
     company.createMarketers();
     company.createProjectManagers();
+    workerDAO.showDB();
     }
 
 

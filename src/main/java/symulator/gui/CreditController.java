@@ -71,7 +71,7 @@ public class CreditController {
      */
     @FXML
     public void confirmCreditConditions(MouseEvent mouseEvent) throws IOException {
-            Bank bank = new Bank();
+            Bank bank = Bank.getInstance();
         if(validate(textfieldAmount.getText())){
             if(validate(textfieldInstalments.getText())){
                 double amount = Double.parseDouble(textfieldAmount.getText());
@@ -82,6 +82,13 @@ public class CreditController {
 
                     Stage stage = (Stage) buttonCredit2 .getScene().getWindow();
                     stage.close();
+
+                    Notifications notificationbuilder = Notifications.create()
+                            .text("Zatwierdzono warunki")
+                            .graphic(null)
+                            .hideAfter(Duration.seconds(5))
+                            .position(Pos.TOP_RIGHT);
+                    notificationbuilder.showInformation();
                 }
 
                 if(instalments < 12 || instalments > 120) {
@@ -98,23 +105,33 @@ public class CreditController {
                     System.out.println("wyswietlam powiadomienie o amount");
                     Notifications notificationbuilder = Notifications.create()
                             .title("Ostrzeżenie")
-                            .text("Podana kwota musi zawierać się w przedziale 100.000 do 10.000.000")
+                            .text("Podana kwota musi zawierać się w przedziale "+100000+"  do 10.000.000")
                             .graphic(null)
                             .hideAfter(Duration.seconds(5))
                             .position(Pos.TOP_RIGHT);
                     notificationbuilder.showWarning();
                 }
             }
-
             else{
-                System.out.println("niezgodny znak w instalments");
+                Notifications notificationbuilder = Notifications.create()
+                        .title("Błąd")
+                        .text("wypełnij wszytkie pola aby zatwierdzić warunki umowy")
+                        .graphic(null)
+                        .hideAfter(Duration.seconds(5))
+                        .position(Pos.TOP_RIGHT);
+                notificationbuilder.showError();
             }
         }
         else{
-            System.out.println("niezgodny znak w amount");
+            Notifications notificationbuilder = Notifications.create()
+                    .title("Błąd")
+                    .text("wypełnij wszytkie pola aby zatwierdzić warunki umowy")
+                    .graphic(null)
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.TOP_RIGHT);
+            notificationbuilder.showError();
         }
     }
-
     /**
      * Funkcja walidująca wpisane dane do textfieldAmount oraz textfieldInstalments
      */

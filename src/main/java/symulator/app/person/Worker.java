@@ -1,11 +1,24 @@
 package symulator.app.person;
 
-    public class Worker {
+import symulator.app.company.Company;
+
+public class Worker {
+
+    private static Worker INSTANCE = null;
+    private Worker(){}
+    public static Worker getInstance(){
+        if(INSTANCE==null)
+            INSTANCE = new Worker();
+        return INSTANCE;
+    }
+
+
+        private Integer id;
         private Double efficiency;
         private Double salary;
         private String position;
 
-        public void setEfficiency(Double efficiency) {
+    public void setEfficiency(Double efficiency) {
             this.efficiency = efficiency;
         }
         public void setPosition(String position) {
@@ -13,6 +26,9 @@ package symulator.app.person;
         }
         public void setSalary(Double salary) {
             this.salary = salary;
+        }
+        public void setId(Integer id) {
+            this.id = id;
         }
         //=============================================================================================================
 
@@ -27,11 +43,12 @@ package symulator.app.person;
         public String getPosition() {
             return position;
         }
-        //=============================================================================================================
-        public Worker(String position, Double salary, Double efficiency) {
-        setSalary(salary);
-        setPosition(position);
-        setEfficiency(efficiency);
+
+        public Integer getId() {
+            return id;
         }
-        public Worker(){}
+
+        //=============================================================================================================
+
+
 }

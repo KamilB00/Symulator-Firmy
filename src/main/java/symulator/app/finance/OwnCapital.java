@@ -18,5 +18,8 @@ public class OwnCapital {
 
     public void setAmount(double amount) {
         this.amount = amount;
+        System.out.println("Own Capital set --> "+ getAmount());
     }
+
+
 }
