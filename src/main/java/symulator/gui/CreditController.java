@@ -1,23 +1,20 @@
 package symulator.gui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
 import javafx.geometry.Pos;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import symulator.app.company.Company;
 import symulator.app.finance.Bank;
 import symulator.simulation.Randomise;
-import java.io.IOException;
+
 
 
 public class CreditController {
@@ -53,15 +50,15 @@ public class CreditController {
 
     @FXML
     public void initialize() {
-        Double percentage = randomise.generateBankPercentage()*100;
+        double percentage = randomise.generateBankPercentage()*100;
 
 
-        textfieldPercentage.setText(percentage.toString());
+        textfieldPercentage.setText(Double.toString( Math.round(percentage)));
         textfieldPredictions.setText(company.minimalCosts().toString());
     }
 
     @FXML
-    public void backToForm(MouseEvent mouseEvent) throws IOException {
+    public void backToForm() {
 
         Stage stage = (Stage) buttonCredit1 .getScene().getWindow();
         stage.close();
@@ -70,12 +67,14 @@ public class CreditController {
      * Funkcja sprawdzająca  warunki kredytu, powiadomienia
      */
     @FXML
-    public void confirmCreditConditions(MouseEvent mouseEvent) throws IOException {
+    public void confirmCreditConditions() {
+        Image imageTick = new Image("icons/sign-check-icon.png");
             Bank bank = Bank.getInstance();
         if(validate(textfieldAmount.getText())){
             if(validate(textfieldInstalments.getText())){
                 double amount = Double.parseDouble(textfieldAmount.getText());
-                Integer instalments = Integer.parseInt(textfieldInstalments.getText());
+
+                int instalments = Integer.parseInt(textfieldInstalments.getText());
                 if ((instalments >= 12 && instalments <= 120)&&(amount >= 100000 && amount <= 10000000)){
                     bank.setAmount(amount);
                     bank.setInstallments(instalments);
@@ -85,9 +84,10 @@ public class CreditController {
 
                     Notifications notificationbuilder = Notifications.create()
                             .text("Zatwierdzono warunki")
-                            .graphic(null)
+                            .graphic(new ImageView(imageTick))
                             .hideAfter(Duration.seconds(5))
                             .position(Pos.TOP_RIGHT);
+                    notificationbuilder.darkStyle();
                     notificationbuilder.showInformation();
                 }
 
@@ -99,6 +99,7 @@ public class CreditController {
                             .graphic(null)
                             .hideAfter(Duration.seconds(5))
                             .position(Pos.TOP_RIGHT);
+                    notificationbuilder.darkStyle();
                     notificationbuilder.showWarning();
                 }
                  if(amount < 100000 || amount > 10000000) {
@@ -109,6 +110,7 @@ public class CreditController {
                             .graphic(null)
                             .hideAfter(Duration.seconds(5))
                             .position(Pos.TOP_RIGHT);
+                    notificationbuilder.darkStyle();
                     notificationbuilder.showWarning();
                 }
             }
@@ -119,6 +121,7 @@ public class CreditController {
                         .graphic(null)
                         .hideAfter(Duration.seconds(5))
                         .position(Pos.TOP_RIGHT);
+                notificationbuilder.darkStyle();
                 notificationbuilder.showError();
             }
         }
@@ -129,6 +132,7 @@ public class CreditController {
                     .graphic(null)
                     .hideAfter(Duration.seconds(5))
                     .position(Pos.TOP_RIGHT);
+            notificationbuilder.darkStyle();
             notificationbuilder.showError();
         }
     }

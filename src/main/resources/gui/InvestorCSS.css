@@ -10,12 +10,12 @@
 
 #buttonInvestor1:hover {
     -fx-background-color:  #ff0000;
-    -fx-text-fill:  #ffffff;
+    -fx-text-fill:  #1a1a1a;
 }
 
 #buttonInvestor2:hover {
     -fx-background-color:  #00ff04;
-    -fx-text-fill:  #000000;
+    -fx-text-fill:  #1a1a1a;
 }
 
 .text-field{

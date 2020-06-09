@@ -1,5 +1,8 @@
 package symulator.app.finance;
 
+import symulator.app.company.Company;
+import symulator.gui.CreditController;
+
 public class Investor{
 
     private static Investor instance = null;
@@ -9,38 +12,41 @@ public class Investor{
             instance = new Investor();
         return instance;
     }
+Company company = Company.getInstance();
+    private Double offeredAmount;
+   private Double yearProfit;
+   private Integer time;
 
-    private double offeredAmount;
-   private double yearProfit;
-   private double time;
 
 
-    public void setYearProfit(double yearProfit) {
+    public void setYearProfit(Double yearProfit) {
 
         this.yearProfit = yearProfit;
         System.out.println("Investor year profit --> " + yearProfit);
     }
 
-    public void setTime(double time) {
+    public void setTime(Integer time) {
 
         this.time = time;
         System.out.println("Investor time --> "+ time);
     }
 
-    public double getTime() {
+    public Integer getTime() {
         return time;
     }
 
-    public double getYearProfit() {
+    public Double getYearProfit() {
         return yearProfit;
     }
 
-    public void setOfferedAmount(double offeredAmount) {
-        System.out.println("Offered amount --> "+ offeredAmount);
+    public void setOfferedAmount(Double offeredAmount) {
         this.offeredAmount = offeredAmount;
+        System.out.println("Offered amount --> "+ getOfferedAmount());
+        company.setCompanyBudget(getOfferedAmount());
+
     }
 
-    public double getOfferedAmount() {
+    public Double getOfferedAmount() {
         return offeredAmount;
     }
 

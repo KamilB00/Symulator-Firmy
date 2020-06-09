@@ -36,7 +36,7 @@ public class WorkerDAO {
         ResultSet rs = statement.executeQuery("select * from worker");
         ArrayList<Worker> workersList = new ArrayList<>();
         while (rs.next()) {
-            Worker worker = Worker.getInstance();
+            Worker worker = new Worker();
             worker.setId(rs.getInt("ID"));
             worker.setEfficiency(rs.getDouble("EFFICIENCY"));
             worker.setPosition(rs.getString("POSITION"));
@@ -47,11 +47,17 @@ public class WorkerDAO {
         return workersList;
     }
     public void showDB() throws SQLException, ClassNotFoundException {
-        ArrayList<Worker> workersList = getAllWorkers();
+
+        ArrayList<Worker> workersList =getAllWorkers();
 
         for(int i=0; i<workersList.size(); i++){
+
+            System.out.print(workersList.get(i).getId()+" ");
             System.out.print(workersList.get(i).getPosition()+" ");
-            System.out.println(workersList.get(i).getEfficiency());
+            System.out.print(workersList.get(i).getEfficiency()+" ");
+            System.out.println(workersList.get(i).getSalary()+" ");
+
+
         }
 
     }

@@ -4,15 +4,6 @@ import symulator.app.company.Company;
 
 public class Worker {
 
-    private static Worker INSTANCE = null;
-    private Worker(){}
-    public static Worker getInstance(){
-        if(INSTANCE==null)
-            INSTANCE = new Worker();
-        return INSTANCE;
-    }
-
-
         private Integer id;
         private Double efficiency;
         private Double salary;

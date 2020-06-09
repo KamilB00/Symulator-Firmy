@@ -1,95 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="1146.0" style="-fx-background-color: #1a1a1a;" stylesheets="@Form.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.FormController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1242.0" styleClass="background" stylesheets="@Form.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.FormController">
    <children>
-
-      <ComboBox fx:id="comboboxForm1" layoutX="701.0" layoutY="73.0" prefHeight="31.0" prefWidth="182.0" promptText="Rodzaj finansowania" />
-      <Label layoutX="692.0" layoutY="34.0" mouseTransparent="true" pickOnBounds="false" prefHeight="27.0" prefWidth="205.0" text="Wybierz rodzaj finansowania">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#473d3d1d" height="200.0" layoutX="508.0" layoutY="275.0" opacity="0.43" stroke="#473d3d56" strokeType="INSIDE" width="347.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#473d3d1d" height="200.0" layoutX="507.0" layoutY="52.0" opacity="0.43" stroke="#473d3d56" strokeType="INSIDE" width="347.0" />
+      <Label alignment="CENTER" layoutX="855.0" layoutY="32.0" mouseTransparent="true" pickOnBounds="false" prefHeight="41.0" prefWidth="366.0" styleClass="label-header" text="Wybierz rodzaj finansowania">
          <font>
             <Font name="System Font" size="16.0" />
-         </font></Label>
+         </font>
+      </Label>
 
-      <Label layoutX="169.0" layoutY="345.0" mouseTransparent="true" pickOnBounds="false" text="Czas trwania symulacji" />
-      <Slider fx:id="sliderFormTime" blockIncrement="1.0" layoutX="121.0" layoutY="373.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="0" onMouseClicked="#sliderTime" onMouseDragged="#sliderTime" prefHeight="15.0" prefWidth="227.0" showTickLabels="true" showTickMarks="true" value="1.0">
-         <effect>
-            <Blend mode="ADD" />
-         </effect></Slider>
-      <Label layoutX="181.0" layoutY="13.0" mouseTransparent="true" pickOnBounds="false" prefHeight="35.0" prefWidth="136.0" style="-fx-font-family: Roboto;" text="Ilość Pracowników">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="505.0" layoutY="194.0" mouseTransparent="true" pickOnBounds="false" prefHeight="17.0" prefWidth="347.0" text="Czas trwania symulacji" />
+      <Label alignment="CENTER" layoutX="82.0" layoutY="125.0" prefHeight="27.0" prefWidth="366.0" text="Programista Junior">
          <font>
-            <Font name="Al Nile" size="13.0" />
-         </font></Label>
-      <Label layoutX="44.0" layoutY="71.0" text="Młodszy Programista" />
-      <Label layoutX="68.0" layoutY="111.0" prefHeight="21.0" prefWidth="82.0" text="Programista" />
-      <Label layoutX="44.0" layoutY="159.0" text="Starszy Programista" />
-      <Label layoutX="41.0" layoutY="201.0" text="Menadżer projektów" />
-      <Label layoutX="79.0" layoutY="242.0" text="Marketer" />
-      <Label layoutX="77.0" layoutY="290.0" text="Księgowy" />
-      <Slider fx:id="sliderFormEmployee1" blockIncrement="1.0" layoutX="176.0" layoutY="75.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderJuniorProgrammer" onMouseDragged="#sliderJuniorProgrammer" prefHeight="15.0" prefWidth="222.0">
-         <effect>
-            <Blend mode="ADD" />
-         </effect></Slider>
-      <Slider fx:id="sliderFormEmployee2" blockIncrement="1.0" layoutX="177.0" layoutY="120.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderRegularProgrammer" onMouseDragged="#sliderRegularProgrammer" prefHeight="15.0" prefWidth="222.0">
-         <effect>
-            <Blend mode="ADD" />
-         </effect></Slider>
-      <Slider fx:id="sliderFormEmployee3" blockIncrement="1.0" layoutX="173.0" layoutY="161.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderSeniorProgrammer" onMouseDragged="#sliderSeniorProgrammer" prefHeight="15.0" prefWidth="224.0">
-         <effect>
-            <Blend mode="ADD" />
-         </effect></Slider>
-      <Slider fx:id="sliderFormEmployee4" blockIncrement="1.0" layoutX="174.0" layoutY="203.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderProjectManager" onMouseDragged="#sliderProjectManager" prefHeight="15.0" prefWidth="222.0">
-         <effect>
-            <Blend mode="ADD" />
-         </effect></Slider>
-      <Slider fx:id="sliderFormEmployee5" blockIncrement="1.0" layoutX="176.0" layoutY="244.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderMarketer" onMouseDragged="#sliderMarketer" prefHeight="15.0" prefWidth="222.0">
-         <effect>
-            <Blend mode="ADD" />
-         </effect></Slider>
-      <Slider fx:id="sliderFormEmployee6" blockIncrement="1.0" layoutX="175.0" layoutY="292.0" majorTickUnit="1.0" max="30.0" minorTickCount="0" onMouseClicked="#sliderAccountant" onMouseDragged="#sliderAccountant" prefHeight="15.0" prefWidth="222.0">
-         <effect>
-            <Blend mode="ADD" />
-         </effect></Slider>
-      <Label layoutX="497.0" layoutY="70.0" mouseTransparent="true" pickOnBounds="false" prefHeight="17.0" prefWidth="166.0" text="Realizowane projekty" textAlignment="JUSTIFY">
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="80.0" layoutY="204.0" prefHeight="27.0" prefWidth="366.0" text="Programista Regular">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="507.0" layoutY="105.0" mouseTransparent="true" pickOnBounds="false" prefHeight="27.0" prefWidth="347.0" text="Ilość zamówień realizowanych jednocześnie" textAlignment="JUSTIFY">
          <font>
             <Font name="Arial Narrow" size="15.0" />
-         </font></Label>
-      <Slider fx:id="sliderFormProjects" blockIncrement="2.0" layoutX="466.0" layoutY="101.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" onMouseClicked="#sliderProjects" onMouseDragged="#sliderProjects" prefHeight="15.0" prefWidth="182.0" showTickLabels="true" showTickMarks="true" value="1.0">
-         <effect>
-            <Blend mode="ADD" />
-         </effect></Slider>
-      <Label layoutX="468.0" layoutY="202.0" mouseTransparent="true" pickOnBounds="false" text="Rodzaj finansowania sprzętu" />
-      <Button fx:id="startSimulationButton" layoutX="721.0" layoutY="182.0" mnemonicParsing="false" onAction="#switchStageStart" prefHeight="53.0" prefWidth="175.0" text="Rozpocznij Symulację">
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="511.0" layoutY="291.0" mouseTransparent="true" pickOnBounds="false" prefHeight="27.0" prefWidth="347.0" styleClass="label-header" text="Rodzaj finansowania sprzętu">
          <font>
-            <Font name="System Bold" size="15.0" />
-         </font></Button>
-      <Button fx:id="presentationButton" layoutX="721.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchStageStart" prefHeight="53.0" prefWidth="175.0" text="Prezentacja">
+            <Font name="AppleGothic Regular" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="startSimulationButton" alignment="CENTER" layoutX="976.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchStageStart" prefHeight="41.0" prefWidth="182.0" text="Rozpocznij" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="18.0" />
-         </font></Button>
-      <RadioButton layoutX="446.0" layoutY="246.0" mnemonicParsing="false" text="Leasing" />
-      <RadioButton layoutX="523.0" layoutY="246.0" mnemonicParsing="false" text="Kupno" />
-      <RadioButton layoutX="593.0" layoutY="246.0" mnemonicParsing="false" text="Raty" />
-      <Label layoutX="510.0" layoutY="304.0" mouseTransparent="true" pickOnBounds="false" text="Miejsce Pracy" />
-      <RadioButton layoutX="498.0" layoutY="353.0" mnemonicParsing="false" text="Biuro" />
-      <RadioButton layoutX="571.0" layoutY="353.0" mnemonicParsing="false" text="Praca Zdalna" />
-
-      <Button fx:id="buttonForm1" layoutX="719.0" layoutY="115.0" mnemonicParsing="false" onMouseClicked="#confirmation" text="Sprawdź wrunki umowy" />
-      <TextField fx:id="counter1" layoutX="404.0" layoutY="69.0" mouseTransparent="true" prefHeight="28.0" prefWidth="40.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" />
-      <TextField fx:id="counter2" layoutX="404.0" layoutY="114.0" mouseTransparent="true" prefHeight="28.0" prefWidth="41.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" />
-      <TextField fx:id="counter3" layoutX="404.0" layoutY="154.0" mouseTransparent="true" prefHeight="28.0" prefWidth="41.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" />
-      <TextField fx:id="counter4" layoutX="405.0" layoutY="198.0" mouseTransparent="true" prefHeight="28.0" prefWidth="40.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" />
-      <TextField fx:id="counter5" layoutX="403.0" layoutY="239.0" mouseTransparent="true" prefHeight="28.0" prefWidth="41.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" />
-      <TextField fx:id="counter6" layoutX="405.0" layoutY="288.0" mouseTransparent="true" prefHeight="28.0" prefWidth="37.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" />
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="presentationButton" alignment="CENTER" layoutX="976.0" layoutY="317.0" mnemonicParsing="false" onAction="#switchStageStart" prefHeight="41.0" prefWidth="182.0" text="Prezentacja" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="512.0" layoutY="381.0" mouseTransparent="true" pickOnBounds="false" prefHeight="27.0" prefWidth="347.0" styleClass="label-header" text="Miejsce Pracy">
+         <font>
+            <Font name="AppleGothic Regular" size="19.0" />
+         </font>
+      </Label>
+      <JFXRadioButton fx:id="radioButtonOffice" contentDisplay="CENTER" layoutX="563.0" layoutY="423.0" prefHeight="21.0" prefWidth="82.0" selected="true" text="Biuro">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="workPlace" />
+         </toggleGroup>
+      </JFXRadioButton>
+      <JFXRadioButton fx:id="radioButtonRemote" contentDisplay="CENTER" layoutX="708.0" layoutY="425.0" text="Praca Zdalna" toggleGroup="$workPlace">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXRadioButton fx:id="radioButtonLeasing" contentDisplay="CENTER" layoutX="542.0" layoutY="337.0" prefHeight="0.0" prefWidth="71.0" selected="true" text="Leasing">
+         <toggleGroup>
+            <ToggleGroup fx:id="accesories" />
+         </toggleGroup>
+      </JFXRadioButton>
+      <JFXRadioButton fx:id="radioButtonBuy" contentDisplay="CENTER" layoutX="650.0" layoutY="337.0" prefHeight="0.0" prefWidth="71.0" text="Kupno" textAlignment="CENTER" toggleGroup="$accesories" />
+      <JFXRadioButton fx:id="radioButtonInstallments" contentDisplay="CENTER" layoutX="761.0" layoutY="337.0" prefHeight="0.0" prefWidth="56.0" text="Raty" toggleGroup="$accesories" />
+      <JFXSlider fx:id="sliderFormEmployee1" blockIncrement="1.0" layoutX="82.0" layoutY="111.0" majorTickUnit="1.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderJuniorProgrammer" onMouseDragged="#sliderJuniorProgrammer" prefHeight="15.0" prefWidth="366.0" value="1.0" />
+      <JFXSlider fx:id="sliderFormEmployee2" blockIncrement="1.0" layoutX="80.0" layoutY="191.0" majorTickUnit="1.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderRegularProgrammer" onMouseDragged="#sliderRegularProgrammer" prefHeight="15.0" prefWidth="366.0" value="1.0" />
+      <JFXSlider fx:id="sliderFormEmployee3" blockIncrement="1.0" layoutX="82.0" layoutY="259.0" majorTickUnit="1.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderSeniorProgrammer" onMouseDragged="#sliderSeniorProgrammer" prefHeight="15.0" prefWidth="366.0" value="1.0" />
+      <Label alignment="CENTER" layoutX="80.0" layoutY="274.0" prefHeight="27.0" prefWidth="366.0" text="Programista Senior">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Label>
+      <JFXSlider fx:id="sliderFormEmployee4" blockIncrement="1.0" layoutX="82.0" layoutY="330.0" majorTickUnit="1.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderProjectManager" onMouseDragged="#sliderProjectManager" prefHeight="15.0" prefWidth="366.0" value="1.0" />
+      <Label alignment="CENTER" layoutX="80.0" layoutY="348.0" prefHeight="27.0" prefWidth="366.0" text="Project Manager">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Label>
+      <JFXSlider fx:id="sliderFormEmployee5" blockIncrement="1.0" layoutX="81.0" layoutY="404.0" majorTickUnit="1.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderMarketer" onMouseDragged="#sliderMarketer" prefHeight="15.0" prefWidth="366.0" value="1.0" />
+      <Label alignment="CENTER" layoutX="82.0" layoutY="418.0" prefHeight="27.0" prefWidth="366.0" text="Marketer">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Label>
+      <JFXSlider fx:id="sliderFormEmployee6" blockIncrement="1.0" layoutX="81.0" layoutY="478.0" majorTickUnit="1.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderAccountant" onMouseDragged="#sliderAccountant" prefHeight="15.0" prefWidth="366.0" value="1.0" />
+      <Label alignment="CENTER" layoutX="82.0" layoutY="493.0" onMouseClicked="#sliderAccountant" onMouseDragged="#sliderAccountant" prefHeight="27.0" prefWidth="366.0" text="Accountant">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="118.0" layoutY="37.0" prefHeight="41.0" prefWidth="294.0" styleClass="label-header" text="Ilość Pracowników">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="comboboxForm1" focusColor="#29a347" labelFloat="true" layoutX="950.0" layoutY="88.0" prefHeight="27.0" prefWidth="233.0" promptText="R o d z a j   F i n a n s o w a n i a" stylesheets="@Form.css" unFocusColor="#29a347" />
+      <JFXSlider fx:id="sliderFormProjects" blockIncrement="1.0" layoutX="590.0" layoutY="75.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderProjects" onMouseDragged="#sliderProjects" prefHeight="15.0" prefWidth="182.0" value="1.0" />
+      <JFXSlider fx:id="sliderFormTime" blockIncrement="1.0" layoutX="590.0" layoutY="176.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderTime" onMouseDragged="#sliderTime" prefHeight="15.0" prefWidth="182.0" value="1.0" />
+      <JFXButton fx:id="buttonForm1" alignment="CENTER" contentDisplay="CENTER" layoutX="976.0" layoutY="136.0" onMouseClicked="#confirmation" prefHeight="33.0" prefWidth="182.0" text="Sprawdź warunki umowy" textAlignment="CENTER" />
       
-
-   </children>
+      
+         </children>
 </Pane>

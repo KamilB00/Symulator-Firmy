@@ -1,35 +1,39 @@
 package symulator.gui;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import symulator.app.company.Company;
+import symulator.app.finance.Bank;
+import symulator.app.finance.Investor;
+import symulator.app.finance.OwnCapital;
+import symulator.app.finance.VC;
 import symulator.simulation.SimulationClock;
-
-import javax.swing.event.ChangeEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
-import static java.lang.Thread.sleep;
 
-public   class SimulationController implements Initializable {
+
+public   class  SimulationController implements Initializable {
+        Company company = Company.getInstance();
+        Bank bank = Bank.getInstance();
+        Investor investor = Investor.getInstance();
+        VC vc = VC.getInstance();
+        OwnCapital ownCapital = OwnCapital.getInstance();
+        SimulationClock simulationClock = SimulationClock.getInstance();
         @FXML
         private AnchorPane simulationPane;
 
@@ -251,8 +255,14 @@ public   class SimulationController implements Initializable {
 
         @FXML
         private JFXButton finalDataButton;
-
-        //FetchData fetchData = new FetchData();
+        // clock---------------------------
+        @FXML
+        private TextField dayTextField;
+        @FXML
+        private TextField monthTextField;
+        @FXML
+        private TextField yearTextField;
+       //-----------------------------------
 
         public void setProgressBarSim0(ProgressBar progressBarSim0) {
                 this.progressBarSim0 = progressBarSim0;
@@ -262,15 +272,16 @@ public   class SimulationController implements Initializable {
 
                 @Override
                 public Integer call() throws Exception {
-                       SimulationClock simulationClock = SimulationClock.getInstance();
 
+                       SimulationClock simulationClock = SimulationClock.getInstance();
                        simulationClock.setYears(simulationClock.getYears());
                        int week = simulationClock.simulationTime();
-                        System.out.println("czas w tygodniach -->" + week);
+
                         for(int i=0;i< week;i++){
-                                System.out.println(i+1);
+                                System.out.print((i+1)+"--");
+                                System.out.println("data--> "+ simulationClock.timeUpdate(i));
                                 updateProgress(i+1,week);
-                               Thread.sleep(1000);
+                               Thread.sleep(400);
                                 if(isCancelled()){
 
                                         return i;
@@ -297,14 +308,24 @@ public   class SimulationController implements Initializable {
                 DoWork task = new DoWork();
                 progressBarSim0.progressProperty().bind(task.progressProperty());
                 new Thread(task).start();
-
-
-
-
+                //programiści
+                progressBarSim1.setProgress((float)(company.getJuniorProgrammersNumber()+company.getRegularProgrammersNumber()+company.getSeniorProgrammersNumber()) /(company.allEmployees()));
+                // project manager
+                progressBarSim2.setProgress((float)company.getProjectManagersNumber()/company.allEmployees());
+                // księgowi
+                progressBarSim3.setProgress((float)company.getAccountantsNumber()/company.allEmployees());
+                //marketerzy
+                progressBarSim4.setProgress((float)company.getMarketersNumber()/company.allEmployees());
+                System.out.println("progressBarSim1 programista --> "+ progressBarSim1.getProgress());
+                System.out.println("progressBarSim2 PM --> "+ progressBarSim2.getProgress());
+                System.out.println("progressBarSim3 księgowy --> "+ progressBarSim3.getProgress());
+                System.out.println("progressBarSim4 marketer --> "+ progressBarSim4.getProgress());
+                sizeOfCompany();
+                financing();
         }
 
         @FXML
-        public void switchToSummary() throws IOException, InterruptedException {
+        public void switchToSummary() throws IOException {
                 Parent view2 = FXMLLoader.load(getClass().getResource("/gui/FinalData.fxml"));
                 Scene scene2 = new Scene(view2);
                 Stage window = new Stage();
@@ -315,7 +336,67 @@ public   class SimulationController implements Initializable {
                 window.show();
         }
 
+        public void sizeOfCompany(){
+                if(company.allEmployees()>=1 && company.allEmployees()<=10){
+                        fTextField12.setText("Mikro przedsiębiorstwo");
+                }
+                else if(company.allEmployees()>=10 && company.allEmployees()<=50){
+                        fTextField12.setText("Małe przedsiębiorstwo");
+                }
+                else if (company.allEmployees()>=50 && company.allEmployees()<=250){
+                        fTextField12.setText("Średnie przedsiębiorstwo");
+                }
+                else if (company.allEmployees()>250)
+                        fTextField12.setText("Duże przedsiębiorstwo");
         }
+
+        public void financing(){
+                if((bank.getAmount()!= 0)){
+                        fTextField14.setText("KREDYT");
+                        bTextField7.setText(bank.getAmount().toString());
+                        bTextField11.setText(bank.getInstallments().toString());
+                        bTextField9.setText(bank.returnAmount().toString());
+                        bTextField8.setText(bank.percent().toString());
+                }
+                else if((investor.getOfferedAmount()!= 0)){
+                        fTextField14.setText("INWESTOR");
+                        disableBank();
+                }
+                else if ((ownCapital.getAmount()!= 0)){
+                        fTextField14.setText("KAPITAŁ WŁASNY");
+                        disableBank();
+                }
+                else if((vc.getAmount()!= 0)){
+                        fTextField14.setText("VENTURE CAPITALS");
+                       disableBank();
+                }
+
+        }
+        public void disableBank(){
+                bTextField0.setDisable(true);
+                bTextField1.setDisable(true);
+                bTextField2.setDisable(true);
+                bTextField3.setDisable(true);
+                bTextField4.setDisable(true);
+                bTextField5.setDisable(true);
+                bTextField6.setDisable(true);
+                bTextField7.setDisable(true);
+                bTextField8.setDisable(true);
+                bTextField9.setDisable(true);
+                bTextField11.setDisable(true);
+                bTextField12.setDisable(true);
+                bTextField13.setDisable(true);
+                bLabel1.setDisable(true);
+                bLabel2.setDisable(true);
+                bLabel3.setDisable(true);
+                bLabel4.setDisable(true);
+                bLabel5.setDisable(true);
+        }
+        public void timeShow(){
+
+        }
+        }
+
 
 
 

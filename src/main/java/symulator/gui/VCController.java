@@ -25,7 +25,6 @@ public class VCController {
         Randomise randomise = Randomise.getInstance();
         textfieldVC1.setText(randomise.randomVCAmount().toString());
         textfieldVC2.setText(randomise.randomVCShares().toString());
-
     }
 
     @FXML
@@ -33,6 +32,7 @@ public class VCController {
         Stage stage = (Stage) buttonVC1 .getScene().getWindow();
         stage.close();
     }
+
     @FXML
     public void confirmVCConditions(){
         String amount =  textfieldVC1.getText();
@@ -40,7 +40,6 @@ public class VCController {
         String shares = textfieldVC2.getText();
         Double sharesD = Double.parseDouble(shares)/100;
         vc.setShares(sharesD);
-
         Stage stage = (Stage) buttonVC2 .getScene().getWindow();
         stage.close();
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
@@ -7,14 +8,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #1a1a1a;" stylesheets="@CreditCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.CreditController">
+<AnchorPane prefHeight="331.0" prefWidth="538.0" style="-fx-background-color: #1a1a1a;" stylesheets="@CreditCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="symulator.gui.CreditController">
    <children>
-      <Text fill="WHITE" layoutX="180.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KREDYT" wrappingWidth="160.5673828125">
+      <Text fill="WHITE" layoutX="189.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-header" text="KREDYT" textAlignment="CENTER" wrappingWidth="160.5673828125">
          <font>
             <Font size="43.0" />
          </font>
       </Text>
-      <Button fx:id="buttonCredit2" layoutX="380.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#confirmCreditConditions" text="ZATWIERDŹ">
+      <Button fx:id="buttonCredit2" layoutX="414.0" layoutY="267.0" mnemonicParsing="false" onMouseClicked="#confirmCreditConditions" text="ZATWIERDŹ">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -22,7 +23,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonCredit1" layoutX="40.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#backToForm" text="POWRÓT">
+      <Button fx:id="buttonCredit1" layoutX="40.0" layoutY="267.0" mnemonicParsing="false" onMouseClicked="#backToForm" text="POWRÓT">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -30,18 +31,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="WHITE" layoutX="58.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KWOTA KREDYTU">
+      <Text fill="WHITE" layoutX="55.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="KWOTA KREDYTU">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="76.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LICZBA RAT">
+      <Text fill="WHITE" layoutX="73.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="LICZBA RAT">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="40.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="szacowana minimalna kwota kredytu " wrappingWidth="204.0" />
-      <TextField fx:id="textfieldPredictions" editable="false" layoutX="260.0" layoutY="176.0" mouseTransparent="true" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
+      <Text fill="WHITE" layoutX="40.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-mini" text="szacowana minimalna kwota kredytu " wrappingWidth="204.0" />
+      <TextField fx:id="textfieldPredictions" editable="false" layoutX="260.0" layoutY="198.0" mouseTransparent="true" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -49,17 +50,8 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="textfieldInstalments" layoutX="250.0" layoutY="122.0" promptText="podaj liczbę rat">
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </TextField>
-      <TextField fx:id="textfieldAmount" layoutX="250.0" layoutY="80.0" promptText="podaj kwotę">
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor></TextField>
-      <Text fill="WHITE" layoutX="40.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="roczne oprocentowanie " textAlignment="CENTER" wrappingWidth="204.0" />
-      <TextField fx:id="textfieldPercentage" editable="false" layoutX="260.0" layoutY="196.0" mouseTransparent="true" prefHeight="27.0" prefWidth="72.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
+      <Text fill="WHITE" layoutX="40.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-mini" text="roczne oprocentowanie " textAlignment="CENTER" wrappingWidth="204.0" />
+      <TextField fx:id="textfieldPercentage" editable="false" layoutX="260.0" layoutY="218.0" mouseTransparent="true" prefHeight="27.0" prefWidth="72.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -67,5 +59,11 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
+      <JFXTextField fx:id="textfieldAmount" focusColor="#24a42e" labelFloat="true" layoutX="233.0" layoutY="91.0" prefHeight="27.0" prefWidth="226.0" promptText="wpisz kwotę kredytu" stylesheets="@CreditCSS.css" unFocusColor="#24a42e" />
+      <JFXTextField fx:id="textfieldInstalments" focusColor="#24a42e" labelFloat="true" layoutX="233.0" layoutY="148.0" prefHeight="27.0" prefWidth="226.0" promptText="wpisz liczbę rat" stylesheets="@CreditCSS.css" unFocusColor="#24a42e" />
+      <Text fill="WHITE" layoutX="309.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" wrappingWidth="19.1435546875">
+         <font>
+            <Font size="17.0" />
+         </font></Text>
    </children>
 </AnchorPane>

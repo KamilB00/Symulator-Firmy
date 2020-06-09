@@ -3,10 +3,17 @@ package symulator.app.company;
 
 import dataBase.WorkerDAO;
 import dataBase.WorkerEntity;
+import symulator.app.finance.Bank;
+import symulator.app.finance.Investor;
+import symulator.app.finance.OwnCapital;
+import symulator.app.finance.VC;
 import symulator.simulation.Randomise;
 
 
 public class Company {
+    Randomise value = Randomise.getInstance();
+
+    //================================================================================================================
     private static Company INSTANCE = null;
     private Company(){}
     public static Company getInstance(){
@@ -21,11 +28,12 @@ public class Company {
 
     private Double companyCosts;
 
+    private Double companyBudget;
 
     //================================================================================================================
-    Randomise value = Randomise.getInstance();
 
-    private Integer employeeCounter;
+
+
 
     private Integer projectManagersNumber;
 
@@ -42,8 +50,10 @@ public class Company {
     private Integer projectNumber;
 
     //================================================================================================================
-    public void setEmployeeCounter(Integer employeeCounter) {
-        this.employeeCounter = employeeCounter;
+
+
+    public void setCompanyBudget(Double companyBudget) {
+        this.companyBudget = companyBudget;
     }
 
     public void setCompanyCosts(double companyCosts) {
@@ -58,7 +68,10 @@ public class Company {
         this.companyProfit = companyProfit;
     }
 
+
+
     public void setProjectNumber(Integer projectNumber) {
+        System.out.println("set ProjectNumber --> "+getProjectNumber());
         this.projectNumber = projectNumber;
     }
 
@@ -105,8 +118,8 @@ public class Company {
         return companyProfit;
     }
 
-    public Integer getEmployeeCounter() {
-        return employeeCounter;
+    public Double getCompanyBudget() {
+        return companyBudget;
     }
 
     public Integer getProjectNumber() {
@@ -185,6 +198,19 @@ public class Company {
                 +seniorProgrammerSalary*getSeniorProgrammersNumber()+accountantSalary*getAccountantsNumber() +marketerSalary*getMarketersNumber()+projectManagerSalary*getProjectManagersNumber();
        return minimalCosts;
     }
+    public Double costsOfEquipment(){
+         double computerEquipment = 3500.0;
+         double desk = 1500.0;
+         double chair = 700.0;
+         double softwareLicence = 1000.0;
+        return computerEquipment+desk+chair+softwareLicence;
+    }
+
+    public Integer allEmployees(){
+        return getJuniorProgrammersNumber()+getRegularProgrammersNumber()+getSeniorProgrammersNumber()+getAccountantsNumber()+getMarketersNumber()+getProjectManagersNumber();
+    }
+
+
 
 
 }

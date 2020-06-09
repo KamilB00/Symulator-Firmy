@@ -1,12 +1,13 @@
 package symulator.app.finance;
 
+import symulator.app.company.Company;
 import symulator.simulation.SimulationClock;
 
 import java.util.Random;
 
 public class VC {
-    private double amount;
-    private double shares;
+    private Double amount;
+    private Double shares;
 
 
     private static VC instance = null;
@@ -17,23 +18,25 @@ public class VC {
         return instance;
     }
 
-    public void setAmount(double amount) {
+Company company = Company.getInstance();
+    public void setAmount(Double amount) {
 
         this.amount = amount;
         System.out.println("VC ustawion amount ---> "+ amount);
+        company.setCompanyBudget(getAmount());
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setShares(double shares) {
+    public void setShares(Double shares) {
 
         this.shares = shares;
         System.out.println("VC ustawiono shares --> "+ shares);
     }
 
-    public double getShares() {
+    public Double getShares() {
         return shares;
     }
 }

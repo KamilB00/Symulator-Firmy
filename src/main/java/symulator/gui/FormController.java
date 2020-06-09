@@ -6,19 +6,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import symulator.app.company.Company;
+import symulator.app.finance.Bank;
+import symulator.app.finance.Investor;
+import symulator.app.finance.OwnCapital;
+import symulator.app.finance.VC;
 import symulator.simulation.SimulationClock;
 
 
@@ -30,6 +34,11 @@ public  class FormController {
     Company company = Company.getInstance();
     SimulationController simulationController=null;
     WorkerDAO workerDAO = new WorkerDAO();
+    Bank bank = Bank.getInstance();
+    Investor investor = Investor.getInstance();
+    OwnCapital ownCapital = OwnCapital.getInstance();
+    VC vc = VC.getInstance();
+
     @FXML
     private ComboBox<String> comboboxForm1;
     ObservableList<String> list = FXCollections.observableArrayList("Kredyt","Własne środki","Venture Capitals","Inwestor");
@@ -56,17 +65,15 @@ public  class FormController {
     @FXML
     private Slider sliderFormProjects;
     @FXML
-    private TextField counter1;
+    private RadioButton radioButtonLeasing;
     @FXML
-    private TextField counter2;
+    private RadioButton radioButtonBuy;
     @FXML
-    private TextField counter3;
+    private RadioButton radioButtonInstallments;
     @FXML
-    private TextField counter4;
+    private RadioButton radioButtonOffice;
     @FXML
-    private TextField counter5;
-    @FXML
-    private TextField counter6;
+    private RadioButton radioButtonRemote;
 
     //================================================================================================================
     @FXML
@@ -154,20 +161,13 @@ public  class FormController {
         setSliderFormEmployee6(sliderFormEmployee6);
         setSliderFormProjects(sliderFormProjects);
 
-        counter1.setText(String.valueOf((int)getSliderFormEmployee1().getValue()));
-        counter2.setText(String.valueOf((int)getSliderFormEmployee2().getValue()));
-        counter3.setText(String.valueOf((int)getSliderFormEmployee3().getValue()));
-        counter4.setText(String.valueOf((int)getSliderFormEmployee4().getValue()));
-        counter5.setText(String.valueOf((int)getSliderFormEmployee5().getValue()));
-        counter6.setText(String.valueOf((int)getSliderFormEmployee6().getValue()));
+        company.setJuniorProgrammersNumber(1);
+        company.setRegularProgrammersNumber(1);
+        company.setSeniorProgrammersNumber(1);
+        company.setMarketersNumber(1);
+        company.setProjectManagersNumber(1);
+        company.setAccountantsNumber(1);
 
-
-        company.setJuniorProgrammersNumber(0);
-        company.setRegularProgrammersNumber(0);
-        company.setSeniorProgrammersNumber(0);
-        company.setMarketersNumber(0);
-        company.setProjectManagersNumber(0);
-        company.setAccountantsNumber(0);
 
 
     }
@@ -190,7 +190,7 @@ public  class FormController {
         Stage window = new Stage();
         window.setAlwaysOnTop(true);
         window.initModality(Modality.APPLICATION_MODAL);
-       // window.initStyle(StageStyle.UNDECORATED);
+        window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
         window.show();
     }
@@ -201,7 +201,7 @@ public  class FormController {
         Stage window = new Stage();
         window.setAlwaysOnTop(true);
         window.initModality(Modality.APPLICATION_MODAL);
-       // window.initStyle(StageStyle.UNDECORATED);
+        window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
         window.show();
     }
@@ -211,20 +211,24 @@ public  class FormController {
         Scene scene2 = new Scene(view2);
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-       // window.initStyle(StageStyle.UNDECORATED);
+        window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene2);
         window.show();
     }
     @FXML
     public void switchStageStart(ActionEvent event) throws IOException, InterruptedException, SQLException, ClassNotFoundException {
-        Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Simulation.fxml"));
-        Scene scene2 = new Scene(view2);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene2);
-        window.show();
-       // window.setFullScreen(true);
-        setData();
-        //System.out.println(simulationClock.simulationTime(simulationClock.getYears()));
+        if((comboboxForm1.getValue()!= null)&&(bank.getAmount()!=null||investor.getOfferedAmount()!=null||ownCapital.getAmount()!=null||vc.getAmount()!=null) ){
+            Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Simulation.fxml"));
+            Scene scene2 = new Scene(view2);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene2);
+            window.show();
+            setData();
+        }
+        else {
+            confirmNotification();
+        }
+
 
     }
 
@@ -240,42 +244,42 @@ public void sliderTime(){
     public void sliderJuniorProgrammer()throws IOException
     {
         Double sE1 = getSliderFormEmployee1().getValue();
-        counter1.setText(String.valueOf(sE1.intValue()));
+
         if(company!=null)
             company.setJuniorProgrammersNumber(sE1.intValue());
     }
     public void sliderRegularProgrammer()throws IOException
     {
         Double sE2 = getSliderFormEmployee2().getValue();
-        counter2.setText(String.valueOf(sE2.intValue()));
+
         if(company!=null)
             company.setRegularProgrammersNumber(sE2.intValue());
     }
     public void sliderSeniorProgrammer()throws IOException
     {
         Double sE3 = getSliderFormEmployee3().getValue();
-        counter3.setText(String.valueOf(sE3.intValue()));
+
         if(company!=null)
             company.setSeniorProgrammersNumber(sE3.intValue());
     }
     public void sliderProjectManager()throws IOException
     {
         Double sE4 = getSliderFormEmployee4().getValue();
-        counter4.setText(String.valueOf(sE4.intValue()));
+
         if(company!=null)
             company.setProjectManagersNumber(sE4.intValue());
     }
     public void sliderMarketer()throws IOException
     {
         Double sE5 = getSliderFormEmployee5().getValue();
-        counter5.setText(String.valueOf(sE5.intValue()));
+
         if(company!=null)
             company.setMarketersNumber(sE5.intValue());
     }
     public void sliderAccountant()throws IOException
     {
         Double sE6 = getSliderFormEmployee6().getValue();
-        counter6.setText(String.valueOf(sE6.intValue()));
+
         if(company!=null)
             company.setAccountantsNumber(sE6.intValue());
     }
@@ -289,21 +293,40 @@ public void sliderTime(){
     //================================================================================================================
     @FXML
     public void confirmation() throws IOException {
-        if(comboboxForm1.getValue()=="Kredyt") {
-            addSceneCredit();
+        if (comboboxForm1.getValue() == null) {
+            chooseConditions();
+            }
+
+        else {
+            switch (comboboxForm1.getValue()) {
+                case "Kredyt":
+                    addSceneCredit();
+                    refreshFinance();
+                    break;
+                case "Własne środki":
+                    addSceneOwnCapital();
+                    refreshFinance();
+                    break;
+                case "Inwestor":
+                    addSceneInvestor();
+                    refreshFinance();
+                    break;
+                case "Venture Capitals":
+                    addSceneVC();
+                    refreshFinance();
+                    break;
+            }
         }
-        else if(comboboxForm1.getValue()=="Własne środki"){
-            addSceneOwnCapital();
-        }
-        else if (comboboxForm1.getValue()=="Inwestor"){
-            addSceneInvestor();
-        }
-        else if (comboboxForm1.getValue()=="Venture Capitals"){
-            addSceneVC();
-        }
-        else if (comboboxForm1.getValue() == null){
-            System.out.println("Brak wybrej wartosci w comboBoxForm1");
-        }
+    }
+    public void refreshFinance(){
+        bank.setInstallments(0);
+        bank.setAmount(0.0);
+        investor.setOfferedAmount(0.0);
+        investor.setTime(0);
+        investor.setYearProfit(0.0);
+        vc.setAmount(0.0);
+        vc.setShares(0.0);
+        ownCapital.setAmount(0.0);
     }
 
     @FXML
@@ -316,7 +339,25 @@ public void sliderTime(){
     company.createProjectManagers();
     workerDAO.showDB();
     }
-
-
+    public void confirmNotification(){
+        Notifications notificationbuilder = Notifications.create()
+                .title("Błąd")
+                .text("Aby rozpocząć musisz zatwierdzić warunki umowy")
+                .graphic(null)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT);
+        notificationbuilder.darkStyle();
+        notificationbuilder.showError();
+    }
+    public void chooseConditions(){
+        Notifications notificationbuilder = Notifications.create()
+                .title("Błąd")
+                .text("Wybierz rodzaj umowy")
+                .graphic(null)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT);
+        notificationbuilder.darkStyle();
+        notificationbuilder.showWarning();
+    }
 
 }

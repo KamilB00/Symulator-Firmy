@@ -1,6 +1,5 @@
 package symulator.simulation;
 
-import java.time.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -30,20 +29,19 @@ public class SimulationClock {
     private SimulationClock(){
     }
 
-
-    public int weeks = 0;
+    Date date = new Date();
+    Calendar calendarCurrent = new GregorianCalendar();
+    private int weeks = 0;
     public int simulationTime() {
 
-        Date date = new Date();
-        Calendar calendarCurrent = new GregorianCalendar();
+       calendarCurrent.setTime(date);
 
-        calendarCurrent.setTime(date);
-        int year = calendarCurrent.get(Calendar.YEAR);
-        int month = calendarCurrent.get(Calendar.MONTH);
-        int day = calendarCurrent.get(Calendar.DAY_OF_MONTH);
-        int hour = calendarCurrent.get(Calendar.HOUR);
-        int minute = calendarCurrent.get(Calendar.MINUTE);
-        int second = calendarCurrent.get(Calendar.SECOND);
+        Integer year = calendarCurrent.get(Calendar.YEAR);
+        Integer month = calendarCurrent.get(Calendar.MONTH);
+        Integer day = calendarCurrent.get(Calendar.DAY_OF_MONTH);
+        Integer hour = calendarCurrent.get(Calendar.HOUR);
+        Integer minute = calendarCurrent.get(Calendar.MINUTE);
+        Integer second = calendarCurrent.get(Calendar.SECOND);
 
         Calendar calendarFuture = new GregorianCalendar(year + getYears(), month, day);
         Calendar oneDay = new GregorianCalendar(year, month, day + 1, hour+12, minute, second);
@@ -55,6 +53,13 @@ public class SimulationClock {
             weeks++;
         }
        return weeks;
+    }
+    public Date timeUpdate(int tick){
+        calendarCurrent.set(calendarCurrent.get(Calendar.DAY_OF_MONTH), calendarCurrent.get(Calendar.MONTH),calendarCurrent.get(Calendar.YEAR));
+      Integer days = calendarCurrent.get(Calendar.DAY_OF_MONTH)+tick*7;
+      calendarCurrent.set(days,calendarCurrent.get(Calendar.MONTH),calendarCurrent.get(Calendar.YEAR));
+        return calendarCurrent.getTime();
+
     }
 }
 

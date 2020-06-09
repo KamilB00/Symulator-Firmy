@@ -1,5 +1,7 @@
 package symulator.app.finance;
 
+import symulator.app.company.Company;
+
 public class OwnCapital {
 
     private static OwnCapital instance = null;
@@ -9,16 +11,21 @@ public class OwnCapital {
             instance = new OwnCapital();
         return instance;
     }
+Company company = Company.getInstance();
+    private Double amount;
 
-    private double amount;
+    VC vc = VC.getInstance();
+    Bank bank = Bank.getInstance();
+    Investor investor = Investor.getInstance();
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
         System.out.println("Own Capital set --> "+ getAmount());
+        company.setCompanyBudget(getAmount());
     }
 
 
