@@ -1,7 +1,6 @@
 package symulator.gui;
 
 import dataBase.WorkerDAO;
-import dataBase.WorkerEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -24,8 +22,6 @@ import symulator.app.finance.Investor;
 import symulator.app.finance.OwnCapital;
 import symulator.app.finance.VC;
 import symulator.simulation.SimulationClock;
-
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -167,6 +163,7 @@ public  class FormController {
         company.setMarketersNumber(1);
         company.setProjectManagersNumber(1);
         company.setAccountantsNumber(1);
+        company.setOrderAtOnce(1);
 
 
 
@@ -217,7 +214,7 @@ public  class FormController {
     }
     @FXML
     public void switchStageStart(ActionEvent event) throws IOException, InterruptedException, SQLException, ClassNotFoundException {
-        if((comboboxForm1.getValue()!= null)&&(bank.getAmount()!=null||investor.getOfferedAmount()!=null||ownCapital.getAmount()!=null||vc.getAmount()!=null) ){
+        if((comboboxForm1.getValue()!= null)&&(bank.getAmount()!=0||investor.getOfferedAmount()!=0||ownCapital.getAmount()!=0||vc.getAmount()!=0) ){
             Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Simulation.fxml"));
             Scene scene2 = new Scene(view2);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -287,7 +284,7 @@ public void sliderTime(){
     {
         Double sP = getSliderFormProjects().getValue();
         if(company!=null)
-            company.setProjectNumber(sP.intValue());
+            company.setOrderAtOnce(sP.intValue());
     }
 
     //================================================================================================================

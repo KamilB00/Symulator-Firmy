@@ -1,6 +1,10 @@
 package symulator.gui;
 
 import com.jfoenix.controls.JFXButton;
+import dataBase.WorkerDAO;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import symulator.app.company.Company;
@@ -17,14 +22,12 @@ import symulator.app.finance.Bank;
 import symulator.app.finance.Investor;
 import symulator.app.finance.OwnCapital;
 import symulator.app.finance.VC;
+import symulator.app.person.Worker;
 import symulator.simulation.SimulationClock;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.ResourceBundle;
-
+import java.sql.SQLException;
+import java.util.*;
 
 
 public   class  SimulationController implements Initializable {
@@ -257,38 +260,57 @@ public   class  SimulationController implements Initializable {
         private JFXButton finalDataButton;
         // clock---------------------------
         @FXML
-        private TextField dayTextField;
-        @FXML
-        private TextField monthTextField;
-        @FXML
-        private TextField yearTextField;
+        private TextField textfieldDate;
+
        //-----------------------------------
+        @FXML
+        private TableView<Worker> table;
+        @FXML
+        private TableColumn<Worker, Long> col_id;
+        @FXML
+        private TableColumn<Worker, String> col_Position;
+        @FXML
+        private TableColumn<Worker, String> col_Group;
+        @FXML
+        private TableColumn<Worker, String> col_Availability;
+        @FXML
+        private TableColumn<Worker, String> col_ProjectName;
+
+        ObservableList<Object> oblist = FXCollections.observableArrayList();
+
 
         public void setProgressBarSim0(ProgressBar progressBarSim0) {
                 this.progressBarSim0 = progressBarSim0;
         }
 
-        class DoWork extends Task<Integer>{
+        class DoWork extends Task<Integer> {
 
                 @Override
-                public Integer call() throws Exception {
+                public Integer call() {
+                        try {
+                                SimulationClock simulationClock = SimulationClock.getInstance();
+                                simulationClock.setYears(simulationClock.getYears());
+                                int week = simulationClock.simulationTime();
+                                System.out.println("week --> " + week);
+                                for (int i = 1; i <= week; i++) {
+                                        int finalI = i;
+                                        Platform.runLater(new Runnable() {
+                                                public void run() {
+                                                        textfieldDate.setText(simulationClock.timeFormat(simulationClock.timeUpdate((finalI))));
+                                                        textfieldDate.requestFocus();
+                                                }
 
-                       SimulationClock simulationClock = SimulationClock.getInstance();
-                       simulationClock.setYears(simulationClock.getYears());
-                       int week = simulationClock.simulationTime();
-
-                        for(int i=0;i< week;i++){
-                                System.out.print((i+1)+"--");
-                                System.out.println("data--> "+ simulationClock.timeUpdate(i));
-                                updateProgress(i+1,week);
-                               Thread.sleep(400);
-                                if(isCancelled()){
-
-                                        return i;
+                                        });
+                                        updateProgress(i , week);
+                                        Thread.sleep(500);
+                                        if (isCancelled()) {
+                                                return i;
+                                        }
                                 }
+                        } catch (Exception e) {
+                                System.out.println(e);
                         }
                         return 1;
-
                 }
 
                 @Override
@@ -322,6 +344,8 @@ public   class  SimulationController implements Initializable {
                 System.out.println("progressBarSim4 marketer --> "+ progressBarSim4.getProgress());
                 sizeOfCompany();
                 financing();
+                company.orderRealisation();
+
         }
 
         @FXML

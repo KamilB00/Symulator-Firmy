@@ -1,7 +1,7 @@
 package symulator.app.finance;
 
 import symulator.app.company.Company;
-import symulator.gui.CreditController;
+
 
 public class Investor{
 

@@ -1,0 +1,49 @@
+
+#textfieldDate{
+    -fx-font-size: 19pt;
+    -fx-font-family: "Roboto Thin";
+    -fx-text-fill: white;
+    -fx-font-style: normal;
+    -fx-highlight-fill: null;
+    -fx-highlight-text-fill: null;
+
+}
+#lMarketers{
+    -fx-font-size: 15pt;
+    -fx-font-family: "Roboto Thin";
+    -fx-text-fill: #1a1a1a;
+    -fx-font-style: normal;
+}
+#lProgrammers{
+    -fx-font-size: 15pt;
+    -fx-font-family: "Roboto Thin";
+    -fx-text-fill: #1a1a1a;
+    -fx-font-style: normal;
+}
+#lProjectManagers{
+    -fx-font-size: 15pt;
+    -fx-font-family: "Roboto Thin";
+    -fx-text-fill: #1a1a1a;
+    -fx-font-style: normal;
+}
+#lAccountants{
+    -fx-font-size: 15pt;
+    -fx-font-family: "Roboto Thin";
+    -fx-text-fill: #1a1a1a;
+    -fx-font-style: normal;
+}
+#viewOrderGroups{
+    -fx-font-size: 9pt;
+    -fx-font-family: "Roboto Thin";
+    -fx-text-fill: #1a1a1a;
+    -fx-font-style: normal;
+    -fx-background-color: #ffdd0b;
+}
+.tf{
+    -fx-highlight-fill: null;
+    -fx-highlight-text-fill: null;
+    -fx-font-size: 11pt;
+    -fx-font-family: "Roboto Thin";
+    -fx-text-fill: #ffffff;
+    -fx-font-style: normal;
+}

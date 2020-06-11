@@ -8,11 +8,15 @@ import symulator.app.finance.Investor;
 import symulator.app.finance.OwnCapital;
 import symulator.app.finance.VC;
 import symulator.simulation.Randomise;
+import symulator.simulation.SimulationClock;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Company {
     Randomise value = Randomise.getInstance();
-
+    SimulationClock simulationClock = SimulationClock.getInstance();
     //================================================================================================================
     private static Company INSTANCE = null;
     private Company(){}
@@ -30,9 +34,13 @@ public class Company {
 
     private Double companyBudget;
 
+    private Integer realisedOrders;
+
+    private Integer ordersInProcess;
+
+    private Integer orderAtOnce;
+
     //================================================================================================================
-
-
 
 
     private Integer projectManagersNumber;
@@ -47,32 +55,45 @@ public class Company {
 
     private Integer seniorProgrammersNumber;
 
-    private Integer projectNumber;
+
+
 
     //================================================================================================================
 
 
     public void setCompanyBudget(Double companyBudget) {
         this.companyBudget = companyBudget;
+        System.out.println("company budget set --> "+ getCompanyBudget());
     }
 
     public void setCompanyCosts(double companyCosts) {
         this.companyCosts = companyCosts;
+        System.out.println("company costs set --> "+ getCompanyCosts());
     }
 
     public void setCompanyEfficiency(double companyEfficiency) {
         this.companyEfficiency = companyEfficiency;
+        System.out.println("company efficiency set --> "+ getCompanyEfficiency());
     }
 
     public void setCompanyProfit(double companyProfit) {
         this.companyProfit = companyProfit;
+        System.out.println("company profits set --> "+ getCompanyProfit());
     }
 
+    public void setRealisedOrders(Integer realisedOrders) {
+        this.realisedOrders = realisedOrders;
+        System.out.println("realised orders set ---> "+ getRealisedOrders());
+    }
 
+    public void setOrdersInProcess(Integer ordersInProcess) {
+        this.ordersInProcess = ordersInProcess;
+        System.out.println("orders in process set ---> "+ getOrdersInProcess());
+    }
 
-    public void setProjectNumber(Integer projectNumber) {
-        System.out.println("set ProjectNumber --> "+getProjectNumber());
-        this.projectNumber = projectNumber;
+    public void setOrderAtOnce(Integer orderAtOnce) {
+        this.orderAtOnce = orderAtOnce;
+        System.out.println("orders at once set ---> "+ getOrderAtOnce());
     }
 
     public void setProjectManagersNumber(Integer projectManagersNumber) {
@@ -122,9 +143,6 @@ public class Company {
         return companyBudget;
     }
 
-    public Integer getProjectNumber() {
-        return projectNumber;
-    }
 
     public Integer getProjectManagersNumber() {
         return projectManagersNumber;
@@ -149,6 +167,19 @@ public class Company {
     public Integer getSeniorProgrammersNumber() {
         return seniorProgrammersNumber;
     }
+
+    public Integer getRealisedOrders() {
+        return realisedOrders;
+    }
+
+    public Integer getOrdersInProcess() {
+        return ordersInProcess;
+    }
+
+    public Integer getOrderAtOnce() {
+        return orderAtOnce;
+    }
+
     //=================================================================================================================
 
     public static void addEmployee ( String position, Double salary, Double efficincy ){
@@ -156,11 +187,11 @@ public class Company {
         workerDAO.saveWorker(new WorkerEntity(position, salary,efficincy));
     }
     private Double juniorProgrammerSalary = value.juniorProgrammerSalary();
-    private Double regularProgrammerSalary = value.juniorProgrammerSalary();
-    private Double seniorProgrammerSalary = value.juniorProgrammerSalary();
-    private Double projectManagerSalary = value.juniorProgrammerSalary();
-    private Double marketerSalary = value.juniorProgrammerSalary();
-    private Double accountantSalary = value.juniorProgrammerSalary();
+    private Double regularProgrammerSalary = value.regularProgrammerSalary();
+    private Double seniorProgrammerSalary = value.seniorProgrammerSalary();
+    private Double projectManagerSalary = value.projectManagerSalary();
+    private Double marketerSalary = value.marketerSalary();
+    private Double accountantSalary = value.accountantSalary();
 
     public void  createJuniorProgrammers(){
         for(int i=0;i<getJuniorProgrammersNumber();i++) {
@@ -194,9 +225,8 @@ public class Company {
     }
 
     public  Double minimalCosts(){
-        Double minimalCosts = juniorProgrammerSalary*getJuniorProgrammersNumber()+regularProgrammerSalary*getRegularProgrammersNumber()
-                +seniorProgrammerSalary*getSeniorProgrammersNumber()+accountantSalary*getAccountantsNumber() +marketerSalary*getMarketersNumber()+projectManagerSalary*getProjectManagersNumber();
-       return minimalCosts;
+       return juniorProgrammerSalary*getJuniorProgrammersNumber()+regularProgrammerSalary*getRegularProgrammersNumber()
+               +seniorProgrammerSalary*getSeniorProgrammersNumber()+accountantSalary*getAccountantsNumber() +marketerSalary*getMarketersNumber()+projectManagerSalary*getProjectManagersNumber();
     }
     public Double costsOfEquipment(){
          double computerEquipment = 3500.0;
@@ -208,6 +238,34 @@ public class Company {
 
     public Integer allEmployees(){
         return getJuniorProgrammersNumber()+getRegularProgrammersNumber()+getSeniorProgrammersNumber()+getAccountantsNumber()+getMarketersNumber()+getProjectManagersNumber();
+    }
+
+    public ArrayList<Projects> addAnOrder(){
+        ArrayList<Projects> projectsList = new ArrayList<>();
+        Projects projects = new Projects();
+        projects.setLevelOfDifficulty(value.levelOfOrderDifficulty());
+        projects.setPrice(value.priceAssessment(projects.getLevelOfDifficulty()));
+        projects.setProjectTime(value.randomOrderTime(projects.getLevelOfDifficulty()));
+        projects.setOrderName(value.randomNameOfOrder());
+        projectsList.add(projects);
+        return projectsList;
+    }
+    public void viewProjects(){
+        ArrayList<Projects> view = addAnOrder();
+        for(int i=0;i<addAnOrder().size();i++){
+            System.out.println("Level od difficulty :"+ view.get(i).getLevelOfDifficulty()+ " Price : "+view.get(i).getPrice()+" Order time :"+ view.get(i).getProjectTime()+" Order Category: "+view.get(i).getOrderName());
+        }
+    }
+    public void orderRealisationTime(){
+
+
+    }
+    public void orderRealisation(){
+        for(int i=0;i<getOrderAtOnce();i++){
+            addAnOrder();
+            viewProjects();
+        }
+
     }
 
 

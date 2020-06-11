@@ -1,9 +1,7 @@
 package symulator.app.finance;
 
 import symulator.app.company.Company;
-import symulator.simulation.SimulationClock;
 
-import java.util.Random;
 
 public class VC {
     private Double amount;

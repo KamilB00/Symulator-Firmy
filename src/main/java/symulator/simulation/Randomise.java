@@ -2,6 +2,7 @@ package symulator.simulation;
 
 import symulator.app.company.Company;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Randomise {
@@ -89,6 +90,73 @@ private static Randomise INSTANCE = null;
         Company company = Company.getInstance();
         Double minimalCosts = company.getJuniorProgrammersNumber()*juniorProgrammerSalary();
         return minimalCosts;
+    }
+    public Integer levelOfOrderDifficulty(){
+        Random random = new Random();
+        Integer level = random.nextInt(3)+1;
+                return level;
+    }
+    public Double priceAssessment(int level){
+        Random random = new Random();
+        double price = 0;
+        switch(level){
+            case 1:
+                price = random.nextInt(40000)+20000.0;
+                break;
+            case 2:
+                price = random.nextInt(50000)+50000.0;
+                break;
+            case 3:
+                price = random.nextInt(400000)+100000.0;
+                break;
+            default:
+                System.out.println("Can not assess order price");
+        }
+        return price;
+
+    }public Integer randomOrderTime(int level) {
+        Random random = new Random();
+        int weeks = 0;
+        switch (level) {
+            case 1:
+                weeks = random.nextInt(2) + 1;
+                break;
+            case 2:
+                weeks = random.nextInt(5) + 3;
+                break;
+            case 3:
+                weeks = random.nextInt(8) + 8;
+                break;
+            default:
+                System.out.println("Can not assess order time");
+        }
+        return weeks;
+    }
+
+    public String randomNameOfOrder(){
+        Random randomName = new Random();
+        String name = "";
+        int choice = randomName.nextInt(5)+1;
+        switch(choice){
+            case 1:
+               name ="Aplikacja Webowa";
+                break;
+            case 2:
+                name ="Aplikacja Mobilna";
+                break;
+            case 3:
+                name ="Strona internetowa";
+                break;
+            case 4:
+                name ="Narzędzia wewnętrzne";
+                break;
+            case 5:
+                name ="Projekt graficzny";
+                break;
+            default:
+                System.out.println("Can not name order");
+        }
+        return name;
     }
 
 }

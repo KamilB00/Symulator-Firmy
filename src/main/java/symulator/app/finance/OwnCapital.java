@@ -14,10 +14,6 @@ public class OwnCapital {
 Company company = Company.getInstance();
     private Double amount;
 
-    VC vc = VC.getInstance();
-    Bank bank = Bank.getInstance();
-    Investor investor = Investor.getInstance();
-
     public Double getAmount() {
         return amount;
     }

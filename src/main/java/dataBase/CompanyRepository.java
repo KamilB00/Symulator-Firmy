@@ -12,43 +12,59 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "company_table")
 public class CompanyRepository {
+
     @Id
-    @Column(name = "id")
-    @GeneratedValue(generator = "incremator")
-    @GenericGenerator(name = "incrementor", strategy = "incrementer")
-    private Long id;
-    @Column(name = "Costs")
-    private Double costs;
-    @Column(name = "Profits")
-    private Double profits;
-    @Column(name = "Efficiency")
-    private Double efficiency;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "QUARTER",unique = true, nullable =false)
 
+    private Long quarter;
+    @Column(name = "SPENDINGS")
+    private double spendings;
+    @Column(name = "PROFITS")
+    private double profits;
+    @Column(name = "EFFICIENCY")
+    private double efficiency;
+    @Column(name = "REALISED ORDERS")
+    private int orders;
+   @Column(name = "EVENT")
+   private String event;
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setQuarter(Long quarter) {
+        this.quarter = quarter;
     }
     public void setEfficiency(Double efficiency) {
         this.efficiency = efficiency;
     }
-    public void setCosts(Double costs) {
-        this.costs = costs;
+    public void setSpendings(Double spendings) {
+        this.spendings = spendings;
     }
     public void setProfits(Double profits) {
         this.profits = profits;
     }
+    public void setOrders(int orders) {
+        this.orders = orders;
+    }
+    public void setEvent(String event) {
+        this.event = event;
+    }
 
-    public Long getId() {
-        return id;
+    public Long getQuarter() {
+        return quarter;
     }
     public Double getEfficiency() {
         return efficiency;
     }
-    public Double getCosts() {
-        return costs;
+    public Double getSpendings() {
+        return spendings;
     }
     public Double getProfits() {
         return profits;
+    }
+    public int getOrders() {
+        return orders;
+    }
+    public String getEvent() {
+        return event;
     }
 
     public CompanyRepository() {

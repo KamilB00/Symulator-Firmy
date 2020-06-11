@@ -38,6 +38,7 @@ public class WorkerEntity {
     private double efficiency;
 
 
+
     public void setId(int id) {
         this.id = id;
     }

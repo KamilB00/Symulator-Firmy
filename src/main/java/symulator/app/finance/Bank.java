@@ -3,8 +3,6 @@ package symulator.app.finance;
 import symulator.app.company.Company;
 import symulator.simulation.Randomise;
 
-import java.util.Random;
-
 public class Bank {
     private Double amount;
     private Double interest;

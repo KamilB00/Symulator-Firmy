@@ -28,7 +28,7 @@ public class WorkerDAO {
             e.printStackTrace();
         }
     }
-    private ArrayList<Worker> getAllWorkers() throws ClassNotFoundException, SQLException {
+    public ArrayList<Worker> getAllWorkers() throws ClassNotFoundException, SQLException {
 
         Class.forName("com.mysql.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/simulationDataBase?serverTimezone=UTC", "admin", "pass");
@@ -41,11 +41,11 @@ public class WorkerDAO {
             worker.setEfficiency(rs.getDouble("EFFICIENCY"));
             worker.setPosition(rs.getString("POSITION"));
             worker.setSalary(rs.getDouble("SALARY"));
-
             workersList.add(worker);
         }
         return workersList;
     }
+
     public void showDB() throws SQLException, ClassNotFoundException {
 
         ArrayList<Worker> workersList =getAllWorkers();
@@ -61,5 +61,6 @@ public class WorkerDAO {
         }
 
     }
+
 
 }

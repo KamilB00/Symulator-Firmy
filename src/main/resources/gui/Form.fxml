@@ -52,7 +52,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="512.0" layoutY="381.0" mouseTransparent="true" pickOnBounds="false" prefHeight="27.0" prefWidth="347.0" styleClass="label-header" text="Miejsce Pracy">
+      <Label alignment="CENTER" layoutX="512.0" layoutY="381.0" mouseTransparent="true" pickOnBounds="false" prefHeight="27.0" prefWidth="347.0" styleClass="label-header" text="Miejsce pracy">
          <font>
             <Font name="AppleGothic Regular" size="19.0" />
          </font>
@@ -65,7 +65,7 @@
             <ToggleGroup fx:id="workPlace" />
          </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="radioButtonRemote" contentDisplay="CENTER" layoutX="708.0" layoutY="425.0" text="Praca Zdalna" toggleGroup="$workPlace">
+      <JFXRadioButton fx:id="radioButtonRemote" contentDisplay="CENTER" layoutX="708.0" layoutY="425.0" text="Praca zdalna" toggleGroup="$workPlace">
          <font>
             <Font name="AppleGothic Regular" size="13.0" />
          </font>
@@ -85,7 +85,7 @@
             <Font name="AppleGothic Regular" size="13.0" />
          </font>
       </Label>
-      <JFXSlider fx:id="sliderFormEmployee4" blockIncrement="1.0" layoutX="82.0" layoutY="330.0" majorTickUnit="1.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderProjectManager" onMouseDragged="#sliderProjectManager" prefHeight="15.0" prefWidth="366.0" value="1.0" />
+      <JFXSlider fx:id="sliderFormEmployee4" blockIncrement="1.0" layoutX="82.0" layoutY="330.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderProjectManager" onMouseDragged="#sliderProjectManager" prefHeight="15.0" prefWidth="366.0" value="1.0" />
       <Label alignment="CENTER" layoutX="80.0" layoutY="348.0" prefHeight="27.0" prefWidth="366.0" text="Project Manager">
          <font>
             <Font name="AppleGothic Regular" size="13.0" />
@@ -97,7 +97,7 @@
             <Font name="AppleGothic Regular" size="13.0" />
          </font>
       </Label>
-      <JFXSlider fx:id="sliderFormEmployee6" blockIncrement="1.0" layoutX="81.0" layoutY="478.0" majorTickUnit="1.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderAccountant" onMouseDragged="#sliderAccountant" prefHeight="15.0" prefWidth="366.0" value="1.0" />
+      <JFXSlider fx:id="sliderFormEmployee6" blockIncrement="1.0" layoutX="81.0" layoutY="478.0" majorTickUnit="1.0" max="30.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderAccountant" onMouseDragged="#sliderAccountant" prefHeight="15.0" prefWidth="366.0" value="1.0" />
       <Label alignment="CENTER" layoutX="82.0" layoutY="493.0" onMouseClicked="#sliderAccountant" onMouseDragged="#sliderAccountant" prefHeight="27.0" prefWidth="366.0" text="Accountant">
          <font>
             <Font name="AppleGothic Regular" size="13.0" />
