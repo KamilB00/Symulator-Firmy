@@ -14,12 +14,16 @@ import symulator.simulation.SimulationClock;
 
 import java.sql.SQLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Company {
     Randomise value = Randomise.getInstance();
     SimulationClock simulationClock = SimulationClock.getInstance();
     WorkerDAO workerDAO = new WorkerDAO();
+
+
+
 
     List<WorkerEntity> workerEntities;
     //================================================================================================================
@@ -236,64 +240,102 @@ public class Company {
     }
 
     public  Double minimalCosts(){
-       return juniorProgrammerSalary*getJuniorProgrammersNumber()+regularProgrammerSalary*getRegularProgrammersNumber()
-               +seniorProgrammerSalary*getSeniorProgrammersNumber()+accountantSalary*getAccountantsNumber() +marketerSalary*getMarketersNumber()+projectManagerSalary*getProjectManagersNumber();
+        return juniorProgrammerSalary*getJuniorProgrammersNumber()+regularProgrammerSalary*getRegularProgrammersNumber()
+                +seniorProgrammerSalary*getSeniorProgrammersNumber()+accountantSalary*getAccountantsNumber() +marketerSalary*getMarketersNumber()+projectManagerSalary*getProjectManagersNumber();
     }
     public Double costsOfEquipment(){
-         double computerEquipment = 3500.0;
-         double desk = 1500.0;
-         double chair = 700.0;
-         double softwareLicence = 1000.0;
+        double computerEquipment = 3500.0;
+        double desk = 1500.0;
+        double chair = 700.0;
+        double softwareLicence = 1000.0;
         return computerEquipment+desk+chair+softwareLicence;
     }
 
     public Integer allEmployees(){
         return getJuniorProgrammersNumber()+getRegularProgrammersNumber()+getSeniorProgrammersNumber()+getAccountantsNumber()+getMarketersNumber()+getProjectManagersNumber();
     }
-    private HashMap<String,Project> projectsList; // key = groupname, value = project
+    private HashMap<Project,String> projectsList; // key = project, value = groupname
+    private HashMap<String, Boolean> groupsAndAvailability;
+    private boolean first = true;
 
-    public void realizeProjects() throws SQLException, ClassNotFoundException {
+    public void createGroups(int howMany){
+        for(int i = 0; i<howMany;i++){
+            groupsAndAvailability.put("group " + i, false); // isBusy = false
+        }
 
-        projectsList.get()
-        Set<String> groups = projectsList.keySet();
-        //Wyciagnij pracownikow
-        //Wyciagnij projekty z nazwami grup
-        //Zapisz pracownikow do grupy dla danego projektu
-        //Wykonaj czesc projektu czas projektu / suma efektywnosci
-        //zakutualizuj zajetych, wolnych ppracownikow czyli sprawdz czy projekt sie nie skonczyl
-        //dodaj do tabeli pracownikow - mozesz od razu z projektem bo w tej funkcji wiesz jaka grupa ma jaki projekt
+    }
+    public void assignGroupsToWorkers(){
+        for(int i = 0; i<workerEntities.size();i++){
+            workerEntities.get(i).setGrp((String)groupsAndAvailability.keySet().toArray()[(int)Math.random()*groupsAndAvailability.size()]);
+        }
+    }
+    public void assignGroupsToProjects(){
+        HashMap<String,Boolean> availableGroups = groupsAndAvailability.entrySet().stream().filter(x->!x.getValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (prev, next) -> next, HashMap::new));
+        HashMap<Project,String> freeProjects = projectsList.entrySet().stream().filter(x->x.getValue().equals("UNASSIGNED")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (prev, next) -> next, HashMap::new));
+        Iterator it = freeProjects.entrySet().iterator();
+
+        for (Map.Entry<String, Boolean> availableGroupsEntry: availableGroups.entrySet()) {
+            Map.Entry<Project, String> projectEntry = null;
+            if(it.hasNext())
+                projectEntry = (Map.Entry<Project, String>) it.next();
+            availableGroupsEntry.setValue(true);
+            try {
+                projectEntry.setValue(availableGroupsEntry.getKey());
+            } catch (NullPointerException e) {
+                System.out.println("More groups than projects, projects should be always more than groups");
+            }
+
+        }
+
     }
 
-    public ArrayList<Project> addAnOrder(){
-        Project projects = new Project();
-        projects.setLevelOfDifficulty(value.levelOfOrderDifficulty());
-        projects.setPrice(value.priceAssessment(projects.getLevelOfDifficulty()));
-        projects.setProjectTime(value.randomOrderTime(projects.getLevelOfDifficulty()));
-        projects.setOrderName(value.randomNameOfOrder());
-        projectsList.add(projects);
-        // dodaj do projektu grupe
-        return projectsList;
+    public void realizeProjects() {
+
+        // dzien: 1000(dni) = 1000(dni)- (pracownik*efektywnosc  1*1.0 + 1*2.0+ 1*8.0)=10 dni = czas skoczenia 100 dni
+        // obecny stan dni =< 0 jesli tak to usun projekt, dodaj do statystyk i ustaw grupe na niezajeta isBusy = false
+
     }
+    public void displayProjectsWorkersAndGroupsInTable(){
+        //
+    }
+
+    public boolean checkIfNumberOfProjectsAreBelow(){
+        return projectsList.size()<(25-(int)Math.random()*10);
+    }
+
+    public void addProjects(int howMany){ // dodaje projekty i przypisuje go jako nieprzypisany do zadnej groupy
+        for(int i = 0; i<howMany;i++) {
+            Project projects = new Project();
+            projects.setLevelOfDifficulty(value.levelOfOrderDifficulty());
+            projects.setPrice(value.priceAssessment(projects.getLevelOfDifficulty()));
+            projects.setProjectTime(value.randomOrderTime(projects.getLevelOfDifficulty()));
+            projects.setOrderName(value.randomNameOfOrder());
+            projectsList.put(projects,"UNASIGNED");
+        }
+    }
+
+    public void runProjectsManagerInDay(){ // Wywoluje sie co jeden dzien, tworzy grupy jesli ich nie ma przypisuje grupy do pracownikow realizuje projekty i dodaje jesli ich wartosc spadla ponizej
+        if(!first) {
+            createGroups((int) Math.random() * 10 + 5); //Later change from creation to fetching from database but first it has to be saved into db and currently it isn't
+            assignGroupsToWorkers();
+        }
+        realizeProjects();
+        if(checkIfNumberOfProjectsAreBelow())
+            addProjects((int)Math.random()*10);
+        assignGroupsToProjects();
+
+    }
+
 
     public void viewProjects(){
-        ArrayList<Project> view = addAnOrder();
-        for(int i=0;i<addAnOrder().size();i++){
-            System.out.println("Level od difficulty :"+ view.get(i).getLevelOfDifficulty()+ " Price : "+view.get(i).getPrice()+" Order time :"+ view.get(i).getProjectTime()+" Order Category: "+view.get(i).getOrderName());
-        }
+        for (Map.Entry<Project, String> projectEntry: projectsList.entrySet())
+            System.out.println("Team :"+ projectEntry.getValue() + "Level od difficulty :"+ projectEntry.getKey().getLevelOfDifficulty()+ " Price : "+projectEntry.getKey().getPrice()+" Order time :"+ projectEntry.getKey().getProjectTime()+" Order Category: "+projectEntry.getKey().getOrderName());
     }
     public void orderRealisationTime(){
     }
-    public void orderRealisation(){
-        for(int i=0;i<getOrderAtOnce();i++){
-            addAnOrder();
-            viewProjects();
-        }
 
-    }
 
 
 
 
 }
-
-

@@ -377,11 +377,11 @@
       <Separator layoutX="313.0" layoutY="10.0" opacity="0.25" orientation="VERTICAL" prefHeight="337.0" prefWidth="6.0" />
       <TableView layoutX="1021.0" layoutY="348.0" prefHeight="442.0" prefWidth="418.0" stylesheets="@SimulationCSS.css">
         <columns>
-          <TableColumn prefWidth="120.321044921875" text="Stanowisko" />
-          <TableColumn prefWidth="63.99072265625" text="Grupa" />
-            <TableColumn prefWidth="89.401611328125" text="Dostępność" />
-            <TableColumn prefWidth="64.598388671875" text="Projekt" />
-            <TableColumn prefWidth="75.0" text="Kolor" />
+            <TableColumn prefWidth="64.598388671875" text="ID" />
+          <TableColumn prefWidth="108.0621337890625" text="Stanowisko" />
+            <TableColumn prefWidth="83.4378662109375" text="Dostępność" />
+          <TableColumn prefWidth="82.7325439453125" text="Grupa" />
+            <TableColumn prefWidth="75.0" text="Projekt" />
         </columns>
       </TableView>
    </children>

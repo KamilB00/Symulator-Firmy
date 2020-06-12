@@ -344,7 +344,7 @@ public   class  SimulationController implements Initializable {
                 System.out.println("progressBarSim4 marketer --> "+ progressBarSim4.getProgress());
                 sizeOfCompany();
                 financing();
-                company.orderRealisation();
+                //company.orderRealisation();
 
         }
 
