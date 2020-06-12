@@ -133,13 +133,17 @@ private static Randomise INSTANCE = null;
         return weeks;
     }
 
+
+    private static int quantityAppWeb = 0;
+
     public String randomNameOfOrder(){
         Random randomName = new Random();
         String name = "";
         int choice = randomName.nextInt(5)+1;
         switch(choice){
             case 1:
-               name ="Aplikacja Webowa";
+               name ="Aplikacja Webowa " + String.valueOf(quantityAppWeb);
+               quantityAppWeb++;
                 break;
             case 2:
                 name ="Aplikacja Mobilna";

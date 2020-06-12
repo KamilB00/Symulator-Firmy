@@ -2,7 +2,7 @@ package symulator.app.company;
 
 import java.util.Date;
 
-public class Projects {
+public class Project {
 
     private Double price;
     private Integer levelOfDifficulty;

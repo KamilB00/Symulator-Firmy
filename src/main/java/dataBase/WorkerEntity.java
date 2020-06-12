@@ -17,7 +17,7 @@ public class WorkerEntity {
 
     }
 
-    public WorkerEntity(String position, double salary, double efficiency) {
+    public WorkerEntity(String position, double salary, double efficiency, boolean availability) {
         this.position=position;
         this.salary=salary;
         this.efficiency=efficiency;
@@ -37,6 +37,11 @@ public class WorkerEntity {
     @Column(name = "EFFICIENCY",nullable = false)
     private double efficiency;
 
+    @Column(name = "GRP", nullable = true)
+    private String grp;
+
+    @Column(name = "AVAILABILITY",nullable = false)
+    private boolean availability;
 
 
     public void setId(int id) {
@@ -51,17 +56,37 @@ public class WorkerEntity {
     public String getPosition() {
         return position;
     }
-    public void setSalary(Double salary) {
-        this.salary = salary;
-    }
-    public Double getSalary() {
+
+
+    public double getSalary() {
         return salary;
     }
-    public void setEfficiency(Double efficiency) {
-        this.efficiency = efficiency;
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
-    public Double getEfficiency() {
+
+    public double getEfficiency() {
         return efficiency;
     }
 
+    public void setEfficiency(double efficiency) {
+        this.efficiency = efficiency;
+    }
+
+    public String getGrp() {
+        return grp;
+    }
+
+    public void setGrp(String grp) {
+        this.grp = grp;
+    }
+
+    public boolean isAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
 }

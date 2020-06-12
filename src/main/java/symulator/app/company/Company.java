@@ -3,23 +3,34 @@ package symulator.app.company;
 
 import dataBase.WorkerDAO;
 import dataBase.WorkerEntity;
+import org.hibernate.jdbc.Work;
 import symulator.app.finance.Bank;
 import symulator.app.finance.Investor;
 import symulator.app.finance.OwnCapital;
 import symulator.app.finance.VC;
+import symulator.app.person.Worker;
 import symulator.simulation.Randomise;
 import symulator.simulation.SimulationClock;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.sql.SQLException;
+import java.util.*;
 
 
 public class Company {
     Randomise value = Randomise.getInstance();
     SimulationClock simulationClock = SimulationClock.getInstance();
+    WorkerDAO workerDAO = new WorkerDAO();
+
+    List<WorkerEntity> workerEntities;
     //================================================================================================================
     private static Company INSTANCE = null;
-    private Company(){}
+    private Company(){
+        try {
+            workerEntities=workerDAO.getAllWorkers();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
     public static Company getInstance(){
         if(INSTANCE==null)
             INSTANCE = new Company();
@@ -182,9 +193,9 @@ public class Company {
 
     //=================================================================================================================
 
-    public static void addEmployee ( String position, Double salary, Double efficincy ){
+    public static void addEmployee ( String position, Double salary, Double efficiency){
         WorkerDAO workerDAO = new WorkerDAO();
-        workerDAO.saveWorker(new WorkerEntity(position, salary,efficincy));
+        workerDAO.saveWorker(new WorkerEntity(position, salary, efficiency, true));
     }
     private Double juniorProgrammerSalary = value.juniorProgrammerSalary();
     private Double regularProgrammerSalary = value.regularProgrammerSalary();
@@ -239,26 +250,38 @@ public class Company {
     public Integer allEmployees(){
         return getJuniorProgrammersNumber()+getRegularProgrammersNumber()+getSeniorProgrammersNumber()+getAccountantsNumber()+getMarketersNumber()+getProjectManagersNumber();
     }
+    private HashMap<String,Project> projectsList; // key = groupname, value = project
 
-    public ArrayList<Projects> addAnOrder(){
-        ArrayList<Projects> projectsList = new ArrayList<>();
-        Projects projects = new Projects();
+    public void realizeProjects() throws SQLException, ClassNotFoundException {
+
+        projectsList.get()
+        Set<String> groups = projectsList.keySet();
+        //Wyciagnij pracownikow
+        //Wyciagnij projekty z nazwami grup
+        //Zapisz pracownikow do grupy dla danego projektu
+        //Wykonaj czesc projektu czas projektu / suma efektywnosci
+        //zakutualizuj zajetych, wolnych ppracownikow czyli sprawdz czy projekt sie nie skonczyl
+        //dodaj do tabeli pracownikow - mozesz od razu z projektem bo w tej funkcji wiesz jaka grupa ma jaki projekt
+    }
+
+    public ArrayList<Project> addAnOrder(){
+        Project projects = new Project();
         projects.setLevelOfDifficulty(value.levelOfOrderDifficulty());
         projects.setPrice(value.priceAssessment(projects.getLevelOfDifficulty()));
         projects.setProjectTime(value.randomOrderTime(projects.getLevelOfDifficulty()));
         projects.setOrderName(value.randomNameOfOrder());
         projectsList.add(projects);
+        // dodaj do projektu grupe
         return projectsList;
     }
+
     public void viewProjects(){
-        ArrayList<Projects> view = addAnOrder();
+        ArrayList<Project> view = addAnOrder();
         for(int i=0;i<addAnOrder().size();i++){
             System.out.println("Level od difficulty :"+ view.get(i).getLevelOfDifficulty()+ " Price : "+view.get(i).getPrice()+" Order time :"+ view.get(i).getProjectTime()+" Order Category: "+view.get(i).getOrderName());
         }
     }
     public void orderRealisationTime(){
-
-
     }
     public void orderRealisation(){
         for(int i=0;i<getOrderAtOnce();i++){

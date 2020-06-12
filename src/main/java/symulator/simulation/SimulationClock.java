@@ -33,7 +33,7 @@ public class SimulationClock {
 
     Date date = new Date();
 
-    private int weeks = 0;
+    private int days = 0;
     public int simulationTime() {
 
         Calendar calendarCurrent = new GregorianCalendar();
@@ -54,10 +54,10 @@ public class SimulationClock {
         long oneDayMilis = oneDay.getTimeInMillis() - calendarCurrent.getTimeInMillis();
 
 
-        for (long m = calendarCurrent.getTimeInMillis(); m < calendarFuture.getTimeInMillis(); m += (7 * oneDayMilis)) {
-            weeks++;
+        for (long m = calendarCurrent.getTimeInMillis(); m < calendarFuture.getTimeInMillis(); m += (oneDayMilis)) {
+            days++;
         }
-       return weeks;
+       return days;
     }
 
     public Date timeUpdate(int tick){
@@ -72,7 +72,7 @@ public class SimulationClock {
         int minute = calendarCurrent.get(Calendar.MINUTE);
         int second = calendarCurrent.get(Calendar.SECOND);
 
-      calendarUpdate.set(year,month,day+(tick*7),hour,minute,second);
+      calendarUpdate.set(year,month,day+(tick),hour,minute,second);
 
 
         return calendarUpdate.getTime();

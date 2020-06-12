@@ -290,9 +290,9 @@ public   class  SimulationController implements Initializable {
                         try {
                                 SimulationClock simulationClock = SimulationClock.getInstance();
                                 simulationClock.setYears(simulationClock.getYears());
-                                int week = simulationClock.simulationTime();
-                                System.out.println("week --> " + week);
-                                for (int i = 1; i <= week; i++) {
+                                int days = simulationClock.simulationTime();
+                                System.out.println("week --> " + days);
+                                for (int i = 1; i <= days; i++) {
                                         int finalI = i;
                                         Platform.runLater(new Runnable() {
                                                 public void run() {
@@ -301,7 +301,7 @@ public   class  SimulationController implements Initializable {
                                                 }
 
                                         });
-                                        updateProgress(i , week);
+                                        updateProgress(i , days);
                                         Thread.sleep(500);
                                         if (isCancelled()) {
                                                 return i;
