@@ -1,6 +1,7 @@
 package symulator.app.company;
 
 
+import com.mysql.cj.result.Row;
 import dataBase.WorkerDAO;
 import dataBase.WorkerEntity;
 import org.hibernate.jdbc.Work;
@@ -9,6 +10,7 @@ import symulator.app.finance.Investor;
 import symulator.app.finance.OwnCapital;
 import symulator.app.finance.VC;
 import symulator.app.person.Worker;
+import symulator.gui.Groups;
 import symulator.simulation.Randomise;
 import symulator.simulation.SimulationClock;
 
@@ -23,9 +25,18 @@ public class Company {
     WorkerDAO workerDAO = new WorkerDAO();
 
 
+    private List<Groups> Rowgroups = new ArrayList<>();
     List<WorkerEntity> workerEntities;
     //================================================================================================================
     private static Company INSTANCE = null;
+
+    public List<Groups> getRowgroups() {
+        return Rowgroups;
+    }
+
+    public void setRowgroups(List<Groups> rowgroups) {
+        Rowgroups = rowgroups;
+    }
 
     private Company() {
         try {
@@ -304,14 +315,16 @@ public class Company {
         }
 
     }
+    HashMap<String, Double> groupEfficiency = new HashMap<>();
 
-    public void realizeProjects() {
 
-        System.out.println("1");
+    public void realizeProjects() throws InterruptedException {
 
-        HashMap<String, Double> groupEfficiency = new HashMap<>();
+        groupEfficiency = new HashMap<>();
 
+//-getProjectManagersNumber()-getAccountantsNumber()-getMarketersNumber()
         for (int i = 0; i < workerEntities.size(); i++) {
+
             if (groupEfficiency.containsKey(workerEntities.get(i).getGrp())) {
                 groupEfficiency1 = groupEfficiency.get(workerEntities.get(i).getGrp());
                 groupEfficiency1 += workerEntities.get(i).getEfficiency();
@@ -319,7 +332,6 @@ public class Company {
             } else {
                 groupEfficiency.put(workerEntities.get(i).getGrp(), workerEntities.get(i).getEfficiency());
             }
-
 
         }
 
@@ -340,25 +352,37 @@ public class Company {
                     project.setProjectTime(project.getProjectTime() - groupEff / projectsQuantity);
 
                     if (project.getProjectTime() <= 0) {
+                        realisedOrders++;
                         groupsAndAvailability.replace(projectEntry.getKey(), false);
                         pit.remove();
+
+                        setCompanyBudget(companyBudget+=project.getPrice());
+
                     }
                 }
                 projectsList.replace(projectEntry.getKey(), getProjcs);
             }
 
-            //Double projectPrice = projectEntry.getKey().getPrice(); 46, 6, 2
 
 
-        } // 109, 25, 158 - >  89, 11
 
-        // dzien: 1000(dni) = 1000(dni)- (pracownik*efektywnosc  1*1.0 + 1*2.0+ 1*8.0)=10 dni = czas skoczenia 100 dni
-        // obecny stan dni =< 0 jesli tak to usun projekt, dodaj do statystyk i ustaw grupe na niezajeta isBusy = false
-
+        }
     }
 
-    public void displayProjectsWorkersAndGroupsInTable() {
+    public List<Groups> displayProjectsWorkersAndGroupsInTable() {
+        Rowgroups.clear();
+        List<String> gps = new ArrayList<>();
+        for(String key : groupsAndAvailability.keySet()){
+          if(!gps.contains(key)){
+              gps.add(key);
+          }
+        }
 
+        for(int i = 0;i<gps.size();i++){
+            Rowgroups.add(new Groups(gps.get(i), projectsList.get(gps.get(i)).get(0).getOrderName(), projectsList.get(gps.get(i)).get(0).getProjectTime().toString(), groupEfficiency.get(gps.get(i)).toString()));
+        }
+
+        return Rowgroups;
     }
 
     public boolean checkIfNumberOfProjectsAreBelow() {
@@ -366,6 +390,7 @@ public class Company {
     }
 
     public void addProjects(int howMany) { // dodaje projekty i przypisuje go jako nieprzypisany do zadnej groupy
+
         for (int i = 0; i < howMany; i++) {
             Project projects = new Project();
             projects.setLevelOfDifficulty(value.levelOfOrderDifficulty());
@@ -387,7 +412,7 @@ public class Company {
 
     }
 
-    public void runProjectsManagerInDay() { // Wywoluje sie co jeden dzien, tworzy grupy jesli ich nie ma przypisuje grupy do pracownikow realizuje projekty i dodaje jesli ich wartosc spadla ponizej
+    public void runProjectsManagerInDay() throws InterruptedException { // Wywoluje sie co jeden dzien, tworzy grupy jesli ich nie ma przypisuje grupy do pracownikow realizuje projekty i dodaje jesli ich wartosc spadla ponizej
         if (first) {
             addProjects((int) (Math.random() * 10) + orderAtOnce + 1);
             createGroups(getOrderAtOnce()); //Later change from creation to fetching from database but first it has to be saved into db and currently it isn't
@@ -400,14 +425,16 @@ public class Company {
             addProjects((int) (Math.random() * 10));
         assignGroupsToProjects();
 
+//        displayProjectsWorkersAndGroupsInTable();
+
     }
 
-    public void viewProjects() {
-        for (Map.Entry<String, List<Project>> projectEntry : projectsList.entrySet()) {
-            System.out.println("Team :" + projectEntry.getKey());
-            projectEntry.getValue().forEach(p -> System.out.println("Level od difficulty :" + p.getLevelOfDifficulty() + " Price : " + p.getPrice() + " Order time :" + p.getProjectTime() + " Order Category: " + p.getOrderName()));
-        }
-    }
+//    public void viewProjects() {
+//        for (Map.Entry<String, List<Project>> projectEntry : projectsList.entrySet()) {
+//            System.out.println("Team :" + projectEntry.getKey());
+//            projectEntry.getValue().forEach(p -> System.out.println("Level od difficulty :" + p.getLevelOfDifficulty() + " Price : " + p.getPrice() + " Order time :" + p.getProjectTime() + " Order Category: " + p.getOrderName()));
+//        }
+//    }
 
     public void orderRealisationTime() {
     }

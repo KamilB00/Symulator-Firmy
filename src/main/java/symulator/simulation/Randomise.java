@@ -119,13 +119,13 @@ private static Randomise INSTANCE = null;
         double days = 0;
         switch (level) {
             case 1:
-                days = random.nextInt(30) + 1;
+                days = random.nextInt(2000) + 1000;
                 break;
             case 2:
-                days = random.nextInt(30) + 30;
+                days = random.nextInt(3000) + 1000;
                 break;
             case 3:
-                days = random.nextInt(120) +60;
+                days = random.nextInt(4000) +1000;
                 break;
             default:
                 System.out.println("Can not assess order time");

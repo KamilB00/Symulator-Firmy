@@ -9,6 +9,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -270,24 +271,50 @@ public   class  SimulationController implements Initializable {
 
        //-----------------------------------
         @FXML
-        private TableView<Worker> table;
-        @FXML
-        private TableColumn<Worker, Long> col_id;
-        @FXML
-        private TableColumn<Worker, String> col_Position;
-        @FXML
-        private TableColumn<Worker, String> col_Group;
-        @FXML
-        private TableColumn<Worker, String> col_Availability;
-        @FXML
-        private TableColumn<Worker, String> col_ProjectName;
+        private TableView myTable;
 
-        ObservableList<Object> oblist = FXCollections.observableArrayList();
 
 
         public void setProgressBarSim0(ProgressBar progressBarSim0) {
                 this.progressBarSim0 = progressBarSim0;
         }
+
+        //Integer index = 0;
+        //List<Groups> tempLista= new ArrayList<Groups>();
+
+        public void updateTable(){
+                //tempLista.add(new Groups(index.toString(), "1", "1", "1"));
+                myTable.getItems().clear();
+                //for(Groups group : tempLista){
+                //        myTable.getItems().add(group);
+                //}
+                //index++;
+                for (Groups group : company.displayProjectsWorkersAndGroupsInTable()){
+                        myTable.getItems().add(group);
+                }
+
+        }
+
+//        public void updateTable(){
+//                TableColumn  group = new TableColumn("GRUPA");
+//                TableColumn  project = new TableColumn("PROJEKT");
+//                TableColumn  time = new TableColumn("CZAS");
+//                TableColumn  efficiency = new TableColumn("WYDAJNOŚĆ");
+//
+//                myTable.getColumns().addAll(group, project, time, efficiency);
+//                List<Groups> groupsList= new ArrayList<>();
+//                for(int i = 0;i<company.getOrderAtOnce();i++)
+//                        groupsList.add(new Groups(company.getRowgroups().get(i).getGroup(),company.getRowgroups().get(i).getProject(),company.getRowgroups().get(i).getTime(),company.getRowgroups().get(i).getEfficiency()));
+//
+//                final ObservableList<Groups> data = FXCollections.observableArrayList(groupsList);
+//
+//                group.setCellValueFactory(new PropertyValueFactory<Groups, String>("group"));
+//                project.setCellValueFactory(new PropertyValueFactory<Groups, String>("project"));
+//                time.setCellValueFactory(new PropertyValueFactory<Groups, String>("time"));
+//                efficiency.setCellValueFactory(new PropertyValueFactory<Groups, String>("efficiency"));
+//                myTable.setItems(data);
+//                myTable.refresh();
+//        }
 
         class DoWork extends Task<Integer> {
 
@@ -300,16 +327,23 @@ public   class  SimulationController implements Initializable {
                                 System.out.println("week --> " + days);
                                 for (int i = 1; i <= days; i++) {
 
+
                                         int finalI = i;
                                         Platform.runLater(new Runnable() {
                                                 public void run() {
                                                         textfieldDate.setText(simulationClock.timeFormat(simulationClock.timeUpdate((finalI))));
                                                         textfieldDate.requestFocus();
-                                                     //fTextField00.setText(company.getCompanyBudget().toString());
-                                                        //fTextField00.requestFocus();
-                                                        //fTextField16.setText(company.getRealisedOrders().toString());
-                                                        //fTextField16.requestFocus();
-                                                        company.runProjectsManagerInDay();
+                                                        fTextField00.setText(company.getCompanyBudget().toString());
+                                                        fTextField00.requestFocus();
+                                                        fTextField16.setText(company.getRealisedOrders().toString());
+                                                        fTextField16.requestFocus();
+                                                        updateTable();
+                                                        try {
+                                                                company.runProjectsManagerInDay();
+                                                        } catch (InterruptedException e) {
+                                                                e.printStackTrace();
+                                                        }
+//                                                        updateTable();
                                                         if(days%30==0){
 
                                                         }
@@ -341,11 +375,41 @@ public   class  SimulationController implements Initializable {
                         super.updateProgress(workDone, max);
                 }
         }
+
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
 
+                Groups groups = new Groups("1","2","3","4");
+
                 DoWork task = new DoWork();
                 progressBarSim0.progressProperty().bind(task.progressProperty());
+                TableColumn  group = new TableColumn("GRUPA");
+                TableColumn  project = new TableColumn("PROJEKT");
+                TableColumn  time = new TableColumn("CZAS");
+                TableColumn  efficiency = new TableColumn("WYDAJNOŚĆ");
+
+                group.setCellValueFactory(new PropertyValueFactory<>("group"));
+                project.setCellValueFactory(new PropertyValueFactory<>("project"));
+                time.setCellValueFactory(new PropertyValueFactory<>("time"));
+                efficiency.setCellValueFactory(new PropertyValueFactory<>("efficiency"));
+
+                myTable.getColumns().addAll(group, project, time, efficiency);
+
+                //myTable.getItems().add(groups);
+
+//                myTable.getColumns().addAll(group, project, time, efficiency);
+//                List<Groups> groupsList= new ArrayList<>();
+//                for(int i = 0;i<company.getOrderAtOnce();i++)
+//                       groupsList.add(new Groups("-","-","-","-"));
+//
+//                final ObservableList<Groups> data = FXCollections.observableArrayList(groupsList);
+//
+//                group.setCellValueFactory(new PropertyValueFactory<Groups, String>("group"));
+//                project.setCellValueFactory(new PropertyValueFactory<Groups, String>("project"));
+//                time.setCellValueFactory(new PropertyValueFactory<Groups, String>("time"));
+//                efficiency.setCellValueFactory(new PropertyValueFactory<Groups, String>("efficiency"));
+//                myTable.setItems(data);
+
                 //company.addProjects(10);
                 new Thread(task).start();
                 //programiści
