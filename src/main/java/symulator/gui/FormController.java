@@ -164,8 +164,10 @@ public  class FormController {
         company.setProjectManagersNumber(1);
         company.setAccountantsNumber(1);
         company.setOrderAtOnce(1);
+        company.setRealisedOrders(0);
+        company.setCompanyBudget(0.0);
 
-
+        refreshFinance();
 
     }
     //================================================================================================================
@@ -213,7 +215,7 @@ public  class FormController {
         window.show();
     }
     @FXML
-    public void switchStageStart(ActionEvent event) throws IOException, InterruptedException, SQLException, ClassNotFoundException {
+    public void switchStageStart(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         if((comboboxForm1.getValue()!= null)&&(bank.getAmount()!=0||investor.getOfferedAmount()!=0||ownCapital.getAmount()!=0||vc.getAmount()!=0) ){
             Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Simulation.fxml"));
             Scene scene2 = new Scene(view2);

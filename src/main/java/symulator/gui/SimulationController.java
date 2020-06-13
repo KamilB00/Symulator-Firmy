@@ -254,6 +254,12 @@ public   class  SimulationController implements Initializable {
         private TextField fTextField5;
 
         @FXML
+        private TextField fTextField00;
+
+        @FXML
+        private TextField fTextField16;
+
+        @FXML
         private Separator mainSeparator;
 
         @FXML
@@ -293,16 +299,24 @@ public   class  SimulationController implements Initializable {
                                 int days = simulationClock.simulationTime();
                                 System.out.println("week --> " + days);
                                 for (int i = 1; i <= days; i++) {
+
                                         int finalI = i;
                                         Platform.runLater(new Runnable() {
                                                 public void run() {
                                                         textfieldDate.setText(simulationClock.timeFormat(simulationClock.timeUpdate((finalI))));
                                                         textfieldDate.requestFocus();
+                                                     //fTextField00.setText(company.getCompanyBudget().toString());
+                                                        //fTextField00.requestFocus();
+                                                        //fTextField16.setText(company.getRealisedOrders().toString());
+                                                        //fTextField16.requestFocus();
+                                                        company.runProjectsManagerInDay();
                                                 }
 
                                         });
+
                                         updateProgress(i , days);
-                                        Thread.sleep(500);
+                                        Thread.sleep(100);
+
                                         if (isCancelled()) {
                                                 return i;
                                         }
@@ -329,6 +343,7 @@ public   class  SimulationController implements Initializable {
 
                 DoWork task = new DoWork();
                 progressBarSim0.progressProperty().bind(task.progressProperty());
+                //company.addProjects(10);
                 new Thread(task).start();
                 //programiści
                 progressBarSim1.setProgress((float)(company.getJuniorProgrammersNumber()+company.getRegularProgrammersNumber()+company.getSeniorProgrammersNumber()) /(company.allEmployees()));

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -29,61 +27,51 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="sTextField0" accessibleRole="TEXT" alignment="CENTER" editable="false" layoutX="207.0" layoutY="360.0" mouseTransparent="true" prefHeight="51.0" prefWidth="167.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="STATYSTYKI">
+      <TextField fx:id="sTextField0" accessibleRole="TEXT" alignment="CENTER" editable="false" layoutX="136.0" layoutY="357.0" mouseTransparent="true" prefHeight="51.0" prefWidth="167.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" text="STATYSTYKI">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField0" alignment="CENTER" editable="false" layoutX="698.0" layoutY="360.0" mouseTransparent="true" prefHeight="51.0" prefWidth="186.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" text="KSIĘGOWOŚĆ">
+      <TextField fx:id="kTextField0" alignment="CENTER" editable="false" layoutX="532.0" layoutY="353.0" mouseTransparent="true" prefHeight="51.0" prefWidth="186.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" text="KSIĘGOWOŚĆ">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField6" alignment="CENTER_RIGHT" editable="false" layoutX="443.0" layoutY="138.0" mouseTransparent="true" prefHeight="26.0" prefWidth="150.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="WYDAJNOŚĆ">
+      <TextField fx:id="fTextField6" alignment="CENTER_RIGHT" editable="false" layoutX="443.0" layoutY="138.0" mouseTransparent="true" prefHeight="26.0" prefWidth="150.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField7" alignment="CENTER_RIGHT" editable="false" layoutX="439.0" layoutY="212.0" mouseTransparent="true" prefHeight="26.0" prefWidth="150.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="KATEGORIA">
+      <TextField fx:id="fTextField7" alignment="CENTER_RIGHT" editable="false" layoutX="435.0" layoutY="173.0" mouseTransparent="true" prefHeight="27.0" prefWidth="134.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="KATEGORIA">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField8" editable="false" layoutX="409.0" layoutY="264.0" mouseTransparent="true" prefHeight="28.0" prefWidth="242.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ZLECENIA W TRAKCIE REALIZACJI">
+      <TextField fx:id="fTextField8" editable="false" layoutX="410.0" layoutY="255.0" mouseTransparent="true" prefHeight="28.0" prefWidth="242.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ZLECENIA W TRAKCIE REALIZACJI">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField9" alignment="CENTER_RIGHT" editable="false" layoutX="443.0" layoutY="178.0" mouseTransparent="true" prefHeight="26.0" prefWidth="150.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="FINANSOWANIE ">
+      <TextField fx:id="fTextField9" alignment="CENTER_RIGHT" editable="false" layoutX="446.0" layoutY="139.0" mouseTransparent="true" prefHeight="26.0" prefWidth="150.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="FINANSOWANIE ">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField14" alignment="CENTER" editable="false" layoutX="606.0" layoutY="175.0" mouseTransparent="true" prefHeight="28.0" prefWidth="200.0" style="-fx-text-fill: #ffff00; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField14">
+      <TextField fx:id="fTextField14" alignment="CENTER" editable="false" layoutX="606.0" layoutY="133.0" mouseTransparent="true" prefHeight="28.0" prefWidth="200.0" style="-fx-text-fill: #ffff00; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField14">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField13" alignment="CENTER" editable="false" layoutX="678.0" layoutY="264.0" mouseTransparent="true" prefHeight="28.0" prefWidth="99.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField13">
+      <TextField fx:id="fTextField13" alignment="CENTER" editable="false" layoutX="669.0" layoutY="255.0" mouseTransparent="true" prefHeight="28.0" prefWidth="99.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField13">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField12" alignment="CENTER" editable="false" layoutX="591.0" layoutY="211.0" mouseTransparent="true" prefHeight="30.0" prefWidth="285.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffff00;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField12">
+      <TextField fx:id="fTextField12" alignment="CENTER" editable="false" layoutX="564.0" layoutY="173.0" mouseTransparent="true" prefHeight="30.0" prefWidth="285.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffff00;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField12">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField11" alignment="CENTER" editable="false" layoutX="606.0" layoutY="138.0" mouseTransparent="true" prefHeight="28.0" prefWidth="200.0" style="-fx-text-fill: #00ff04; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField11">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </TextField>
-      <Label fx:id="fLabel2" layoutX="828.0" layoutY="142.0" mouseTransparent="true" prefHeight="20.0" prefWidth="91.0" text="PLN / DZIEŃ" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
       <Label fx:id="fLabel1" layoutX="827.0" layoutY="110.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -175,138 +163,137 @@
          </font>
       </Label>
       <Separator fx:id="mainSeparator" layoutX="7.0" layoutY="346.0" opacity="0.25" prefHeight="3.0" prefWidth="1430.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="6.0" />
-      <TextField fx:id="kTextField1" alignment="CENTER_RIGHT" editable="false" layoutX="585.0" layoutY="433.0" mouseTransparent="true" prefHeight="26.0" prefWidth="75.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="VAT">
+      <TextField fx:id="kTextField1" alignment="CENTER_RIGHT" editable="false" layoutX="419.0" layoutY="426.0" mouseTransparent="true" prefHeight="26.0" prefWidth="75.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="VAT">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <PieChart fx:id="sPieChart" layoutX="14.0" layoutY="441.0" mouseTransparent="true" prefHeight="242.0" prefWidth="251.0" startAngle="-60.0" style="-fx-background-color: #1a1a1a; -fx-title-fill: #ffffff;" title="UDZIAŁY" />
-      <LineChart fx:id="sLineChart" layoutX="248.0" layoutY="435.0" mouseTransparent="true" prefHeight="297.0" prefWidth="327.0">
+      <LineChart fx:id="sLineChart" layoutX="14.0" layoutY="408.0" mouseTransparent="true" prefHeight="337.0" prefWidth="381.0">
         <xAxis>
-          <CategoryAxis label="Czas" side="BOTTOM" tickLabelFill="WHITE" />
+          <CategoryAxis endMargin="200.0" label="Czas" side="BOTTOM" startMargin="1.0" tickLabelFill="WHITE" />
         </xAxis>
         <yAxis>
-          <NumberAxis label="Wydajność" prefHeight="235.0" prefWidth="44.0" side="LEFT" tickLabelFill="WHITE" />
+          <NumberAxis prefHeight="235.0" prefWidth="44.0" side="LEFT" tickLabelFill="WHITE" upperBound="1.0E7" />
         </yAxis>
       </LineChart>
-      <Separator layoutX="571.0" layoutY="347.0" opacity="0.25" orientation="VERTICAL" prefHeight="445.0" prefWidth="6.0" AnchorPane.bottomAnchor="0.0" />
-      <Separator layoutX="1019.0" layoutY="347.0" opacity="0.25" orientation="VERTICAL" prefHeight="445.0" prefWidth="6.0" AnchorPane.bottomAnchor="0.0" />
-      <TextField fx:id="kTextField2" alignment="CENTER_RIGHT" editable="false" layoutX="585.0" layoutY="468.0" mouseTransparent="true" prefHeight="26.0" prefWidth="75.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="CIT">
+      <Separator layoutX="407.0" layoutY="352.0" opacity="0.25" orientation="VERTICAL" prefHeight="445.0" prefWidth="6.0" AnchorPane.bottomAnchor="-5.0" />
+      <Separator layoutX="851.0" layoutY="347.0" opacity="0.25" orientation="VERTICAL" prefHeight="445.0" prefWidth="6.0" AnchorPane.bottomAnchor="0.0" />
+      <TextField fx:id="kTextField2" alignment="CENTER_RIGHT" editable="false" layoutX="419.0" layoutY="461.0" mouseTransparent="true" prefHeight="26.0" prefWidth="75.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="CIT">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField5" alignment="CENTER_RIGHT" editable="false" layoutX="583.0" layoutY="583.0" mouseTransparent="true" prefHeight="26.0" prefWidth="174.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ODLICZONY  VAT">
+      <TextField fx:id="kTextField5" alignment="CENTER_RIGHT" editable="false" layoutX="417.0" layoutY="576.0" mouseTransparent="true" prefHeight="26.0" prefWidth="174.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ODLICZONY  VAT">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField6" editable="false" layoutX="692.0" layoutY="624.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" text="OD POCZĄTKU SYMULACJI">
+      <TextField fx:id="kTextField6" editable="false" layoutX="526.0" layoutY="617.0" mouseTransparent="true" prefHeight="30.0" prefWidth="200.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" text="OD POCZĄTKU SYMULACJI">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField7" editable="false" layoutX="598.0" layoutY="667.0" mouseTransparent="true" prefHeight="30.0" prefWidth="84.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="KOSZTY">
+      <TextField fx:id="kTextField7" editable="false" layoutX="432.0" layoutY="660.0" mouseTransparent="true" prefHeight="30.0" prefWidth="84.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="KOSZTY">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField8" editable="false" layoutX="598.0" layoutY="704.0" mouseTransparent="true" prefHeight="26.0" prefWidth="62.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ZYSKI">
+      <TextField fx:id="kTextField8" editable="false" layoutX="432.0" layoutY="697.0" mouseTransparent="true" prefHeight="26.0" prefWidth="62.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ZYSKI">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField9" editable="false" layoutX="598.0" layoutY="741.0" mouseTransparent="true" prefHeight="30.0" prefWidth="75.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="BILANS">
+      <TextField fx:id="kTextField9" editable="false" layoutX="432.0" layoutY="734.0" mouseTransparent="true" prefHeight="30.0" prefWidth="75.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="BILANS">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField16" alignment="CENTER" editable="false" layoutX="688.0" layoutY="668.0" mouseTransparent="true" prefHeight="28.0" prefWidth="242.0" promptText="kTextField16" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField16">
+      <TextField fx:id="kTextField16" alignment="CENTER" editable="false" layoutX="522.0" layoutY="661.0" mouseTransparent="true" prefHeight="28.0" prefWidth="242.0" promptText="kTextField16" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField16">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField17" alignment="CENTER" editable="false" layoutX="688.0" layoutY="704.0" mouseTransparent="true" prefHeight="28.0" prefWidth="242.0" promptText="kTextField17" style="-fx-text-fill: #00ff04; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField17">
+      <TextField fx:id="kTextField17" alignment="CENTER" editable="false" layoutX="522.0" layoutY="697.0" mouseTransparent="true" prefHeight="28.0" prefWidth="242.0" promptText="kTextField17" style="-fx-text-fill: #00ff04; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField17">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="kLabel6" layoutX="943.0" layoutY="673.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
+      <Label fx:id="kLabel6" layoutX="777.0" layoutY="666.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="kLabel7" layoutX="943.0" layoutY="709.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
+      <Label fx:id="kLabel7" layoutX="777.0" layoutY="702.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="kTextField18" alignment="CENTER" editable="false" layoutX="688.0" layoutY="738.0" mouseTransparent="true" prefHeight="28.0" prefWidth="242.0" promptText="kTextField18" style="-fx-text-fill: #00ff04; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField18">
+      <TextField fx:id="kTextField18" alignment="CENTER" editable="false" layoutX="522.0" layoutY="731.0" mouseTransparent="true" prefHeight="28.0" prefWidth="242.0" promptText="kTextField18" style="-fx-text-fill: #00ff04; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField18">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="kLabel8" layoutX="943.0" layoutY="743.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
+      <Label fx:id="kLabel8" layoutX="777.0" layoutY="736.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="kTextField10" alignment="CENTER" editable="false" layoutX="677.0" layoutY="430.0" mouseTransparent="true" prefHeight="28.0" prefWidth="174.0" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField10">
+      <TextField fx:id="kTextField10" alignment="CENTER" editable="false" layoutX="511.0" layoutY="423.0" mouseTransparent="true" prefHeight="28.0" prefWidth="174.0" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField10">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField11" alignment="CENTER" editable="false" layoutX="677.0" layoutY="468.0" mouseTransparent="true" prefHeight="28.0" prefWidth="174.0" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField11">
+      <TextField fx:id="kTextField11" alignment="CENTER" editable="false" layoutX="511.0" layoutY="461.0" mouseTransparent="true" prefHeight="28.0" prefWidth="174.0" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField11">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="kLabel1" layoutX="869.0" layoutY="438.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
+      <Label fx:id="kLabel1" layoutX="703.0" layoutY="431.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="kLabel2" layoutX="869.0" layoutY="476.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
+      <Label fx:id="kLabel2" layoutX="703.0" layoutY="469.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="kLabel3" layoutX="982.0" layoutY="518.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
+      <Label fx:id="kLabel3" layoutX="816.0" layoutY="511.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="kTextField13" alignment="CENTER" editable="false" layoutX="790.0" layoutY="548.0" mouseTransparent="true" prefHeight="28.0" prefWidth="186.0" promptText="kTextField13" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField13">
+      <TextField fx:id="kTextField13" alignment="CENTER" editable="false" layoutX="624.0" layoutY="541.0" mouseTransparent="true" prefHeight="28.0" prefWidth="186.0" promptText="kTextField13" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField13">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="kLabel4" layoutX="982.0" layoutY="556.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
+      <Label fx:id="kLabel4" layoutX="816.0" layoutY="549.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="kTextField15" alignment="CENTER" editable="false" layoutX="791.0" layoutY="583.0" mouseTransparent="true" prefHeight="28.0" prefWidth="186.0" promptText="kTextField15" style="-fx-text-fill: #00ff04; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField15">
+      <TextField fx:id="kTextField15" alignment="CENTER" editable="false" layoutX="625.0" layoutY="576.0" mouseTransparent="true" prefHeight="28.0" prefWidth="186.0" promptText="kTextField15" style="-fx-text-fill: #00ff04; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField15">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="kLabel5" layoutX="982.0" layoutY="591.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
+      <Label fx:id="kLabel5" layoutX="816.0" layoutY="584.0" mouseTransparent="true" prefHeight="18.0" prefWidth="27.0" text="PLN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="kTextField4" alignment="CENTER_RIGHT" editable="false" layoutX="585.0" layoutY="547.0" mouseTransparent="true" prefHeight="34.0" prefWidth="236.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ZUS OD WYNAGRODZENIA">
+      <TextField fx:id="kTextField4" alignment="CENTER_RIGHT" editable="false" layoutX="419.0" layoutY="540.0" mouseTransparent="true" prefHeight="34.0" prefWidth="236.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ZUS OD WYNAGRODZENIA">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField5" alignment="CENTER_RIGHT" editable="false" layoutX="319.0" layoutY="102.0" mouseTransparent="true" prefHeight="30.0" prefWidth="277.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="SZACOWANE MIESIĘCZNE PRZYCHODY">
+      <TextField fx:id="fTextField5" alignment="CENTER_RIGHT" editable="false" layoutX="319.0" layoutY="102.0" mouseTransparent="true" prefHeight="30.0" prefWidth="294.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="SZACOWANE MIESIĘCZNE PRZYCHODY">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <Separator layoutX="591.0" layoutY="617.0" prefHeight="3.0" prefWidth="393.0" />
+      <Separator layoutX="425.0" layoutY="610.0" prefHeight="3.0" prefWidth="393.0" />
       <Separator layoutX="909.0" layoutY="10.0" opacity="0.25" orientation="VERTICAL" prefHeight="337.0" prefWidth="6.0" AnchorPane.topAnchor="10.0" />
       <JFXProgressBar fx:id="progressBarSim0" mouseTransparent="true" prefHeight="11.0" prefWidth="1436.0" progress="0.0" />
       <JFXProgressBar fx:id="progressBarSim1" layoutX="61.0" layoutY="132.0" prefHeight="30.0" progress="0.0" />
@@ -328,13 +315,13 @@
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <Separator layoutX="409.0" layoutY="254.0" prefHeight="3.0" prefWidth="483.0" />
-      <TextField fx:id="fTextField15" alignment="CENTER_RIGHT" editable="false" layoutX="514.0" layoutY="308.0" mouseTransparent="true" prefHeight="28.0" prefWidth="121.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ZREALIZOWANE">
+      <Separator layoutX="410.0" layoutY="222.0" prefHeight="3.0" prefWidth="483.0" />
+      <TextField fx:id="fTextField15" alignment="CENTER_RIGHT" editable="false" layoutX="520.0" layoutY="286.0" mouseTransparent="true" prefHeight="28.0" prefWidth="134.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="ZREALIZOWANE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="fTextField16" alignment="CENTER" editable="false" layoutX="678.0" layoutY="308.0" mouseTransparent="true" prefHeight="28.0" prefWidth="99.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField16">
+      <TextField fx:id="fTextField16" alignment="CENTER" editable="false" layoutX="657.0" layoutY="286.0" mouseTransparent="true" prefHeight="28.0" prefWidth="99.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #ffffff;" styleClass="tf" stylesheets="@SimulationCSS.css" text="fTextField16">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -359,12 +346,12 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="kTextField12" alignment="CENTER" editable="false" layoutX="796.0" layoutY="513.0" mouseTransparent="true" prefHeight="28.0" prefWidth="174.0" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField12">
+      <TextField fx:id="kTextField12" alignment="CENTER" editable="false" layoutX="630.0" layoutY="506.0" mouseTransparent="true" prefHeight="28.0" prefWidth="174.0" style="-fx-text-fill: #ff0000; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="kTextField12">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="kTextField3" alignment="CENTER_RIGHT" editable="false" layoutX="576.0" layoutY="513.0" mouseTransparent="true" prefHeight="34.0" prefWidth="243.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="DOCHODOWY  OD  WYPŁAT">
+      <TextField fx:id="kTextField3" alignment="CENTER_RIGHT" editable="false" layoutX="410.0" layoutY="506.0" mouseTransparent="true" prefHeight="34.0" prefWidth="243.0" style="-fx-text-fill: #ffffff; -fx-background-color: #1a1a1a;" styleClass="tf" stylesheets="@SimulationCSS.css" text="DOCHODOWY  OD  WYPŁAT">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -373,15 +360,14 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></JFXTextField>
-      <JFXButton fx:id="viewOrderGroups" layoutX="61.0" layoutY="289.0" prefHeight="20.0" prefWidth="75.0" text="Podgląd" />
       <Separator layoutX="313.0" layoutY="10.0" opacity="0.25" orientation="VERTICAL" prefHeight="337.0" prefWidth="6.0" />
-      <TableView layoutX="1021.0" layoutY="348.0" prefHeight="442.0" prefWidth="418.0" stylesheets="@SimulationCSS.css">
+      <TableView layoutX="866.0" layoutY="353.0" prefHeight="432.0" prefWidth="561.0" stylesheets="@SimulationCSS.css">
         <columns>
-            <TableColumn prefWidth="64.598388671875" text="ID" />
-          <TableColumn prefWidth="108.0621337890625" text="Stanowisko" />
-            <TableColumn prefWidth="83.4378662109375" text="Dostępność" />
-          <TableColumn prefWidth="82.7325439453125" text="Grupa" />
-            <TableColumn prefWidth="75.0" text="Projekt" />
+            <TableColumn prefWidth="101.0" text="Grupa" />
+          <TableColumn prefWidth="120.0" text="Projekt" />
+            <TableColumn prefWidth="117.0" text="ilosć osoób" />
+          <TableColumn prefWidth="105.0" text="Wydajność" />
+            <TableColumn prefWidth="117.0" text="is Buisy" />
         </columns>
       </TableView>
    </children>

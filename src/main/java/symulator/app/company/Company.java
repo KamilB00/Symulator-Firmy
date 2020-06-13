@@ -55,6 +55,8 @@ public class Company {
 
     private Integer orderAtOnce;
 
+     private Double groupEfficiency1;
+
     //================================================================================================================
 
 
@@ -210,32 +212,32 @@ public class Company {
 
     public void  createJuniorProgrammers(){
         for(int i=0;i<getJuniorProgrammersNumber();i++) {
-            addEmployee("Junior Programmer", juniorProgrammerSalary, juniorProgrammerSalary*value.efficiencyRate());
+            addEmployee("Junior Programmer", juniorProgrammerSalary, value.efficiencyRate());
         }
     }
     public void createRegularProgrammers(){
         for(int i=0;i<getRegularProgrammersNumber();i++) {
-            addEmployee("Regular Programmer", regularProgrammerSalary, regularProgrammerSalary*value.efficiencyRate());
+            addEmployee("Regular Programmer", regularProgrammerSalary, value.efficiencyRate());
         }
     }
     public void createSeniorProgrammers(){
         for(int i=0;i<getSeniorProgrammersNumber();i++) {
-            addEmployee("Senior Programmer", seniorProgrammerSalary, seniorProgrammerSalary*value.efficiencyRate());
+            addEmployee("Senior Programmer", seniorProgrammerSalary, value.efficiencyRate());
         }
     }
     public void createAccountants(){
         for(int i=0;i<getAccountantsNumber();i++) {
-            addEmployee("Ksiegowy", accountantSalary, accountantSalary*value.efficiencyRate());
+            addEmployee("Ksiegowy", accountantSalary, value.efficiencyRate());
         }
     }
     public void createMarketers(){
         for(int i=0;i<getMarketersNumber();i++) {
-            addEmployee("Marketer", marketerSalary, marketerSalary*value.efficiencyRate());
+            addEmployee("Marketer", marketerSalary, value.efficiencyRate());
         }
     }
     public void createProjectManagers(){
         for(int i=0;i<getProjectManagersNumber();i++) {
-            addEmployee("Project Manager", projectManagerSalary, projectManagerSalary*value.efficiencyRate());
+            addEmployee("Project Manager", projectManagerSalary, value.efficiencyRate());
         }
     }
 
@@ -254,8 +256,8 @@ public class Company {
     public Integer allEmployees(){
         return getJuniorProgrammersNumber()+getRegularProgrammersNumber()+getSeniorProgrammersNumber()+getAccountantsNumber()+getMarketersNumber()+getProjectManagersNumber();
     }
-    private HashMap<Project,String> projectsList; // key = project, value = groupname
-    private HashMap<String, Boolean> groupsAndAvailability;
+    private HashMap<Project,String> projectsList = new HashMap<>(); // key = project, value = groupname
+    private HashMap<String, Boolean> groupsAndAvailability = new HashMap<>();
     private boolean first = true;
 
     public void createGroups(int howMany){
@@ -264,43 +266,93 @@ public class Company {
         }
 
     }
+
     public void assignGroupsToWorkers(){
         for(int i = 0; i<workerEntities.size();i++){
-            workerEntities.get(i).setGrp((String)groupsAndAvailability.keySet().toArray()[(int)Math.random()*groupsAndAvailability.size()]);
+            workerEntities.get(i).setGrp((String)groupsAndAvailability.keySet().toArray()[(int)(Math.random() * groupsAndAvailability.size())]);
         }
     }
     public void assignGroupsToProjects(){
         HashMap<String,Boolean> availableGroups = groupsAndAvailability.entrySet().stream().filter(x->!x.getValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (prev, next) -> next, HashMap::new));
         HashMap<Project,String> freeProjects = projectsList.entrySet().stream().filter(x->x.getValue().equals("UNASSIGNED")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (prev, next) -> next, HashMap::new));
+
         Iterator it = freeProjects.entrySet().iterator();
 
         for (Map.Entry<String, Boolean> availableGroupsEntry: availableGroups.entrySet()) {
             Map.Entry<Project, String> projectEntry = null;
             if(it.hasNext())
-                projectEntry = (Map.Entry<Project, String>) it.next();
-            availableGroupsEntry.setValue(true);
+                projectEntry = (Map.Entry<Project, String>) it.next(); //  last project is unassigned
+                groupsAndAvailability.replace(availableGroupsEntry.getKey(), true);
             try {
-                projectEntry.setValue(availableGroupsEntry.getKey());
+                projectsList.replace(projectEntry.getKey(), availableGroupsEntry.getKey());
             } catch (NullPointerException e) {
                 System.out.println("More groups than projects, projects should be always more than groups");
             }
-
         }
 
     }
 
     public void realizeProjects() {
 
+        System.out.println("1");
+
+        HashMap<String,Double> groupEfficiency = new HashMap<>();
+
+        for(int i=0;i<workerEntities.size();i++){
+            if(groupEfficiency.containsKey(workerEntities.get(i).getGrp())){
+                groupEfficiency1 = groupEfficiency.get(workerEntities.get(i).getGrp());
+                groupEfficiency1+=workerEntities.get(i).getEfficiency();
+                groupEfficiency.replace(workerEntities.get(i).getGrp(),groupEfficiency1);
+            }
+            else
+            {
+                groupEfficiency.put(workerEntities.get(i).getGrp(),workerEntities.get(i).getEfficiency());
+            }
+
+
+        }
+
+
+        Iterator<Map.Entry<Project,String>> projectIterator = projectsList.entrySet().iterator();
+        while(projectIterator.hasNext()) {
+            Map.Entry<Project, String> projectEntry = projectIterator.next();
+
+
+            //Double projectTime = projectEntry.getKey().getProjectTime();
+            Double groupEff = groupEfficiency.get(projectEntry.getValue());
+            try {
+                Project getProject = (Project) projectEntry.getKey().clone();
+
+                getProject.setProjectTime(projectEntry.getKey().getProjectTime() - groupEff);
+                String group = projectEntry.getValue();
+                projectIterator.remove();
+                projectsList.put(getProject, group);
+
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+            //Double projectPrice = projectEntry.getKey().getPrice();
+
+            if (projectEntry.getKey().getProjectTime() <= 0) {
+                groupsAndAvailability.replace(projectEntry.getValue(), false);
+                projectIterator.remove();
+            }
+        } // 109, 25, 158 - >  89, 11
+
         // dzien: 1000(dni) = 1000(dni)- (pracownik*efektywnosc  1*1.0 + 1*2.0+ 1*8.0)=10 dni = czas skoczenia 100 dni
         // obecny stan dni =< 0 jesli tak to usun projekt, dodaj do statystyk i ustaw grupe na niezajeta isBusy = false
 
     }
     public void displayProjectsWorkersAndGroupsInTable(){
-        //
+
     }
 
     public boolean checkIfNumberOfProjectsAreBelow(){
-        return projectsList.size()<(25-(int)Math.random()*10);
+        return projectsList.size()<(25- (int) (Math.random() * 10));
     }
 
     public void addProjects(int howMany){ // dodaje projekty i przypisuje go jako nieprzypisany do zadnej groupy
@@ -310,23 +362,25 @@ public class Company {
             projects.setPrice(value.priceAssessment(projects.getLevelOfDifficulty()));
             projects.setProjectTime(value.randomOrderTime(projects.getLevelOfDifficulty()));
             projects.setOrderName(value.randomNameOfOrder());
-            projectsList.put(projects,"UNASIGNED");
+            projectsList.put(projects,"UNASSIGNED");
         }
+
     }
 
     public void runProjectsManagerInDay(){ // Wywoluje sie co jeden dzien, tworzy grupy jesli ich nie ma przypisuje grupy do pracownikow realizuje projekty i dodaje jesli ich wartosc spadla ponizej
-        if(!first) {
-            createGroups((int) Math.random() * 10 + 5); //Later change from creation to fetching from database but first it has to be saved into db and currently it isn't
+        if(first) {
+            addProjects((int) (Math.random() * 10)+orderAtOnce+1);
+            createGroups(getOrderAtOnce()); //Later change from creation to fetching from database but first it has to be saved into db and currently it isn't
             assignGroupsToWorkers();
+            assignGroupsToProjects();
+            first = false;
         }
         realizeProjects();
         if(checkIfNumberOfProjectsAreBelow())
-            addProjects((int)Math.random()*10);
+            addProjects((int) (Math.random() * 10));
         assignGroupsToProjects();
 
     }
-
-
     public void viewProjects(){
         for (Map.Entry<Project, String> projectEntry: projectsList.entrySet())
             System.out.println("Team :"+ projectEntry.getValue() + "Level od difficulty :"+ projectEntry.getKey().getLevelOfDifficulty()+ " Price : "+projectEntry.getKey().getPrice()+" Order time :"+ projectEntry.getKey().getProjectTime()+" Order Category: "+projectEntry.getKey().getOrderName());

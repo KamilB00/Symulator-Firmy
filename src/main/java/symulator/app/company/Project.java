@@ -2,11 +2,11 @@ package symulator.app.company;
 
 import java.util.Date;
 
-public class Project {
+public class Project implements Cloneable {
 
     private Double price;
     private Integer levelOfDifficulty;
-    private Integer projectTime;
+    private Double projectTime;
     private String orderName;
 
     //----------------------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ public class Project {
         this.levelOfDifficulty = levelOfDifficulty;
     }
 
-    public void setProjectTime(Integer projectTime) {
+    public void setProjectTime(Double projectTime) {
         this.projectTime = projectTime;
     }
 
@@ -30,6 +30,22 @@ public class Project {
     //----------------------------------------------------------------------------------------------------------------
 
 
+    public Project(Double price, Integer levelOfDifficulty, Double projectTime, String orderName) {
+        this.price = price;
+        this.levelOfDifficulty = levelOfDifficulty;
+        this.projectTime = projectTime;
+        this.orderName = orderName;
+    }
+
+    public Project() {
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Project project = new Project(this.price,this.levelOfDifficulty,this.projectTime,this.orderName);
+        return project;
+    }
+
     public Double getPrice() {
         return price;
     }
@@ -38,7 +54,7 @@ public class Project {
         return levelOfDifficulty;
     }
 
-    public Integer getProjectTime() {
+    public Double getProjectTime() {
         return projectTime;
     }
 

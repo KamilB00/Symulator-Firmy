@@ -49,8 +49,8 @@ private static Randomise INSTANCE = null;
     }
     public Double efficiencyRate(){
         Random random = new Random();
-        Double rate = random.nextInt(200) + 50.0;
-        return rate/100.0;
+        Double rate = random.nextInt(3) + 1.0;
+        return rate;
     }
 
     public Double randomVCShares() {
@@ -114,23 +114,23 @@ private static Randomise INSTANCE = null;
         }
         return price;
 
-    }public Integer randomOrderTime(int level) {
+    }public Double randomOrderTime(int level) {
         Random random = new Random();
-        int weeks = 0;
+        double days = 0;
         switch (level) {
             case 1:
-                weeks = random.nextInt(2) + 1;
+                days = random.nextInt(30) + 1;
                 break;
             case 2:
-                weeks = random.nextInt(5) + 3;
+                days = random.nextInt(30) + 30;
                 break;
             case 3:
-                weeks = random.nextInt(8) + 8;
+                days = random.nextInt(120) +60;
                 break;
             default:
                 System.out.println("Can not assess order time");
         }
-        return weeks;
+        return days;
     }
 
 
