@@ -5,8 +5,9 @@ import symulator.simulation.Randomise;
 
 public class Bank {
     private Double amount;
-    private Double interest;
+    private Double interest = 0.0;
     private Integer installments;
+    private Double returnAmount;
 
     private static Bank instance = null;
     private Bank(){}
@@ -16,24 +17,31 @@ public class Bank {
         return instance;
     }
     Randomise randomise = Randomise.getInstance();
-    Company company = Company.getInstance();
+
     /**
      *Kwota do zwrotu
      */
-    public Double returnAmount(){
-        Double returnAmount = getAmount()*randomise.generateBankPercentage();
-        return returnAmount;
+    public void countReturnAmount(){
+               returnAmount=(amount*(1+randomise.generateBankPercentage()));
+        setReturnAmount(returnAmount);
+
     }
+    /**
+     *Procent kredytu
+     */
     public Double percent(){
-        Double percent = returnAmount()/getAmount();
+        Double percent = getReturnAmount()/getAmount();
         return percent;
+    }
+
+    public Double countInterest(){
+        return getAmount()*0.05;
     }
 
     public void setAmount(Double amount) {
         this.amount = amount;
-        System.out.println("Bank Ustawiono kwotę: -->"+ getAmount());
-        company.setCompanyBudget(getAmount());
 
+        System.out.println("Bank Ustawiono kwotę: -->"+ getAmount());
     }
 
     public Double getAmount() {
@@ -50,5 +58,19 @@ public class Bank {
         return installments;
     }
 
+    public Double getInterest() {
+        return interest;
+    }
 
+    public void setInterest(Double interest) {
+        this.interest = interest;
+    }
+
+    public Double getReturnAmount() {
+        return returnAmount;
+    }
+
+    public void setReturnAmount(Double returnAmount) {
+        this.returnAmount = returnAmount;
+    }
 }

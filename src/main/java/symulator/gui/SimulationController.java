@@ -310,6 +310,9 @@ public   class  SimulationController implements Initializable {
                                                         //fTextField16.setText(company.getRealisedOrders().toString());
                                                         //fTextField16.requestFocus();
                                                         company.runProjectsManagerInDay();
+                                                        if(days%30==0){
+
+                                                        }
                                                 }
 
                                         });
@@ -391,11 +394,13 @@ public   class  SimulationController implements Initializable {
 
         public void financing(){
                 if((bank.getAmount()!= 0)){
+                        bank.countReturnAmount();
                         fTextField14.setText("KREDYT");
                         bTextField7.setText(bank.getAmount().toString());
                         bTextField11.setText(bank.getInstallments().toString());
-                        bTextField9.setText(bank.returnAmount().toString());
+                        bTextField9.setText(bank.getReturnAmount().toString());
                         bTextField8.setText(bank.percent().toString());
+                        bTextField12.setText(bank.getInterest().toString());
                 }
                 else if((investor.getOfferedAmount()!= 0)){
                         fTextField14.setText("INWESTOR");
