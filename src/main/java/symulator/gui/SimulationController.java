@@ -41,16 +41,13 @@ public   class  SimulationController implements Initializable {
         Investor investor = Investor.getInstance();
         VC vc = VC.getInstance();
         OwnCapital ownCapital = OwnCapital.getInstance();
-        SimulationClock simulationClock = SimulationClock.getInstance();
-        WorkerDAO workerDAO = new WorkerDAO();
-        AccountOffice office = new AccountOffice();
+        AccountOffice office = AccountOffice.getInstance();
         DecimalFormat df = new DecimalFormat("###,###.###");
         DecimalFormat df2 = new DecimalFormat("#");
         CSVHandler csvHandler = new CSVHandler();
+
         private static final String CSV_FILE_PATH
                 = "./result.csv";
-        @FXML
-        private AnchorPane simulationPane;
 
 
         @FXML
@@ -75,25 +72,6 @@ public   class  SimulationController implements Initializable {
         private TextField bTextField0;
 
         @FXML
-        private TextField sTextField0;
-
-        @FXML
-        private TextField kTextField0;
-
-
-        @FXML
-        private TextField fTextField6;
-
-        @FXML
-        private TextField fTextField7;
-
-        @FXML
-        private TextField fTextField8;
-
-        @FXML
-        private TextField fTextField9;
-
-        @FXML
         private TextField fTextField14;
 
         @FXML
@@ -101,24 +79,6 @@ public   class  SimulationController implements Initializable {
 
         @FXML
         private TextField fTextField12;
-
-        @FXML
-        private Label fLabel1;
-
-        @FXML
-        private TextField bTextField1;
-
-        @FXML
-        private TextField bTextField2;
-
-        @FXML
-        private TextField bTextField3;
-
-        @FXML
-        private TextField bTextField4;
-
-        @FXML
-        private TextField bTextField5;
 
         @FXML
         private TextField bTextField7;
@@ -135,33 +95,6 @@ public   class  SimulationController implements Initializable {
         @FXML
         private TextField bTextField12;
 
-        @FXML
-        private Label bLabel1;
-
-        @FXML
-        private Label bLabel3;
-
-        @FXML
-        private Label bLabel4;
-
-        @FXML
-        private Label bLabel2;
-
-        @FXML
-        private TextField kTextField1;
-
-
-        @FXML
-        private TextField kTextField5;
-
-        @FXML
-        private TextField kTextField7;
-
-        @FXML
-        private TextField kTextField8;
-
-        @FXML
-        private TextField kTextField9;
 
         @FXML
         private TextField kTextField16;
@@ -169,29 +102,18 @@ public   class  SimulationController implements Initializable {
         @FXML
         private TextField kTextField17;
 
-        @FXML
-        private Label kLabel6;
-
-        @FXML
-        private Label kLabel7;
 
         @FXML
         private TextField kTextField18;
 
-        @FXML
-        private Label kLabel8;
 
         @FXML
         private TextField kTextField10;
 
-        @FXML
-        private Label kLabel1;
 
         @FXML
         private TextField kTextField15;
 
-        @FXML
-        private Label kLabel5;
 
         @FXML
         private TextField fTextField00;
@@ -200,13 +122,8 @@ public   class  SimulationController implements Initializable {
         private TextField fTextField16;
 
         @FXML
-        private Separator mainSeparator;
-
-        // clock---------------------------
-        @FXML
         private TextField textfieldDate;
 
-       //-----------------------------------
         @FXML
         private TableView myTable;
 
@@ -214,12 +131,9 @@ public   class  SimulationController implements Initializable {
         private PieChart pieChart;
 
 
-
-        public void setProgressBarSim0(ProgressBar progressBarSim0) {
-                this.progressBarSim0 = progressBarSim0;
-        }
-
-
+        /**
+         * WYCZYSZCZENIE TABELI ORAZ DODANIE  GRUP
+         */
         public void updateTable(){
                 myTable.getItems().clear();
                 if(company.displayProjectsWorkersAndGroupsInTable() != null) {
@@ -238,12 +152,16 @@ public   class  SimulationController implements Initializable {
                                 SimulationClock simulationClock = SimulationClock.getInstance();
                                 simulationClock.setYears(simulationClock.getYears());
                                 int days = simulationClock.simulationTime();
-                                System.out.println("week --> " + days);
                                 df.setMaximumFractionDigits(10);
-                                System.out.println("all employees "+ company.allEmployees());
-                                System.out.println("costs of employess"+ company.costsOfEmployees());
-                                for (int i = 1; i <= days; i++) {
 
+                                /**
+                                 * PĘTLA GŁÓWNA SYMULACJI
+                                 */
+                                for (int i = 1; i <= days; i++) {
+//--------------------------------------------------------------------------------------------------------------------
+                                        /**
+                                         * AKCJE ZWIĄZANE Z FUNKCJONOWANIEM BANKU, VATU, BUDŻETU( CO MIESIĄC)
+                                         */
                                         if(i%30==0){
                                                 company.setCompanyBudget(company.getCompanyBudget()-company.costsOfEmployees());
                                                 company.setCompanyCosts(company.getCompanyCosts()+company.costsOfEmployees());
@@ -276,38 +194,35 @@ public   class  SimulationController implements Initializable {
                                                 office.setVat(0.0);
                                                 office.setOdliczonyVat(0.0);
                                         }
-
+//--------------------------------------------------------------------------------------------------------------------
                                         int finalI = i;
                                         Double income = company.dailyIncome()/i;
                                         Platform.runLater(new Runnable() {
                                                 public void run() {
-
+                                                        //data
                                                         textfieldDate.setText(simulationClock.timeFormat(simulationClock.timeUpdate((finalI))));
-                                                        textfieldDate.requestFocus();
-
+                                                        //budżet
                                                         fTextField00.setText(df2.format(company.dispalyAmount()));
-                                                        fTextField00.requestFocus();
-
+                                                        // dzieny zysk
                                                         fTextField10.setText(df2.format(income));
-                                                        fTextField00.requestFocus();
-
+                                                        //zrealizowane zamówienia
                                                         fTextField16.setText(company.getRealisedOrders().toString());
-                                                        fTextField16.requestFocus();
-
+                                                        //realizowane obecnie zamówienia
                                                         fTextField13.setText(company.getOrderAtOnce().toString());
-                                                        fTextField13.requestFocus();
-
-                                                        bTextField9.setText(bank.getReturnAmount().toString());
+                                                        // kwota do zapłaty
+                                                        bTextField9.setText(df2.format(bank.getReturnAmount()));
+                                                        //raty
                                                         bTextField11.setText(bank.getInstallments().toString());
-                                                        bTextField12.setText(bank.getInterest().toString());
+                                                        //odsetki
+                                                        bTextField12.setText(df2.format(bank.getInterest()));
                                                         //koszta
                                                          kTextField16.setText(df2.format(company.getCompanyCosts()));
                                                         //zyski
-                                                        kTextField17.setText(df.format(company.getCompanyProfit()));
+                                                        kTextField17.setText(df2.format(company.getCompanyProfit()));
                                                         //bilans
-                                                        kTextField18.setText(df.format(company.getCompanyProfit() - company.getCompanyCosts()));
+                                                        kTextField18.setText(df2.format(company.getCompanyProfit() - company.getCompanyCosts()));
                                                         //odliczony Vat
-                                                        kTextField15.setText(df.format(office.getOdliczonyVat()));
+                                                        kTextField15.setText(df2.format(office.getOdliczonyVat()));
                                                         //vat z projektów
                                                         kTextField10.setText(df2.format(office.getVat()));
                                                         updateTable();
@@ -316,7 +231,6 @@ public   class  SimulationController implements Initializable {
                                                         } catch (InterruptedException e) {
                                                                 e.printStackTrace();
                                                         }
-
                                                 }
                                         });
 
@@ -346,6 +260,11 @@ public   class  SimulationController implements Initializable {
                 }
         }
 
+        /**
+         * INICJALIZACJA WARTOŚCI PODCZAS URUCHOMIENIA OKNA SYMULACJI
+         * @param url
+         * @param resourceBundle
+         */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
         office.countCosts();
@@ -369,7 +288,6 @@ pieChart.setStartAngle(90);
                 myTable.getColumns().addAll(group, project, time, efficiency);
 
 
-
                 new Thread(task).start();
                 //programiści
                 progressBarSim1.setProgress((float)(company.getJuniorProgrammersNumber()+company.getRegularProgrammersNumber()+company.getSeniorProgrammersNumber()) /(company.allEmployees()));
@@ -379,27 +297,15 @@ pieChart.setStartAngle(90);
                 progressBarSim3.setProgress((float)company.getAccountantsNumber()/company.allEmployees());
                 //marketerzy
                 progressBarSim4.setProgress((float)company.getMarketersNumber()/company.allEmployees());
-                System.out.println("progressBarSim1 programista --> "+ progressBarSim1.getProgress());
-                System.out.println("progressBarSim2 PM --> "+ progressBarSim2.getProgress());
-                System.out.println("progressBarSim3 księgowy --> "+ progressBarSim3.getProgress());
-                System.out.println("progressBarSim4 marketer --> "+ progressBarSim4.getProgress());
+
                 sizeOfCompany();
                 financing();
 
         }
 
-        @FXML
-        public void switchToSummary() throws IOException {
-                Parent view2 = FXMLLoader.load(getClass().getResource("/gui/FinalData.fxml"));
-                Scene scene2 = new Scene(view2);
-                Stage window = new Stage();
-
-                //window.initModality(Modality.APPLICATION_MODAL);
-                // window.initStyle(StageStyle.UNDECORATED);
-                window.setScene(scene2);
-                window.show();
-        }
-
+        /**
+         * OKREŚLANIE NA PODSTAWIE ILOŚĆI PRACOWNIKÓW RODZAJU PRZEDSIĘBIORSTWA (MIKRO,MAŁE,ŚREDNIE,DUŻE)
+         */
         public void sizeOfCompany(){
                 if(company.allEmployees()>=1 && company.allEmployees()<=10){
                         fTextField12.setText("Mikro przedsiębiorstwo");
@@ -414,9 +320,11 @@ pieChart.setStartAngle(90);
                         fTextField12.setText("Duże przedsiębiorstwo");
         }
 
+        /**
+         * WYŚWIETLANIE RODZAJU FINANSOWANIA
+         */
         public void financing(){
                 if((bank.getAmount()!= 0)){
-
 
                         bank.countReturnAmount();
                         fTextField14.setText("KREDYT");
@@ -440,6 +348,10 @@ pieChart.setStartAngle(90);
                 }
 
         }
+
+        /**
+         * WYŁĄCZENIE NAPISU BANK
+         */
         public void disableBank(){
                 bTextField0.setDisable(true);
 

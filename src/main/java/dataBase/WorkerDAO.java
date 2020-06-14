@@ -3,12 +3,15 @@ package dataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import symulator.app.person.Worker;
+
 
 public class WorkerDAO {
+    /**
+     * ZAPIS OBIEKTÓW DO BAZY DANYCH
+     * @param workerEntity
+     */
     public void saveWorker(WorkerEntity workerEntity) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -28,6 +31,13 @@ public class WorkerDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Lista wyciągająca pracowników z bazy
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public ArrayList<WorkerEntity> getAllWorkers() throws ClassNotFoundException, SQLException {
 
         Class.forName("com.mysql.jdbc.Driver");
@@ -43,21 +53,11 @@ public class WorkerDAO {
         return workersList;
     }
 
-    public void showDB() throws SQLException, ClassNotFoundException {
-
-        ArrayList<WorkerEntity> workersList = getAllWorkers();
-
-        for(int i=0; i<workersList.size(); i++){
-
-            System.out.print(workersList.get(i).getId()+" ");
-            System.out.print(workersList.get(i).getPosition()+" ");
-            System.out.print(workersList.get(i).getEfficiency()+" ");
-            System.out.println(workersList.get(i).getSalary()+" ");
-
-
-        }
-
-    }
+    /**
+     * usuwanie zawartości tabeli
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void refreshDB() throws ClassNotFoundException, SQLException {
         String jdbcUrl = "jdbc:mysql://localhost:3306/simulationDataBase?serverTimezone=UTC";
         String username = "admin";

@@ -5,6 +5,10 @@ import symulator.app.company.Company;
 
 public class Investor{
 
+    //----------------------------------------------------------------------------------------------------------------
+    /**
+     * SINGLETON DLA KLASY INVESTOR
+     */
     private static Investor instance = null;
     private Investor(){}
     public static Investor getInstance(){
@@ -12,12 +16,11 @@ public class Investor{
             instance = new Investor();
         return instance;
     }
-Company company = Company.getInstance();
+    //----------------------------------------------------------------------------------------------------------------
+    Company company = Company.getInstance();
     private Double offeredAmount;
-   private Double yearProfit;
-   private Integer time;
-
-
+    private Double yearProfit;
+    private Integer time;
 
     public void setYearProfit(Double yearProfit) {
 

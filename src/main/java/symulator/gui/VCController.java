@@ -18,7 +18,9 @@ public class VCController {
     @FXML
     private Button buttonVC1, buttonVC2;
 
-
+    /**
+     * INICJALIZACJA WARTOŚCI PO WŁĄCZENIU OKNA VC
+     */
     @FXML
     public void initialize()
     {
@@ -27,12 +29,20 @@ public class VCController {
         textfieldVC2.setText(randomise.randomVCShares().toString());
     }
 
+    /**
+     * POWRÓT DO FORMULARZA GŁÓWNEGO
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void backToForm(MouseEvent mouseEvent) throws IOException {
         Stage stage = (Stage) buttonVC1 .getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * ZATWIERDZENIE WARUNKÓW UMOWY VC
+     */
     @FXML
     public void confirmVCConditions(){
         String amount =  textfieldVC1.getText();

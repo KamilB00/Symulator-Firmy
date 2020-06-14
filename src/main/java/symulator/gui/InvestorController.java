@@ -25,6 +25,9 @@ public class InvestorController {
     private Double offeredAmount = randomise.randomInvestorAmount();
     private Double yearProfit = randomise.randomInvestorYearProfit();
 
+    /**
+     * INICJALIZACJA WARTOŚCI W FORMULARZU INWESTORA
+     */
     @FXML
     public void initialize()
     {
@@ -35,11 +38,21 @@ public class InvestorController {
         textfieldInvestor2.setText(yp.toString());
         textfieldInvestor3.setText(t.toString());
     }
+
+    /**
+     * POWRÓT DO FORMULARZA GŁÓWNEGO
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void backToForm(MouseEvent mouseEvent) throws IOException {
         Stage stage = (Stage) buttonInvestor1 .getScene().getWindow();
         stage.close();
     }
+
+    /**
+     * ZATWIERDZENIE WARUNKÓW UMOWY Z INWESTOREM
+     */
     @FXML
     public void confirmInvestorsConditions(){
        investor.setYearProfit(yearProfit);

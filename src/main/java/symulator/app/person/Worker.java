@@ -1,6 +1,5 @@
 package symulator.app.person;
 
-import symulator.app.company.Company;
 
 public class Worker {
 

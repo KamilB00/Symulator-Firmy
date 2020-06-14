@@ -1,45 +1,35 @@
 package symulator.app.company;
 
-
-
 import dataBase.WorkerDAO;
 import dataBase.WorkerEntity;
-
-import symulator.app.accountOffice.AccountOffice;
 import symulator.gui.Groups;
 import symulator.simulation.Randomise;
 import symulator.simulation.SimulationClock;
-
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+/**
+ * GŁÓWNA KLASA FIRMY
+ */
 public class Company {
     Randomise value = Randomise.getInstance();
-    SimulationClock simulationClock = SimulationClock.getInstance();
     WorkerDAO workerDAO = new WorkerDAO();
 
     public List<WorkerEntity> workerEntities;
     private List<Groups> Rowgroups = new ArrayList<>();
 
     //================================================================================================================
+    /**
+     * SINGLETON DLA KLASY COMPANY
+     */
     private static Company INSTANCE = null;
-
-    public List<Groups> getRowgroups() {
-        return Rowgroups;
-    }
-
-    public void setRowgroups(List<Groups> rowgroups) {
-        Rowgroups = rowgroups;
-    }
 
     private Company() {
         try {
             workerEntities = workerDAO.getAllWorkers();
         } catch (Exception e) {
-            System.out.println("BARDZO WAZNE BARDZO WAZNE WORKER ENTITIES");
+            System.out.println("exeption "+e);
         }
     }
 
@@ -48,13 +38,12 @@ public class Company {
             INSTANCE = new Company();
         return INSTANCE;
     }
-
     //================================================================================================================
     private Double companyEfficiency;
 
-    private Double companyProfit=0.0;
+    private Double companyProfit= 0.0;
 
-    private Double companyCosts=0.0;
+    private Double companyCosts= 0.0;
 
     private Double companyBudget = 0.0;
 
@@ -206,6 +195,13 @@ public class Company {
 
     //=================================================================================================================
 
+    /**
+     * TWORZENIE NOWEGO PRACOWNIKA W ODWOŁANIU DO KLASY WORKERENTITY, WYSYŁĄNIE OBIEKTU DO ZAPISU W BAZIE
+     * @param position
+     * @param salary
+     * @param efficiency
+     * @param group
+     */
     public void addEmployee(String position, Double salary, Double efficiency, String group) {
         WorkerDAO workerDAO = new WorkerDAO();
         workerDAO.saveWorker(new WorkerEntity(position, salary, efficiency, true, group));
@@ -220,7 +216,7 @@ public class Company {
         }
 
     }
-
+    //----------------------------------------------------------------------------
     private Double juniorProgrammerSalary = value.juniorProgrammerSalary();
     private Double regularProgrammerSalary = value.regularProgrammerSalary();
     private Double seniorProgrammerSalary = value.seniorProgrammerSalary();
@@ -228,54 +224,74 @@ public class Company {
     private Double marketerSalary = value.marketerSalary();
     private Double accountantSalary = value.accountantSalary();
     //----------------------------------------------------------------------------
+
+    /**
+     * STWORZENIE  PROGRAMISTÓW DANEJ KATEGORII W ZALEŻNOŚCI OD ILOŚCI ZADANEJ PRZEZ UŻYTKOWNIKA I PRZESŁANIE DO DODANIA W BAZIE
+     */
     public void createJuniorProgrammers() {
         for (int i = 0; i < getJuniorProgrammersNumber(); i++) {
             addEmployee("Junior Programmer", juniorProgrammerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-    //----------------------------------------------------------------------------
+
     public void createRegularProgrammers() {
         for (int i = 0; i < getRegularProgrammersNumber(); i++) {
             addEmployee("Regular Programmer", regularProgrammerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-    //----------------------------------------------------------------------------
+
     public void createSeniorProgrammers() {
         for (int i = 0; i < getSeniorProgrammersNumber(); i++) {
             addEmployee("Senior Programmer", seniorProgrammerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-    //----------------------------------------------------------------------------
+
     public void createAccountants() {
         for (int i = 0; i < getAccountantsNumber(); i++) {
             addEmployee("Ksiegowy", accountantSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-    //----------------------------------------------------------------------------
+
     public void createMarketers() {
         for (int i = 0; i < getMarketersNumber(); i++) {
             addEmployee("Marketer", marketerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-    //----------------------------------------------------------------------------
+
     public void createProjectManagers() {
         for (int i = 0; i < getProjectManagersNumber(); i++) {
             addEmployee("Project Manager", projectManagerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
     //----------------------------------------------------------------------------
+
+    /**
+     * OBLICZANIE NA PODSTAWIE ILOŚCI PRACOWNIKÓW ZADANYCH PRZEZ UŻYTKOWNIKA SUMY ICH PŁAC (MINIMALNA KWOTA ROZPOCZĘCIA SYMULACJI)
+     * @return
+     */
     public Double minimalCosts() {
         return juniorProgrammerSalary * getJuniorProgrammersNumber() + regularProgrammerSalary * getRegularProgrammersNumber()
                 + seniorProgrammerSalary * getSeniorProgrammersNumber() + accountantSalary * getAccountantsNumber() + marketerSalary * getMarketersNumber() + projectManagerSalary * getProjectManagersNumber();
     }
-    //----------------------------------------------------------------------------
+
 
     //----------------------------------------------------------------------------
+
+    /**
+     * SUMA WSZYSTKICH PRACOWNIKÓW
+     * @return
+     */
     public Integer allEmployees() {
         return getJuniorProgrammersNumber() + getRegularProgrammersNumber() + getSeniorProgrammersNumber() + getAccountantsNumber() + getMarketersNumber() + getProjectManagersNumber();
     }
 
-    private HashMap<String, List<Project>> projectsList = new HashMap<>(); // key = project, value = groupname
+    /**
+     * MAPOWANIE LISTY PROJEKTÓW ORAZ NAZWY GRUPY (KEY = PROJECT, VALUE = GROUPNAME)
+     */
+    private HashMap<String, List<Project>> projectsList = new HashMap<>();
+    /**
+     * MAPOWANIE NAZWY GRUPY ORAZ DOSTĘPNOŚCI
+     */
     private HashMap<String, Boolean> groupsAndAvailability = new HashMap<>();
     private boolean first = true;
     //----------------------------------------------------------------------------
@@ -291,6 +307,8 @@ public class Company {
         }
     }
     //----------------------------------------------------------------------------
+
+
     public void assignGroupsToProjects() {
         HashMap<String, Boolean> availableGroups = groupsAndAvailability.entrySet().stream().filter(x -> !x.getValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (prev, next) -> next, HashMap::new));
         HashMap<String, List<Project>> freeProjects = projectsList.entrySet().stream().filter(x -> x.getKey().equals("UNASSIGNED")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (prev, next) -> next, HashMap::new));
@@ -316,6 +334,11 @@ public class Company {
     //----------------------------------------------------------------------------
     HashMap<String, Double> groupEfficiency = new HashMap<>();
     //----------------------------------------------------------------------------
+
+    /**
+     * ZLICZENIE EFEKTYWNOŚCI GRUPY, BIERZĄCE ODEJMOWANIE WARTOŚCI OD CZASU WYKONANIA, ZAKOŃCZENIE GDY CZAS <= 0, DODANIE PROJEKTU DO ZREALIZOWANYCH, DODANIE PROFITU
+     * @throws InterruptedException
+     */
     public void realizeProjects() throws InterruptedException {
 
         groupEfficiency = new HashMap<>();
@@ -362,6 +385,11 @@ public class Company {
         }
     }
     //----------------------------------------------------------------------------
+
+    /**
+     * PRZYGOTOWANIE DO WYŚWIETLENIA W TABELI
+     * @return
+     */
     public List<Groups> displayProjectsWorkersAndGroupsInTable() {
         Rowgroups.clear();
         List<String> gps = new ArrayList<>();
@@ -369,9 +397,7 @@ public class Company {
             for (String key : groupsAndAvailability.keySet()) {
                 if (!gps.contains(key)) {
                     gps.add(key);
-
                 }
-
             }
                 try {
                     for (int i = 0; i < gps.size(); i++) {
@@ -391,7 +417,12 @@ public class Company {
         return projectsList.size() < (25 - (int) (Math.random() * 10));
     }
     //----------------------------------------------------------------------------
-    public void addProjects(int howMany) { // dodaje projekty i przypisuje go jako nieprzypisany do zadnej groupy
+
+    /**
+     * FUNKCJA DODAJE PROJEKT I PRZYPISUJE GO JAKO NIEPRZYPISANY DO ŻADNEJ GRUPY
+     * @param howMany
+     */
+    public void addProjects(int howMany) {
 
         for (int i = 0; i < howMany; i++) {
             Project projects = new Project();
@@ -413,10 +444,15 @@ public class Company {
 
     }
     //----------------------------------------------------------------------------
-    public void runProjectsManagerInDay() throws InterruptedException { // Wywoluje sie co jeden dzien, tworzy grupy jesli ich nie ma przypisuje grupy do pracownikow realizuje projekty i dodaje jesli ich wartosc spadla ponizej
+
+    /**
+     * FUNKCJA WYWOYWANA CO JEDEN DZIEŃ, TWORZY GRUPY JEŚLI ICH NIE MA PRZYPISUJE GRUPY DO PRACOWNIKÓW, REALIZUJE PROJEKTY I DODAJE JEŚLI ICH WARTOŚĆ SPADŁA PONIŻEJ
+     * @throws InterruptedException
+     */
+    public void runProjectsManagerInDay() throws InterruptedException {
         if (first) {
             addProjects((int) (Math.random() * 10) + orderAtOnce + 1);
-            createGroups(getOrderAtOnce()); //Later change from creation to fetching from database but first it has to be saved into db and currently it isn't
+            createGroups(getOrderAtOnce());
             assignGroupsToWorkers();
             assignGroupsToProjects();
             first = false;
@@ -437,7 +473,10 @@ public class Company {
         return companyProfit+companyBudget;
     }
 
-    // dodawanie wszystkich pensji pracowników
+    /**
+     * DODAWANEI PENSJI WSZYSTKICH PRACOWNIKÓW
+     * @return
+     */
     public Double costsOfEmployees(){
         Double allSalaries =0.0;
         Double allSalaryTaxes = 0.0;
@@ -445,12 +484,10 @@ public class Company {
             allSalaries += workerEntities.get(i).getSalary();
             // składki: EMERYTALNE, RENTOWE, WYPADKOWE, FUNDUSZ PRACY, FGŚP
             allSalaryTaxes += (workerEntities.get(i).getSalary()*0.0976)+(workerEntities.get(i).getSalary()*0.065)+(workerEntities.get(i).getSalary()*0.0167)+(workerEntities.get(i).getSalary()*0.0245)+(workerEntities.get(i).getSalary()*0.001);
-
         }
         System.out.println("all salaries : "+allSalaries);
         return allSalaries+allSalaryTaxes;
     }
-
 
 
 }

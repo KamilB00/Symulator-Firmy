@@ -38,12 +38,7 @@ public  class FormController {
     @FXML
     private ComboBox<String> comboboxForm1;
     ObservableList<String> list = FXCollections.observableArrayList("Kredyt","Własne środki","Venture Capitals","Inwestor");
-    @FXML
-    private Button startSimulationButton;
-    @FXML
-    private Button presentationButton;
-    @FXML
-    private Button buttonForm1;
+
     @FXML
     private Slider sliderFormTime;
     @FXML
@@ -140,7 +135,11 @@ public  class FormController {
 
     //================================================================================================================
 
-
+    /**
+     * INICJALIZACJA ELEMENTÓW PODCZAS WŁĄCZENIA
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void initialize() throws SQLException, ClassNotFoundException {
         workerDAO.refreshDB();
@@ -170,6 +169,11 @@ public  class FormController {
 
     }
     //================================================================================================================
+
+    /**
+     * WYŚWITLENIE OKNA FORMULARZA KREDYTU
+     * @throws IOException
+     */
     @FXML
     public void addSceneCredit()throws IOException{
         Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Credit.fxml"));
@@ -181,6 +185,11 @@ public  class FormController {
         window.setScene(scene2);
         window.show();
     }
+
+    /**
+     * WYŚWIETLENIE OKNA FORMULARZA WŁASNEGO KAPITAŁU
+     * @throws IOException
+     */
     @FXML
     public void addSceneOwnCapital()throws IOException{
         Parent view2 = FXMLLoader.load(getClass().getResource("/gui/OwnCapital.fxml"));
@@ -192,6 +201,11 @@ public  class FormController {
         window.setScene(scene2);
         window.show();
     }
+
+    /**
+     * WYŚWIETLENIE OKNA FORMULARZA INWESTORA
+     * @throws IOException
+     */
     @FXML
     public void addSceneInvestor()throws IOException{
         Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Investor.fxml"));
@@ -203,6 +217,11 @@ public  class FormController {
         window.setScene(scene2);
         window.show();
     }
+
+    /**
+     * WYŚWIETLENIE OKNA FORMULARZA VENTURE CAPITALS
+     * @throws IOException
+     */
     @FXML
     public void addSceneVC()throws IOException{
         Parent view2 = FXMLLoader.load(getClass().getResource("/gui/VC.fxml"));
@@ -213,6 +232,14 @@ public  class FormController {
         window.setScene(scene2);
         window.show();
     }
+
+    /**
+     * ZMIANA KONA NA OKNO GŁÓWNE
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void switchStageStart(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         if((comboboxForm1.getValue()!= null)&&(bank.getAmount()!=0||investor.getOfferedAmount()!=0||ownCapital.getAmount()!=0||vc.getAmount()!=0) ) {
@@ -236,7 +263,10 @@ public  class FormController {
 
 //================================================================================================================
 
-public void sliderTime(){
+    /**
+     * NADAWANIE WARTOŚĆI DO ZMIENNYCH ZE SLIDERAÓW
+     */
+    public void sliderTime(){
     Double sT = getSliderFormTime().getValue();
     SimulationClock simulationClock = SimulationClock.getInstance();
     simulationClock.setYears(sT.intValue());
@@ -293,6 +323,11 @@ public void sliderTime(){
     }
 
     //================================================================================================================
+
+    /**
+     * ZATWIERDZENIE WARUNKÓW UMOWY, GDY WIEBIERANAN NOWA UMOWA RESETOWANIE WARTOŚĆI W INNYCH UMOWACH
+     * @throws IOException
+     */
     @FXML
     public void confirmation() throws IOException {
         if (comboboxForm1.getValue() == null) {
@@ -331,6 +366,12 @@ public void sliderTime(){
         ownCapital.setAmount(0.0);
     }
 
+    /**
+     * TWORZENIE PRACOWNIKÓW ORAZ PRZYPISANIE DO BAZY DANYCH
+     * @throws IOException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @FXML
     public void setData() throws IOException, SQLException, ClassNotFoundException {
     company.createJuniorProgrammers();
@@ -339,8 +380,12 @@ public void sliderTime(){
     company.createAccountants();
     company.createMarketers();
     company.createProjectManagers();
-    workerDAO.showDB();
+
     }
+
+    /**
+     * FUNKCJE ODPOWIEDZIALNE ZA POWIEDOMIENIA
+     */
     public void confirmNotification(){
         Notifications notificationbuilder = Notifications.create()
                 .title("Błąd")

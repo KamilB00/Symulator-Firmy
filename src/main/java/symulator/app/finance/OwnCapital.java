@@ -4,6 +4,10 @@ import symulator.app.company.Company;
 
 public class OwnCapital {
 
+    //----------------------------------------------------------------------------------------------------------------
+    /**
+     * SINGLETON DLA KLASY OWNCAPITAL
+     */
     private static OwnCapital instance = null;
     private OwnCapital(){}
     public static OwnCapital getInstance(){
@@ -11,6 +15,7 @@ public class OwnCapital {
             instance = new OwnCapital();
         return instance;
     }
+    //----------------------------------------------------------------------------------------------------------------
 Company company = Company.getInstance();
     private Double amount;
 

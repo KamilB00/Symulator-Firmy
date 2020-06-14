@@ -26,13 +26,20 @@ public class OwnCapitalController {
     @FXML
     private Button buttonOwnCapital2;
 
-
+    /**
+     * POWRÓT DO FORMULARZA GŁÓWNEGO
+     * @param mouseEvent
+     * @throws IOException
+     */
     @FXML
     public void backToForm(MouseEvent mouseEvent) throws IOException {
         Stage stage = (Stage) buttonOwnCapital1.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * ZATWIERDZENIE KWOTY WŁASNEGO KAPITAŁU
+     */
     @FXML
     public void confirmOwnCapital() {
         if (validate(textfieldOwnCapital1.getText())) {
@@ -67,6 +74,11 @@ public class OwnCapitalController {
         }
     }
 
+    /**
+     * WALIDACJA WPISAEJ WARTOŚCI
+     * @param str
+     * @return
+     */
     public boolean validate (String str){
         String regex = "\\d+";
         return str.matches(regex);

@@ -7,7 +7,10 @@ public class VC {
     private Double amount;
     private Double shares;
 
-
+    //----------------------------------------------------------------------------------------------------------------
+    /**
+     * SINGLETON DLA KLASY VC
+     */
     private static VC instance = null;
     private VC(){}
     public static VC getInstance(){
@@ -15,7 +18,7 @@ public class VC {
             instance = new VC();
         return instance;
     }
-
+    //----------------------------------------------------------------------------------------------------------------
 Company company = Company.getInstance();
     public void setAmount(Double amount) {
 

@@ -6,11 +6,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+/**
+ * KALSA ODPOWIADAJĄCA ZA CZAS W SYMULACJI
+ */
 public class SimulationClock {
-
+    //-------------------------------------------------------------------------------------------------------
+    /**
+     * SINGLETON DLA KLASY SIMULATIONCLOCK
+     */
     private Integer simulationYears = 1;
-
-
 
     private static SimulationClock instance = null;
 
@@ -19,6 +23,7 @@ public class SimulationClock {
             instance = new SimulationClock();
         return instance;
     }
+    //-------------------------------------------------------------------------------------------------------
     public void setYears(Integer years) {
         this.simulationYears = years;
         System.out.println("set years -->"+ getYears());
@@ -60,6 +65,11 @@ public class SimulationClock {
        return days;
     }
 
+    /**
+     * FUKCJA ODPOWIEDZIALNA ZA UPDATE CZASU
+     * @param tick
+     * @return
+     */
     public Date timeUpdate(int tick){
         Calendar calendarUpdate = new GregorianCalendar();
         Calendar calendarCurrent = new GregorianCalendar();
@@ -77,6 +87,12 @@ public class SimulationClock {
 
         return calendarUpdate.getTime();
     }
+
+    /**
+     * FUNKCJA ODPOWIEDZIALNA ZA FORMAT CZASU
+     * @param calendar
+     * @return
+     */
     public String timeFormat(Date calendar){
         DateFormat df = new SimpleDateFormat("dd  MM  yyyy");
 

@@ -11,8 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "worker")
+/**
+ * Klasa odpowiedzialna za tworzenie obiektów (pracownicy), pola tabeli w bazie
+ */
 public class WorkerEntity {
     private static final long serialVersionUID = 1L;
+
+
     public WorkerEntity(){
 
     }
@@ -52,28 +57,13 @@ public class WorkerEntity {
     public int getId() {
         return id;
     }
-    public void setPosition(String position) {
-        this.position = position;
-    }
-    public String getPosition() {
-        return position;
-    }
-
 
     public double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
     public double getEfficiency() {
         return efficiency;
-    }
-
-    public void setEfficiency(double efficiency) {
-        this.efficiency = efficiency;
     }
 
     public String getGrp() {
@@ -84,11 +74,5 @@ public class WorkerEntity {
         this.grp = grp;
     }
 
-    public boolean isAvailability() {
-        return availability;
-    }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
-    }
 }

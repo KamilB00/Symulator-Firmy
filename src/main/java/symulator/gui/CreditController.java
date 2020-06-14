@@ -30,19 +30,6 @@ public class CreditController {
     @FXML
     private TextField textfieldPredictions;
 
-    public void setTextfieldAmount(TextField textfieldAmount) {
-        this.textfieldAmount = textfieldAmount;
-    }
-    public void setTextfieldInstalments(TextField textfieldInstalments) {
-        this.textfieldInstalments = textfieldInstalments;
-    }
-    public void setTextfieldPercentage(TextField textfieldPercentage) {
-        this.textfieldPercentage = textfieldPercentage;
-    }
-    public void setTextfieldPredictions(TextField textfieldPredictions) {
-        this.textfieldPredictions = textfieldPredictions;
-    }
-
     @FXML
     private Button buttonCredit1;
     @FXML
@@ -57,9 +44,11 @@ public class CreditController {
         textfieldPredictions.setText(company.minimalCosts().toString());
     }
 
+    /**
+     * FUNKJCA POWROTU DO FORMULARZA GŁÓWNEGO
+     */
     @FXML
     public void backToForm() {
-
         Stage stage = (Stage) buttonCredit1 .getScene().getWindow();
         stage.close();
     }
@@ -68,7 +57,7 @@ public class CreditController {
      */
     @FXML
     public void confirmCreditConditions() {
-        Image imageTick = new Image("icons/sign-check-icon.png");
+
             Bank bank = Bank.getInstance();
         if(validate(textfieldAmount.getText())){
             if(validate(textfieldInstalments.getText())){
@@ -84,7 +73,7 @@ public class CreditController {
 
                     Notifications notificationbuilder = Notifications.create()
                             .text("Zatwierdzono warunki")
-                            .graphic(new ImageView(imageTick))
+                            .graphic(null)
                             .hideAfter(Duration.seconds(5))
                             .position(Pos.TOP_RIGHT);
                     notificationbuilder.darkStyle();

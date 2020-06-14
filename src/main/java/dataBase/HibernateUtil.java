@@ -8,6 +8,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+/**
+ * Klasa odpowiedzialna za połączenie się bazą
+ */
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory;

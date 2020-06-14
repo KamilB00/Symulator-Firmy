@@ -29,7 +29,6 @@ public class Project implements Cloneable {
 
     //----------------------------------------------------------------------------------------------------------------
 
-
     public Project(Double price, Integer levelOfDifficulty, Double projectTime, String orderName) {
         this.price = price;
         this.levelOfDifficulty = levelOfDifficulty;
@@ -40,6 +39,11 @@ public class Project implements Cloneable {
     public Project() {
     }
 
+    /**
+     * DANE POJEDYŃCZEGO ZLECENIA
+     * @return
+     * @throws CloneNotSupportedException
+     */
     @Override
     protected Object clone() throws CloneNotSupportedException {
         Project project = new Project(this.price,this.levelOfDifficulty,this.projectTime,this.orderName);
