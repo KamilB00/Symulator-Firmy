@@ -436,7 +436,7 @@ public class Company {
     public Double dispalyAmount(){
         return companyProfit+companyBudget;
     }
-    //----------------------------------------------------------------------------
+
     // dodawanie wszystkich pensji pracowników
     public Double costsOfEmployees(){
         Double allSalaries =0.0;
@@ -450,6 +450,7 @@ public class Company {
         System.out.println("all salaries : "+allSalaries);
         return allSalaries+allSalaryTaxes;
     }
+
 
 
 }

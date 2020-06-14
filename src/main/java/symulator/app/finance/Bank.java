@@ -8,7 +8,15 @@ public class Bank {
     private Double interest = 0.0;
     private Integer installments;
     private Double returnAmount = 0.0;
+    private Double percent;
 
+    public Double getPercent() {
+        return percent;
+    }
+
+    public void setPercent(Double percent) {
+        this.percent = percent;
+    }
 
     private static Bank instance = null;
     private Bank(){}
@@ -17,24 +25,15 @@ public class Bank {
             instance = new Bank();
         return instance;
     }
-    Randomise randomise = Randomise.getInstance();
 
-    /**
-     *Kwota do zwrotu
-     */
+
     public void countReturnAmount(){
-               returnAmount=(amount*(1+ (randomise.generateBankPercentage()/100)));
+               returnAmount=(amount*(1+(getPercent()/100)));
         setReturnAmount(returnAmount);
 
     }
     public Double countInstallmentPrice(){
-        return getAmount()/getInstallments();
-    }
-
-
-
-    public Double percent(){
-        return (((returnAmount/amount)-1)*100);
+        return getReturnAmount() /getInstallments();
     }
 
 

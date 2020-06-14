@@ -26,6 +26,7 @@ import symulator.app.finance.Investor;
 import symulator.app.finance.OwnCapital;
 import symulator.app.finance.VC;
 import symulator.app.person.Worker;
+import symulator.simulation.CSVHandler;
 import symulator.simulation.SimulationClock;
 import java.io.IOException;
 import java.net.URL;
@@ -45,14 +46,12 @@ public   class  SimulationController implements Initializable {
         AccountOffice office = new AccountOffice();
         DecimalFormat df = new DecimalFormat("###,###.###");
         DecimalFormat df2 = new DecimalFormat("#");
+        CSVHandler csvHandler = new CSVHandler();
+        private static final String CSV_FILE_PATH
+                = "./result.csv";
         @FXML
         private AnchorPane simulationPane;
 
-        @FXML
-        private TextField kTextField12;
-
-        @FXML
-        private TextField kTextField3;
 
         @FXML
         private TextField fTextField10;
@@ -73,9 +72,6 @@ public   class  SimulationController implements Initializable {
         private ProgressBar progressBarSim4;
 
         @FXML
-        private TextField fTextField0;
-
-        @FXML
         private TextField bTextField0;
 
         @FXML
@@ -84,20 +80,6 @@ public   class  SimulationController implements Initializable {
         @FXML
         private TextField kTextField0;
 
-        @FXML
-        private TextField gTextField0;
-
-        @FXML
-        private TextField fTextField1;
-
-        @FXML
-        private TextField fTextField2;
-
-        @FXML
-        private TextField fTextField3;
-
-        @FXML
-        private TextField fTextField4;
 
         @FXML
         private TextField fTextField6;
@@ -121,12 +103,6 @@ public   class  SimulationController implements Initializable {
         private TextField fTextField12;
 
         @FXML
-        private TextField fTextField11;
-
-        @FXML
-        private Label fLabel2;
-
-        @FXML
         private Label fLabel1;
 
         @FXML
@@ -145,9 +121,6 @@ public   class  SimulationController implements Initializable {
         private TextField bTextField5;
 
         @FXML
-        private TextField bTextField6;
-
-        @FXML
         private TextField bTextField7;
 
         @FXML
@@ -163,9 +136,6 @@ public   class  SimulationController implements Initializable {
         private TextField bTextField12;
 
         @FXML
-        private TextField bTextField13;
-
-        @FXML
         private Label bLabel1;
 
         @FXML
@@ -175,31 +145,14 @@ public   class  SimulationController implements Initializable {
         private Label bLabel4;
 
         @FXML
-        private Label bLabel5;
-
-        @FXML
         private Label bLabel2;
 
         @FXML
         private TextField kTextField1;
 
-        @FXML
-        private PieChart sPieChart;
-
-        @FXML
-        private LineChart<?, ?> sLineChart;
-
-        @FXML
-        private LineChart<?, ?> gLineChart;
-
-        @FXML
-        private TextField kTextField2;
 
         @FXML
         private TextField kTextField5;
-
-        @FXML
-        private TextField kTextField6;
 
         @FXML
         private TextField kTextField7;
@@ -232,34 +185,13 @@ public   class  SimulationController implements Initializable {
         private TextField kTextField10;
 
         @FXML
-        private TextField kTextField11;
-
-        @FXML
         private Label kLabel1;
-
-        @FXML
-        private Label kLabel2;
-
-        @FXML
-        private Label kLabel3;
-
-        @FXML
-        private TextField kTextField13;
-
-        @FXML
-        private Label kLabel4;
 
         @FXML
         private TextField kTextField15;
 
         @FXML
         private Label kLabel5;
-
-        @FXML
-        private TextField kTextField4;
-
-        @FXML
-        private TextField fTextField5;
 
         @FXML
         private TextField fTextField00;
@@ -270,8 +202,6 @@ public   class  SimulationController implements Initializable {
         @FXML
         private Separator mainSeparator;
 
-        @FXML
-        private JFXButton finalDataButton;
         // clock---------------------------
         @FXML
         private TextField textfieldDate;
@@ -319,14 +249,17 @@ public   class  SimulationController implements Initializable {
                                                 company.setCompanyCosts(company.getCompanyCosts()+company.costsOfEmployees());
 
                                         if(company.dispalyAmount()>0){
+
                                                 if(bank.getReturnAmount()>0){
                                                         company.setCompanyBudget(company.getCompanyBudget()-bank.countInstallmentPrice());
-                                                        bank.setReturnAmount(bank.getReturnAmount()-bank.countInstallmentPrice() + bank.getInterest());
-                                                        bank.setInstallments(bank.getInstallments()-1);
+                                                        bank.setReturnAmount(bank.getReturnAmount() + bank.getInterest()-bank.countInstallmentPrice());
+                                                        if(bank.getInstallments()>0) {
+                                                                bank.setInstallments(bank.getInstallments() - 1);
+                                                        }else
+                                                                bank.setInstallments(0);
                                                         if(bank.getInterest()>0){
                                                                 bank.setInterest(0.0);
                                                         }
-
                                                 }
                                                 else if(bank.getReturnAmount()<=0){
                                                         bank.setReturnAmount(0.0);
@@ -336,8 +269,14 @@ public   class  SimulationController implements Initializable {
                                         else if (company.dispalyAmount()<0){
                                                 bank.setInterest(bank.getInterest()+bank.countInterest());
                                         }
-
+                                        office.setOdliczonyVat(office.getOdliczonyVat()+(office.equipmentVatTax()*company.workerEntities.size()));
+                                                office.setVat(office.getVat()+(company.getCompanyProfit()*23)/123);
                                         }
+                                        if(i%360 == 0){
+                                                office.setVat(0.0);
+                                                office.setOdliczonyVat(0.0);
+                                        }
+
                                         int finalI = i;
                                         Double income = company.dailyIncome()/i;
                                         Platform.runLater(new Runnable() {
@@ -367,6 +306,10 @@ public   class  SimulationController implements Initializable {
                                                         kTextField17.setText(df.format(company.getCompanyProfit()));
                                                         //bilans
                                                         kTextField18.setText(df.format(company.getCompanyProfit() - company.getCompanyCosts()));
+                                                        //odliczony Vat
+                                                        kTextField15.setText(df.format(office.getOdliczonyVat()));
+                                                        //vat z projektów
+                                                        kTextField10.setText(df2.format(office.getVat()));
                                                         updateTable();
                                                         try {
                                                                 company.runProjectsManagerInDay();
@@ -383,9 +326,8 @@ public   class  SimulationController implements Initializable {
                                         if (isCancelled()) {
                                                 return i;
                                         }
-
                                 }
-
+                        csvHandler.writeDataLineByLine(CSV_FILE_PATH);
                         } catch (Exception e) {
                                 System.out.println(e);
                         }
@@ -481,7 +423,7 @@ pieChart.setStartAngle(90);
                         bTextField7.setText(bank.getAmount().toString());
                         bTextField11.setText(bank.getInstallments().toString());
                         bTextField9.setText(bank.getReturnAmount().toString());
-                        bTextField8.setText(df.format(bank.percent()));
+                        bTextField8.setText(df.format(bank.getPercent()));
                         bTextField12.setText(bank.getInterest().toString());
                 }
                 else if((investor.getOfferedAmount()!= 0)){

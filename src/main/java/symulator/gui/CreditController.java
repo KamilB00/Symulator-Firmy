@@ -20,7 +20,7 @@ import symulator.simulation.Randomise;
 public class CreditController {
     Randomise randomise = Randomise.getInstance();
     Company company = Company.getInstance();
-
+    Bank bank = Bank.getInstance();
     @FXML
     private TextField textfieldAmount;
     @FXML
@@ -50,8 +50,8 @@ public class CreditController {
 
     @FXML
     public void initialize() {
-        double percentage = randomise.generateBankPercentage()*100;
-
+        double percentage = randomise.generateBankPercentage();
+    bank.setPercent(percentage);
 
         textfieldPercentage.setText(Double.toString( Math.round(percentage)));
         textfieldPredictions.setText(company.minimalCosts().toString());
