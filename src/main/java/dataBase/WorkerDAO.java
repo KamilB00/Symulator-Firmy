@@ -36,7 +36,7 @@ public class WorkerDAO {
         ResultSet rs = statement.executeQuery("select * from worker");
         ArrayList<WorkerEntity> workersList = new ArrayList<>();
         while (rs.next()) {
-            WorkerEntity worker = new WorkerEntity(rs.getString("POSITION"),rs.getDouble("SALARY"),rs.getDouble("EFFICIENCY"), rs.getBoolean("AVAILABILITY") );
+            WorkerEntity worker = new WorkerEntity(rs.getString("POSITION"),rs.getDouble("SALARY"),rs.getDouble("EFFICIENCY"), rs.getBoolean("AVAILABILITY"), rs.getString("GRP"));
             worker.setId(rs.getInt("ID"));
             workersList.add(worker);
         }
@@ -58,6 +58,24 @@ public class WorkerDAO {
         }
 
     }
+    public void refreshDB() throws ClassNotFoundException, SQLException {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/simulationDataBase?serverTimezone=UTC";
+        String username = "admin";
+        String password = "pass";
+        String sql = "delete from worker";
+
+        try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password);
+             Statement stmt = conn.createStatement();) {
+
+            stmt.executeUpdate(sql);
+            System.out.println("Record deleted successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
-}
+    }
+
+
+

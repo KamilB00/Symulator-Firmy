@@ -17,10 +17,12 @@ public class WorkerEntity {
 
     }
 
-    public WorkerEntity(String position, double salary, double efficiency, boolean availability) {
+    public WorkerEntity(String position, double salary, double efficiency, boolean availability, String grp) {
         this.position=position;
         this.salary=salary;
         this.efficiency=efficiency;
+        this.availability = availability;
+        this.grp = grp;
     }
 
     @Id

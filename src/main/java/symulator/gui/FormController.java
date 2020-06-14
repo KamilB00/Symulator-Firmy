@@ -142,9 +142,8 @@ public  class FormController {
 
 
     @FXML
-    public void initialize()
-    {
-
+    public void initialize() throws SQLException, ClassNotFoundException {
+        workerDAO.refreshDB();
         simulationController = new SimulationController();
         comboboxForm1.setItems(list);
 
@@ -216,15 +215,19 @@ public  class FormController {
     }
     @FXML
     public void switchStageStart(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
-        if((comboboxForm1.getValue()!= null)&&(bank.getAmount()!=0||investor.getOfferedAmount()!=0||ownCapital.getAmount()!=0||vc.getAmount()!=0) ){
-            Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Simulation.fxml"));
-            Scene scene2 = new Scene(view2);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(scene2);
-            window.show();
-            setData();
-        }
-        else {
+        if((comboboxForm1.getValue()!= null)&&(bank.getAmount()!=0||investor.getOfferedAmount()!=0||ownCapital.getAmount()!=0||vc.getAmount()!=0) ) {
+            if (company.getJuniorProgrammersNumber() + company.getRegularProgrammersNumber() + company.getSeniorProgrammersNumber() > company.getOrderAtOnce()) {
+
+                Parent view2 = FXMLLoader.load(getClass().getResource("/gui/Simulation.fxml"));
+                Scene scene2 = new Scene(view2);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(scene2);
+                window.show();
+                setData();
+            } else{
+                numberOfGroupsNotification();
+            }
+        }else {
             confirmNotification();
         }
 
@@ -351,12 +354,22 @@ public void sliderTime(){
     public void chooseConditions(){
         Notifications notificationbuilder = Notifications.create()
                 .title("Błąd")
-                .text("Wybierz rodzaj umowy")
+                .text("Sprawdź i zatwierdź warunki umowy")
                 .graphic(null)
                 .hideAfter(Duration.seconds(5))
                 .position(Pos.TOP_RIGHT);
         notificationbuilder.darkStyle();
         notificationbuilder.showWarning();
+    }
+    public void numberOfGroupsNotification(){
+        Notifications notificationbuilder = Notifications.create()
+                .title("Błąd")
+                .text("Aby pracować nad tyloma projektami potrzebujesz więcej programistów")
+                .graphic(null)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT);
+        notificationbuilder.darkStyle();
+        notificationbuilder.showError();
     }
 
 }

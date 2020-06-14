@@ -29,7 +29,6 @@ Company company = Company.getInstance();
     }
 
     public void setShares(Double shares) {
-
         this.shares = shares;
         System.out.println("VC ustawiono shares --> "+ shares);
     }

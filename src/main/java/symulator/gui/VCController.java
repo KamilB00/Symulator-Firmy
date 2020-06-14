@@ -38,7 +38,7 @@ public class VCController {
         String amount =  textfieldVC1.getText();
         vc.setAmount(Double.parseDouble(amount));
         String shares = textfieldVC2.getText();
-        Double sharesD = Double.parseDouble(shares)/100;
+        Double sharesD = Double.parseDouble(shares);
         vc.setShares(sharesD);
         Stage stage = (Stage) buttonVC2 .getScene().getWindow();
         stage.close();

@@ -67,7 +67,7 @@ private static Randomise INSTANCE = null;
     public Double generateBankPercentage(){
         Random rand = new Random();
         Double number = rand.nextInt(10)+1.0;
-        return (number.doubleValue())/100;
+        return (number.doubleValue());
     }
 
     public Integer randomInvestorTime() {
@@ -101,13 +101,13 @@ private static Randomise INSTANCE = null;
         double price = 0;
         switch(level){
             case 1:
-                price = random.nextInt(40000)+20000.0;
+                price = random.nextInt(80000)+20000.0;
                 break;
             case 2:
-                price = random.nextInt(50000)+50000.0;
+                price = random.nextInt(500000)+500000.0;
                 break;
             case 3:
-                price = random.nextInt(400000)+100000.0;
+                price = random.nextInt(1200000)+1000000.0;
                 break;
             default:
                 System.out.println("Can not assess order price");

@@ -7,7 +7,8 @@ public class Bank {
     private Double amount;
     private Double interest = 0.0;
     private Integer installments;
-    private Double returnAmount;
+    private Double returnAmount = 0.0;
+
 
     private static Bank instance = null;
     private Bank(){}
@@ -22,17 +23,20 @@ public class Bank {
      *Kwota do zwrotu
      */
     public void countReturnAmount(){
-               returnAmount=(amount*(1+randomise.generateBankPercentage()));
+               returnAmount=(amount*(1+ (randomise.generateBankPercentage()/100)));
         setReturnAmount(returnAmount);
 
     }
-    /**
-     *Procent kredytu
-     */
-    public Double percent(){
-        Double percent = getReturnAmount()/getAmount();
-        return percent;
+    public Double countInstallmentPrice(){
+        return getAmount()/getInstallments();
     }
+
+
+
+    public Double percent(){
+        return (((returnAmount/amount)-1)*100);
+    }
+
 
     public Double countInterest(){
         return getAmount()*0.05;

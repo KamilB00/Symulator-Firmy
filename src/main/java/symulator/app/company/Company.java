@@ -1,20 +1,17 @@
 package symulator.app.company;
 
 
-import com.mysql.cj.result.Row;
+
 import dataBase.WorkerDAO;
 import dataBase.WorkerEntity;
-import org.hibernate.jdbc.Work;
-import symulator.app.finance.Bank;
-import symulator.app.finance.Investor;
-import symulator.app.finance.OwnCapital;
-import symulator.app.finance.VC;
-import symulator.app.person.Worker;
+
+import symulator.app.accountOffice.AccountOffice;
 import symulator.gui.Groups;
 import symulator.simulation.Randomise;
 import symulator.simulation.SimulationClock;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,9 +21,9 @@ public class Company {
     SimulationClock simulationClock = SimulationClock.getInstance();
     WorkerDAO workerDAO = new WorkerDAO();
 
-
+    public List<WorkerEntity> workerEntities;
     private List<Groups> Rowgroups = new ArrayList<>();
-    List<WorkerEntity> workerEntities;
+
     //================================================================================================================
     private static Company INSTANCE = null;
 
@@ -42,7 +39,7 @@ public class Company {
         try {
             workerEntities = workerDAO.getAllWorkers();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("BARDZO WAZNE BARDZO WAZNE WORKER ENTITIES");
         }
     }
 
@@ -55,11 +52,11 @@ public class Company {
     //================================================================================================================
     private Double companyEfficiency;
 
-    private Double companyProfit;
+    private Double companyProfit=0.0;
 
-    private Double companyCosts;
+    private Double companyCosts=0.0;
 
-    private Double companyBudget;
+    private Double companyBudget = 0.0;
 
     private Integer realisedOrders;
 
@@ -87,8 +84,8 @@ public class Company {
 
     //================================================================================================================
 
-
     public void setCompanyBudget(Double companyBudget) {
+
         this.companyBudget = companyBudget;
         System.out.println("company budget set --> " + getCompanyBudget());
     }
@@ -154,15 +151,15 @@ public class Company {
     }
     //================================================================================================================
 
-    public double getCompanyCosts() {
+    public Double getCompanyCosts() {
         return companyCosts;
     }
 
-    public double getCompanyEfficiency() {
+    public Double getCompanyEfficiency() {
         return companyEfficiency;
     }
 
-    public double getCompanyProfit() {
+    public Double getCompanyProfit() {
         return companyProfit;
     }
 
@@ -209,9 +206,19 @@ public class Company {
 
     //=================================================================================================================
 
-    public static void addEmployee(String position, Double salary, Double efficiency) {
+    public void addEmployee(String position, Double salary, Double efficiency, String group) {
         WorkerDAO workerDAO = new WorkerDAO();
-        workerDAO.saveWorker(new WorkerEntity(position, salary, efficiency, true));
+        workerDAO.saveWorker(new WorkerEntity(position, salary, efficiency, true, group));
+        try{
+        try {
+            workerEntities = workerDAO.getAllWorkers();
+        }catch(SQLException e){
+            System.out.println("SQL ex" + e);
+        }}catch(ClassNotFoundException c){
+            System.out.println("SQL ex" + c);
+
+        }
+
     }
 
     private Double juniorProgrammerSalary = value.juniorProgrammerSalary();
@@ -220,56 +227,50 @@ public class Company {
     private Double projectManagerSalary = value.projectManagerSalary();
     private Double marketerSalary = value.marketerSalary();
     private Double accountantSalary = value.accountantSalary();
-
+    //----------------------------------------------------------------------------
     public void createJuniorProgrammers() {
         for (int i = 0; i < getJuniorProgrammersNumber(); i++) {
-            addEmployee("Junior Programmer", juniorProgrammerSalary, value.efficiencyRate());
+            addEmployee("Junior Programmer", juniorProgrammerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-
+    //----------------------------------------------------------------------------
     public void createRegularProgrammers() {
         for (int i = 0; i < getRegularProgrammersNumber(); i++) {
-            addEmployee("Regular Programmer", regularProgrammerSalary, value.efficiencyRate());
+            addEmployee("Regular Programmer", regularProgrammerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-
+    //----------------------------------------------------------------------------
     public void createSeniorProgrammers() {
         for (int i = 0; i < getSeniorProgrammersNumber(); i++) {
-            addEmployee("Senior Programmer", seniorProgrammerSalary, value.efficiencyRate());
+            addEmployee("Senior Programmer", seniorProgrammerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-
+    //----------------------------------------------------------------------------
     public void createAccountants() {
         for (int i = 0; i < getAccountantsNumber(); i++) {
-            addEmployee("Ksiegowy", accountantSalary, value.efficiencyRate());
+            addEmployee("Ksiegowy", accountantSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-
+    //----------------------------------------------------------------------------
     public void createMarketers() {
         for (int i = 0; i < getMarketersNumber(); i++) {
-            addEmployee("Marketer", marketerSalary, value.efficiencyRate());
+            addEmployee("Marketer", marketerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-
+    //----------------------------------------------------------------------------
     public void createProjectManagers() {
         for (int i = 0; i < getProjectManagersNumber(); i++) {
-            addEmployee("Project Manager", projectManagerSalary, value.efficiencyRate());
+            addEmployee("Project Manager", projectManagerSalary, value.efficiencyRate(),"grupa 0");
         }
     }
-
+    //----------------------------------------------------------------------------
     public Double minimalCosts() {
         return juniorProgrammerSalary * getJuniorProgrammersNumber() + regularProgrammerSalary * getRegularProgrammersNumber()
                 + seniorProgrammerSalary * getSeniorProgrammersNumber() + accountantSalary * getAccountantsNumber() + marketerSalary * getMarketersNumber() + projectManagerSalary * getProjectManagersNumber();
     }
+    //----------------------------------------------------------------------------
 
-    public Double costsOfEquipment() {
-        double computerEquipment = 3500.0;
-        double desk = 1500.0;
-        double chair = 700.0;
-        double softwareLicence = 1000.0;
-        return computerEquipment + desk + chair + softwareLicence;
-    }
-
+    //----------------------------------------------------------------------------
     public Integer allEmployees() {
         return getJuniorProgrammersNumber() + getRegularProgrammersNumber() + getSeniorProgrammersNumber() + getAccountantsNumber() + getMarketersNumber() + getProjectManagersNumber();
     }
@@ -277,20 +278,19 @@ public class Company {
     private HashMap<String, List<Project>> projectsList = new HashMap<>(); // key = project, value = groupname
     private HashMap<String, Boolean> groupsAndAvailability = new HashMap<>();
     private boolean first = true;
-
+    //----------------------------------------------------------------------------
     public void createGroups(int howMany) {
         for (int i = 0; i < howMany; i++) {
             groupsAndAvailability.put("group " + i, false); // isBusy = false
         }
-
     }
-
+    //----------------------------------------------------------------------------
     public void assignGroupsToWorkers() {
         for (int i = 0; i < workerEntities.size(); i++) {
             workerEntities.get(i).setGrp((String) groupsAndAvailability.keySet().toArray()[(int) (Math.random() * groupsAndAvailability.size())]);
         }
     }
-
+    //----------------------------------------------------------------------------
     public void assignGroupsToProjects() {
         HashMap<String, Boolean> availableGroups = groupsAndAvailability.entrySet().stream().filter(x -> !x.getValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (prev, next) -> next, HashMap::new));
         HashMap<String, List<Project>> freeProjects = projectsList.entrySet().stream().filter(x -> x.getKey().equals("UNASSIGNED")).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (prev, next) -> next, HashMap::new));
@@ -298,7 +298,6 @@ public class Company {
         getProjects.addAll(freeProjects.get("UNASSIGNED"));
 
         for (Map.Entry<String, Boolean> availableGroupsEntry : availableGroups.entrySet()) {
-
 
             groupsAndAvailability.replace(availableGroupsEntry.getKey(), true);
             try {
@@ -311,18 +310,17 @@ public class Company {
             } catch (NullPointerException e) {
                 System.out.println("More groups than projects, projects should be always more than groups"); // It can be further changed
             }
-
         }
 
     }
+    //----------------------------------------------------------------------------
     HashMap<String, Double> groupEfficiency = new HashMap<>();
-
-
+    //----------------------------------------------------------------------------
     public void realizeProjects() throws InterruptedException {
 
         groupEfficiency = new HashMap<>();
 
-//-getProjectManagersNumber()-getAccountantsNumber()-getMarketersNumber()
+
         for (int i = 0; i < workerEntities.size(); i++) {
 
             if (groupEfficiency.containsKey(workerEntities.get(i).getGrp())) {
@@ -332,63 +330,67 @@ public class Company {
             } else {
                 groupEfficiency.put(workerEntities.get(i).getGrp(), workerEntities.get(i).getEfficiency());
             }
-
         }
-
-
         Iterator<Map.Entry<String, List<Project>>> projectIterator = projectsList.entrySet().iterator();
         while (projectIterator.hasNext()) {
             Map.Entry<String, List<Project>> projectEntry = projectIterator.next();
-            if(!projectEntry.getKey().equals("UNASSIGNED")) {
+            if((projectEntry.getKey() != null) && !projectEntry.getKey().equals("UNASSIGNED")) {
 
-                //Double projectTime = projectEntry.getKey().getProjectTime();
                 Double groupEff = groupEfficiency.get(projectEntry.getKey());
+                if(groupEff == null) {
+                    groupEff = 0.0;
+                }
                 List<Project> getProjcs = new ArrayList<>();
                 getProjcs.addAll(projectEntry.getValue());
                 int projectsQuantity = getProjcs.size();
                 Iterator pit = getProjcs.iterator();
                 while (pit.hasNext()) {
                     Project project = (Project) pit.next();
+
                     project.setProjectTime(project.getProjectTime() - groupEff / projectsQuantity);
 
                     if (project.getProjectTime() <= 0) {
                         realisedOrders++;
+                     setCompanyProfit(companyProfit+=project.getPrice());
+
                         groupsAndAvailability.replace(projectEntry.getKey(), false);
                         pit.remove();
-
-                        setCompanyBudget(companyBudget+=project.getPrice());
-
                     }
                 }
                 projectsList.replace(projectEntry.getKey(), getProjcs);
             }
-
-
-
-
         }
     }
-
+    //----------------------------------------------------------------------------
     public List<Groups> displayProjectsWorkersAndGroupsInTable() {
         Rowgroups.clear();
         List<String> gps = new ArrayList<>();
-        for(String key : groupsAndAvailability.keySet()){
-          if(!gps.contains(key)){
-              gps.add(key);
-          }
-        }
+        if (!groupsAndAvailability.isEmpty()) {
+            for (String key : groupsAndAvailability.keySet()) {
+                if (!gps.contains(key)) {
+                    gps.add(key);
 
-        for(int i = 0;i<gps.size();i++){
-            Rowgroups.add(new Groups(gps.get(i), projectsList.get(gps.get(i)).get(0).getOrderName(), projectsList.get(gps.get(i)).get(0).getProjectTime().toString(), groupEfficiency.get(gps.get(i)).toString()));
-        }
+                }
 
-        return Rowgroups;
+            }
+                try {
+                    for (int i = 0; i < gps.size(); i++) {
+                        Rowgroups.add(new Groups(gps.get(i), projectsList.get(gps.get(i)).get(0).getOrderName(), projectsList.get(gps.get(i)).get(0).getProjectTime().toString(), groupEfficiency.get(gps.get(i)).toString()));
+                    }
+                }
+                catch(NullPointerException e){
+                    System.out.println(e);
+                }
+                return Rowgroups;
+        }
+        return null;
     }
 
+    //----------------------------------------------------------------------------
     public boolean checkIfNumberOfProjectsAreBelow() {
         return projectsList.size() < (25 - (int) (Math.random() * 10));
     }
-
+    //----------------------------------------------------------------------------
     public void addProjects(int howMany) { // dodaje projekty i przypisuje go jako nieprzypisany do zadnej groupy
 
         for (int i = 0; i < howMany; i++) {
@@ -407,11 +409,10 @@ public class Company {
             }
             else
                 projectsList.put("UNASSIGNED",  List.of(projects));
-
         }
 
     }
-
+    //----------------------------------------------------------------------------
     public void runProjectsManagerInDay() throws InterruptedException { // Wywoluje sie co jeden dzien, tworzy grupy jesli ich nie ma przypisuje grupy do pracownikow realizuje projekty i dodaje jesli ich wartosc spadla ponizej
         if (first) {
             addProjects((int) (Math.random() * 10) + orderAtOnce + 1);
@@ -424,23 +425,20 @@ public class Company {
         if (checkIfNumberOfProjectsAreBelow())
             addProjects((int) (Math.random() * 10));
         assignGroupsToProjects();
-
-//        displayProjectsWorkersAndGroupsInTable();
-
     }
 
-//    public void viewProjects() {
-//        for (Map.Entry<String, List<Project>> projectEntry : projectsList.entrySet()) {
-//            System.out.println("Team :" + projectEntry.getKey());
-//            projectEntry.getValue().forEach(p -> System.out.println("Level od difficulty :" + p.getLevelOfDifficulty() + " Price : " + p.getPrice() + " Order time :" + p.getProjectTime() + " Order Category: " + p.getOrderName()));
-//        }
-//    }
 
-    public void orderRealisationTime() {
+    //----------------------------------------------------------------------------
+    public Double dailyIncome(){
+        return getCompanyProfit()/realisedOrders;
     }
-
+    //----------------------------------------------------------------------------
+    public Double dispalyAmount(){
+        return companyProfit+companyBudget;
+    }
+    //----------------------------------------------------------------------------
     // dodawanie wszystkich pensji pracowników
-    public Double countSalaries(){
+    public Double costsOfEmployees(){
         Double allSalaries =0.0;
         Double allSalaryTaxes = 0.0;
         for (int i=0;i<workerEntities.size(); i++){
@@ -449,9 +447,9 @@ public class Company {
             allSalaryTaxes += (workerEntities.get(i).getSalary()*0.0976)+(workerEntities.get(i).getSalary()*0.065)+(workerEntities.get(i).getSalary()*0.0167)+(workerEntities.get(i).getSalary()*0.0245)+(workerEntities.get(i).getSalary()*0.001);
 
         }
+        System.out.println("all salaries : "+allSalaries);
         return allSalaries+allSalaryTaxes;
     }
-
 
 
 }
