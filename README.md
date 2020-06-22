@@ -86,6 +86,7 @@ Picking one and accepting conditions we are ready to start simulation. If the us
 
 **Simulation screen** appears after correct form fill in. **Timer** visible in the left corner takes current date and add the duration time. **Progress bar** (on the top) represent expired time. Choosing different financing forms is also noticeable during simulation. **Bank** is turned on  only if user choose "credit", otherwise bank icons are blank. Installments are being paid every month, only if company budget is positive. In case the budget drops below zero and it comes to payoff, bank charges **5%**   interest from taken amount on every delayed month. When company budget raise up again, the installment is being paid with all charged interest.  
 ![simulation_gif](https://user-images.githubusercontent.com/57325544/85229976-5ac98a00-b3ed-11ea-8881-0c9fa2102f64.gif)
+
 **Working Teams** - every worker is assigned automatically to the group, which realize orders. Program generates orders with parameters: **level of difficulty**, **time to accomplish**, **price**. Value of last two parameters is based on difficulty level. **Number of working groups** is equal to orders realizing in the same time number (one team one order)  provided by user. After finishing an order, group is set as **free** and program assign new order to it.   **Group efficiency** is measured by sum of efficiencies its members. 
 
 ![Zrzut ekranu 2020-06-22 o 12 46 55](https://user-images.githubusercontent.com/57325544/85279313-851b5600-b486-11ea-8713-40bf770f32b7.png)
